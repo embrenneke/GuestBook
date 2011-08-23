@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
+		F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
+		F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BC140418F000549C03 /* CoreGraphics.framework */; };
+		F1B3F7BF140418F000549C03 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BE140418F000549C03 /* CoreData.framework */; };
+		F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7C3140418F000549C03 /* InfoPlist.strings */; };
+		F1B3F7C8140418F000549C03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7C7140418F000549C03 /* main.m */; };
+		F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */; };
+		F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */; };
+		F1B3F7D1140418F000549C03 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7CF140418F000549C03 /* MainWindow.xib */; };
+		F1B3F7D4140418F000549C03 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7D3140418F000549C03 /* RootViewController.m */; };
+		F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7D5140418F000549C03 /* RootViewController.xib */; };
+		F1B3F7DE140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
+		F1B3F7DF140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
+		F1B3F7E0140418F000549C03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BC140418F000549C03 /* CoreGraphics.framework */; };
+		F1B3F7E1140418F000549C03 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BE140418F000549C03 /* CoreData.framework */; };
+		F1B3F7E9140418F000549C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7E7140418F000549C03 /* InfoPlist.strings */; };
+		F1B3F7EC140418F000549C03 /* GuestBookTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7EB140418F000549C03 /* GuestBookTests.h */; };
+		F1B3F7EE140418F000549C03 /* GuestBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7ED140418F000549C03 /* GuestBookTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1B3F7E2140418F000549C03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1B3F7AB140418EF00549C03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1B3F7B3140418F000549C03;
+			remoteInfo = GuestBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F1B3F7BA140418F000549C03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F1B3F7BC140418F000549C03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F1B3F7BE140418F000549C03 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F1B3F7C2140418F000549C03 /* GuestBook-Info.plist */ = {isa = PBXFileReference; path = "GuestBook-Info.plist"; sourceTree = "<group>"; };
+		F1B3F7C4140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1B3F7C6140418F000549C03 /* GuestBook-Prefix.pch */ = {isa = PBXFileReference; path = "GuestBook-Prefix.pch"; sourceTree = "<group>"; };
+		F1B3F7C7140418F000549C03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */ = {isa = PBXFileReference; path = GuestBookAppDelegate.h; sourceTree = "<group>"; };
+		F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuestBookAppDelegate.m; sourceTree = "<group>"; };
+		F1B3F7CD140418F000549C03 /* GuestBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuestBook.xcdatamodel; sourceTree = "<group>"; };
+		F1B3F7D0140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		F1B3F7D2140418F000549C03 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		F1B3F7D3140418F000549C03 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		F1B3F7D6140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		F1B3F7DD140418F000549C03 /* GuestBookTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuestBookTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1B3F7E6140418F000549C03 /* GuestBookTests-Info.plist */ = {isa = PBXFileReference; path = "GuestBookTests-Info.plist"; sourceTree = "<group>"; };
+		F1B3F7E8140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1B3F7EA140418F000549C03 /* GuestBookTests-Prefix.pch */ = {isa = PBXFileReference; path = "GuestBookTests-Prefix.pch"; sourceTree = "<group>"; };
+		F1B3F7EB140418F000549C03 /* GuestBookTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestBookTests.h; sourceTree = "<group>"; };
+		F1B3F7ED140418F000549C03 /* GuestBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuestBookTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1B3F7B1140418F000549C03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */,
+				F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */,
+				F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */,
+				F1B3F7BF140418F000549C03 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1B3F7D9140418F000549C03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B3F7DE140418F000549C03 /* UIKit.framework in Frameworks */,
+				F1B3F7DF140418F000549C03 /* Foundation.framework in Frameworks */,
+				F1B3F7E0140418F000549C03 /* CoreGraphics.framework in Frameworks */,
+				F1B3F7E1140418F000549C03 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F1B3F7A9140418EF00549C03 = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7C0140418F000549C03 /* GuestBook */,
+				F1B3F7E4140418F000549C03 /* GuestBookTests */,
+				F1B3F7B7140418F000549C03 /* Frameworks */,
+				F1B3F7B5140418F000549C03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F1B3F7B5140418F000549C03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7B4140418F000549C03 /* GuestBook.app */,
+				F1B3F7DD140418F000549C03 /* GuestBookTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1B3F7B7140418F000549C03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7B8140418F000549C03 /* UIKit.framework */,
+				F1B3F7BA140418F000549C03 /* Foundation.framework */,
+				F1B3F7BC140418F000549C03 /* CoreGraphics.framework */,
+				F1B3F7BE140418F000549C03 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1B3F7C0140418F000549C03 /* GuestBook */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */,
+				F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */,
+				F1B3F7CF140418F000549C03 /* MainWindow.xib */,
+				F1B3F7D2140418F000549C03 /* RootViewController.h */,
+				F1B3F7D3140418F000549C03 /* RootViewController.m */,
+				F1B3F7D5140418F000549C03 /* RootViewController.xib */,
+				F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */,
+				F1B3F7C1140418F000549C03 /* Supporting Files */,
+			);
+			path = GuestBook;
+			sourceTree = "<group>";
+		};
+		F1B3F7C1140418F000549C03 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7C2140418F000549C03 /* GuestBook-Info.plist */,
+				F1B3F7C3140418F000549C03 /* InfoPlist.strings */,
+				F1B3F7C6140418F000549C03 /* GuestBook-Prefix.pch */,
+				F1B3F7C7140418F000549C03 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1B3F7E4140418F000549C03 /* GuestBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7EB140418F000549C03 /* GuestBookTests.h */,
+				F1B3F7ED140418F000549C03 /* GuestBookTests.m */,
+				F1B3F7E5140418F000549C03 /* Supporting Files */,
+			);
+			path = GuestBookTests;
+			sourceTree = "<group>";
+		};
+		F1B3F7E5140418F000549C03 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3F7E6140418F000549C03 /* GuestBookTests-Info.plist */,
+				F1B3F7E7140418F000549C03 /* InfoPlist.strings */,
+				F1B3F7EA140418F000549C03 /* GuestBookTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F1B3F7B3140418F000549C03 /* GuestBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1B3F7F1140418F000549C03 /* Build configuration list for PBXNativeTarget "GuestBook" */;
+			buildPhases = (
+				F1B3F7B0140418F000549C03 /* Sources */,
+				F1B3F7B1140418F000549C03 /* Frameworks */,
+				F1B3F7B2140418F000549C03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GuestBook;
+			productName = GuestBook;
+			productReference = F1B3F7B4140418F000549C03 /* GuestBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F1B3F7DC140418F000549C03 /* GuestBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1B3F7F4140418F000549C03 /* Build configuration list for PBXNativeTarget "GuestBookTests" */;
+			buildPhases = (
+				F1B3F7D8140418F000549C03 /* Sources */,
+				F1B3F7D9140418F000549C03 /* Frameworks */,
+				F1B3F7DA140418F000549C03 /* Resources */,
+				F1B3F7DB140418F000549C03 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1B3F7E3140418F000549C03 /* PBXTargetDependency */,
+			);
+			name = GuestBookTests;
+			productName = GuestBookTests;
+			productReference = F1B3F7DD140418F000549C03 /* GuestBookTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1B3F7AB140418EF00549C03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = UnspunProductions;
+			};
+			buildConfigurationList = F1B3F7AE140418EF00549C03 /* Build configuration list for PBXProject "GuestBook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F1B3F7A9140418EF00549C03;
+			productRefGroup = F1B3F7B5140418F000549C03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1B3F7B3140418F000549C03 /* GuestBook */,
+				F1B3F7DC140418F000549C03 /* GuestBookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1B3F7B2140418F000549C03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */,
+				F1B3F7D1140418F000549C03 /* MainWindow.xib in Resources */,
+				F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1B3F7DA140418F000549C03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B3F7E9140418F000549C03 /* InfoPlist.strings in Resources */,
+				F1B3F7EC140418F000549C03 /* GuestBookTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F1B3F7DB140418F000549C03 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1B3F7B0140418F000549C03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B3F7C8140418F000549C03 /* main.m in Sources */,
+				F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */,
+				F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */,
+				F1B3F7D4140418F000549C03 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1B3F7D8140418F000549C03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B3F7EE140418F000549C03 /* GuestBookTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1B3F7E3140418F000549C03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1B3F7B3140418F000549C03 /* GuestBook */;
+			targetProxy = F1B3F7E2140418F000549C03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F1B3F7C3140418F000549C03 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1B3F7C4140418F000549C03 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F1B3F7CF140418F000549C03 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1B3F7D0140418F000549C03 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		F1B3F7D5140418F000549C03 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1B3F7D6140418F000549C03 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		F1B3F7E7140418F000549C03 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1B3F7E8140418F000549C03 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F1B3F7EF140418F000549C03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F1B3F7F0140418F000549C03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		F1B3F7F2140418F000549C03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
+				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F1B3F7F3140418F000549C03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
+				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F1B3F7F5140418F000549C03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GuestBook.app/GuestBook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GuestBookTests/GuestBookTests-Prefix.pch";
+				INFOPLIST_FILE = "GuestBookTests/GuestBookTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F1B3F7F6140418F000549C03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GuestBook.app/GuestBook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GuestBookTests/GuestBookTests-Prefix.pch";
+				INFOPLIST_FILE = "GuestBookTests/GuestBookTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1B3F7AE140418EF00549C03 /* Build configuration list for PBXProject "GuestBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1B3F7EF140418F000549C03 /* Debug */,
+				F1B3F7F0140418F000549C03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1B3F7F1140418F000549C03 /* Build configuration list for PBXNativeTarget "GuestBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1B3F7F2140418F000549C03 /* Debug */,
+				F1B3F7F3140418F000549C03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F1B3F7F4140418F000549C03 /* Build configuration list for PBXNativeTarget "GuestBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1B3F7F5140418F000549C03 /* Debug */,
+				F1B3F7F6140418F000549C03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F1B3F7CD140418F000549C03 /* GuestBook.xcdatamodel */,
+			);
+			currentVersion = F1B3F7CD140418F000549C03 /* GuestBook.xcdatamodel */;
+			path = GuestBook.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F1B3F7AB140418EF00549C03 /* Project object */;
+}
