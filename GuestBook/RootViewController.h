@@ -7,17 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import <CoreData/CoreData.h>
+#import "EventListController.h"
 
 @interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     UISegmentedControl *segmentedControl;
+    UIPopoverController *eventsPopup;
+    UIPopoverController *addEntryPopup;
+    EventListController *eventsView;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) UIPopoverController *eventsPopup;
+@property (nonatomic, retain) EventListController *eventsView;
 
 -(IBAction) segmentedControlIndexChanged;
--(void) chooseEvent;
+-(IBAction) chooseEvent:(id)sender;
 
 @end

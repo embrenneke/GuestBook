@@ -15,15 +15,15 @@
 @implementation RootViewController
 
 @synthesize fetchedResultsController=__fetchedResultsController;
-
 @synthesize managedObjectContext=__managedObjectContext;
+@synthesize eventsPopup, eventsView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Set up the edit and add buttons.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(chooseEvent)];
+    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(chooseEvent:)];
     self.navigationItem.leftBarButtonItem = events;
     [events release];
 
@@ -33,12 +33,16 @@
 
     UISegmentedControl *ctrl = [[UISegmentedControl alloc] initWithFrame: CGRectZero];
     ctrl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [ctrl insertSegmentWithTitle: @"List" atIndex: 0 animated: NO];
-    [ctrl insertSegmentWithTitle: @"Book" atIndex: 0 animated: NO];
     [ctrl insertSegmentWithTitle: @"Print" atIndex: 0 animated: NO];
+    [ctrl insertSegmentWithTitle: @"Book" atIndex: 0 animated: NO];
+    [ctrl insertSegmentWithTitle: @"List" atIndex: 0 animated: NO];
     [ctrl sizeToFit];
+    [ctrl setSelectedSegmentIndex:0];
     self.navigationItem.titleView = ctrl;
     segmentedControl = ctrl;
+    
+    eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
+    eventsPopup = [[UIPopoverController alloc] initWithContentViewController:eventsView];
 }
 
 -(IBAction) segmentedControlIndexChanged
@@ -193,14 +197,20 @@
     cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
 }
 
-- (void)chooseEvent
+- (void)chooseEvent:(id)sender
 {
     // TODO: get current status of popover (hidden/visible)
     //       show if hidden
     //       hide if visible
     //        replace self in line below with list of events
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:self];
-    [popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    if(![eventsPopup isPopoverVisible])
+    {
+        [eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else
+    {
+        [eventsPopup dismissPopoverAnimated:YES];
+    }
 }
 
 - (void)insertNewObject
