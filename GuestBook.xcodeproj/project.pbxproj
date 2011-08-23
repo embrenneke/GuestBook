@@ -26,6 +26,12 @@
 		F1B3F7EC140418F000549C03 /* GuestBookTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7EB140418F000549C03 /* GuestBookTests.h */; };
 		F1B3F7EE140418F000549C03 /* GuestBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7ED140418F000549C03 /* GuestBookTests.m */; };
 		F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7F81404190B00549C03 /* MainWindow-iPad.xib */; };
+		F1B3F7FE14043E9F00549C03 /* EventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7FC14043E9F00549C03 /* EventListController.m */; };
+		F1B3F7FF14043E9F00549C03 /* EventListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7FD14043E9F00549C03 /* EventListController.xib */; };
+		F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F80114043F6F00549C03 /* AddSignatureViewController.m */; };
+		F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F80214043F6F00549C03 /* AddSignatureViewController.xib */; };
+		F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F80614043FF800549C03 /* AddEventViewController.m */; };
+		F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F80714043FF900549C03 /* AddEventViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,15 @@
 		F1B3F7EB140418F000549C03 /* GuestBookTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestBookTests.h; sourceTree = "<group>"; };
 		F1B3F7ED140418F000549C03 /* GuestBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuestBookTests.m; sourceTree = "<group>"; };
 		F1B3F7F91404190B00549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		F1B3F7FB14043E9F00549C03 /* EventListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListController.h; sourceTree = "<group>"; };
+		F1B3F7FC14043E9F00549C03 /* EventListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListController.m; sourceTree = "<group>"; };
+		F1B3F7FD14043E9F00549C03 /* EventListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventListController.xib; sourceTree = "<group>"; };
+		F1B3F80014043F6F00549C03 /* AddSignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSignatureViewController.h; sourceTree = "<group>"; };
+		F1B3F80114043F6F00549C03 /* AddSignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSignatureViewController.m; sourceTree = "<group>"; };
+		F1B3F80214043F6F00549C03 /* AddSignatureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddSignatureViewController.xib; sourceTree = "<group>"; };
+		F1B3F80514043FF800549C03 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		F1B3F80614043FF800549C03 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		F1B3F80714043FF900549C03 /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +138,16 @@
 		F1B3F7C0140418F000549C03 /* GuestBook */ = {
 			isa = PBXGroup;
 			children = (
-				F1B3F7F71404190300549C03 /* iPad */,
+				F1B3F7F81404190B00549C03 /* MainWindow-iPad.xib */,
+				F1B3F80514043FF800549C03 /* AddEventViewController.h */,
+				F1B3F80614043FF800549C03 /* AddEventViewController.m */,
+				F1B3F80714043FF900549C03 /* AddEventViewController.xib */,
+				F1B3F80014043F6F00549C03 /* AddSignatureViewController.h */,
+				F1B3F80114043F6F00549C03 /* AddSignatureViewController.m */,
+				F1B3F80214043F6F00549C03 /* AddSignatureViewController.xib */,
+				F1B3F7FB14043E9F00549C03 /* EventListController.h */,
+				F1B3F7FC14043E9F00549C03 /* EventListController.m */,
+				F1B3F7FD14043E9F00549C03 /* EventListController.xib */,
 				F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */,
 				F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */,
 				F1B3F7CF140418F000549C03 /* MainWindow.xib */,
@@ -165,14 +189,6 @@
 				F1B3F7EA140418F000549C03 /* GuestBookTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F1B3F7F71404190300549C03 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				F1B3F7F81404190B00549C03 /* MainWindow-iPad.xib */,
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +265,9 @@
 				F1B3F7D1140418F000549C03 /* MainWindow.xib in Resources */,
 				F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */,
 				F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */,
+				F1B3F7FF14043E9F00549C03 /* EventListController.xib in Resources */,
+				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
+				F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +307,9 @@
 				F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */,
 				F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */,
 				F1B3F7D4140418F000549C03 /* RootViewController.m in Sources */,
+				F1B3F7FE14043E9F00549C03 /* EventListController.m in Sources */,
+				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
+				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
