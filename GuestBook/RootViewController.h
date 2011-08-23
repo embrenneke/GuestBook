@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 -(IBAction) segmentedControlIndexChanged;
+-(void) chooseEvent;
 
 @end
