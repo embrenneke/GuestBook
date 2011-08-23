@@ -27,7 +27,36 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
+
+    UISegmentedControl *ctrl = [[UISegmentedControl alloc] initWithFrame: CGRectZero];
+    ctrl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [ctrl insertSegmentWithTitle: @"List" atIndex: 0 animated: NO];
+    [ctrl insertSegmentWithTitle: @"Book" atIndex: 0 animated: NO];
+    [ctrl insertSegmentWithTitle: @"Print" atIndex: 0 animated: NO];
+    [ctrl sizeToFit];
+    self.navigationItem.titleView = ctrl;
+    segmentedControl = ctrl;
 }
+
+-(IBAction) segmentedControlIndexChanged
+{
+/*
+    switch (self.segmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            //self.segmentLabel.text =@"Segment 1 selected.";
+            break;
+        case 1:
+            //self.segmentLabel.text =@"Segment 2 selected.";
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+*/
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -153,6 +182,7 @@
 {
     [__fetchedResultsController release];
     [__managedObjectContext release];
+    [segmentedControl release];
     [super dealloc];
 }
 
