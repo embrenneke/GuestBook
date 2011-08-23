@@ -22,7 +22,10 @@
 {
     [super viewDidLoad];
     // Set up the edit and add buttons.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(chooseEvent)];
+    self.navigationItem.leftBarButtonItem = events;
+    [events release];
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -78,13 +81,11 @@
 	[super viewDidDisappear:animated];
 }
 
-/*
  // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return YES; //(interfaceOrientation == UIInterfaceOrientationPortrait);
 }
- */
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -190,6 +191,16 @@
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+}
+
+- (void)chooseEvent
+{
+    // TODO: get current status of popover (hidden/visible)
+    //       show if hidden
+    //       hide if visible
+    //        replace self in line below with list of events
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:self];
+    [popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)insertNewObject
