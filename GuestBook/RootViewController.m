@@ -10,7 +10,7 @@
 
 @implementation RootViewController
 
-@synthesize eventsPopup, eventsView;
+@synthesize eventsPopup, eventsView, addEntryPopup, addSigView;
 @synthesize managedObjectContext=__managedObjectContext;
 
 - (void)viewDidLoad
@@ -21,7 +21,7 @@
     self.navigationItem.leftBarButtonItem = events;
     [events release];
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature:)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
 
@@ -39,7 +39,15 @@
     eventsView.managedObjectContext = self.managedObjectContext;
     UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:eventsView];
     eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
+    eventsView.title = @"Event List";
     [navCon release];
+    
+    addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
+    //addSigView.managedObjectContext = self.managedObjectContext;
+    UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:addSigView];
+    addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
+    addSigView.title = @"Add Signature";
+    [sigNavCon release];
 }
 
 -(IBAction) segmentedControlIndexChanged:(id)control
@@ -60,9 +68,16 @@
     }
 }
 
-- (void)insertNewSignature
+- (void)insertNewSignature:(id)sender
 {
-    // show AddSignatureView
+    if(![addEntryPopup isPopoverVisible])
+    {
+        [addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else
+    {
+        [addEntryPopup dismissPopoverAnimated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
