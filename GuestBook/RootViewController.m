@@ -8,26 +8,20 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController ()
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-@end
-
 @implementation RootViewController
 
-@synthesize fetchedResultsController=__fetchedResultsController;
-@synthesize managedObjectContext=__managedObjectContext;
 @synthesize eventsPopup, eventsView;
+@synthesize managedObjectContext=__managedObjectContext;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Set up the edit and add buttons.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(chooseEvent:)];
+    // Set up the events and add signature buttons.
+    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithTitle:@"Events" style:UIBarButtonItemStylePlain target:self action:@selector(chooseEvent:)];
     self.navigationItem.leftBarButtonItem = events;
     [events release];
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
 
@@ -38,32 +32,38 @@
     [ctrl insertSegmentWithTitle: @"List" atIndex: 0 animated: NO];
     [ctrl sizeToFit];
     [ctrl setSelectedSegmentIndex:0];
+    [ctrl addTarget:self action:@selector(segmentedControlIndexChanged:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = ctrl;
-    segmentedControl = ctrl;
     
     eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
-    eventsPopup = [[UIPopoverController alloc] initWithContentViewController:eventsView];
+    eventsView.managedObjectContext = self.managedObjectContext;
+    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:eventsView];
+    eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
+    [navCon release];
 }
 
--(IBAction) segmentedControlIndexChanged
+-(IBAction) segmentedControlIndexChanged:(id)control
 {
-/*
-    switch (self.segmentedControl.selectedSegmentIndex)
+    switch ([control selectedSegmentIndex])
     {
         case 0:
-            //self.segmentLabel.text =@"Segment 1 selected.";
+            NSLog(@"List View Selected");
             break;
         case 1:
-            //self.segmentLabel.text =@"Segment 2 selected.";
+            NSLog(@"Book View Selected");
             break;
         case 2:
+            NSLog(@"Print View Selected");
             break;
         default:
             break;
     }
-*/
 }
 
+- (void)insertNewSignature
+{
+    // show AddSignatureView
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -94,13 +94,12 @@
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    return 0;
 }
 
 // Customize the appearance of table view cells.
@@ -113,8 +112,8 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
 
-    // Configure the cell.
-    [self configureCell:cell atIndexPath:indexPath];
+    // Configure the cell....
+
     return cell;
 }
 
@@ -127,28 +126,19 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        // Delete the managed object for the given index path
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error])
-        {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }   
-}
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }   
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }   
+ }
+ */
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -185,24 +175,11 @@
 
 - (void)dealloc
 {
-    [__fetchedResultsController release];
-    [__managedObjectContext release];
-    [segmentedControl release];
     [super dealloc];
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
 }
 
 - (void)chooseEvent:(id)sender
 {
-    // TODO: get current status of popover (hidden/visible)
-    //       show if hidden
-    //       hide if visible
-    //        replace self in line below with list of events
     if(![eventsPopup isPopoverVisible])
     {
         [eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -211,139 +188,6 @@
     {
         [eventsPopup dismissPopoverAnimated:YES];
     }
-}
-
-- (void)insertNewObject
-{
-    // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error])
-    {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-}
-
-#pragma mark - Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (__fetchedResultsController != nil)
-    {
-        return __fetchedResultsController;
-    }
-    
-    /*
-     Set up the fetched results controller.
-    */
-    // Create the fetch request for the entity.
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-    [aFetchedResultsController release];
-    [fetchRequest release];
-    [sortDescriptor release];
-    [sortDescriptors release];
-
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
-        {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return __fetchedResultsController;
-}    
-
-#pragma mark - Fetched results controller delegate
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch(type)
-    {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-    
-    switch(type)
-    {
-            
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
 }
 
 /*
