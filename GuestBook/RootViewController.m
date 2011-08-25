@@ -70,6 +70,10 @@
 
 - (void)insertNewSignature:(id)sender
 {
+    if([eventsPopup isPopoverVisible])
+    {
+        [eventsPopup dismissPopoverAnimated:YES];
+    }
     if(![addEntryPopup isPopoverVisible])
     {
         [addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -77,6 +81,22 @@
     else
     {
         [addEntryPopup dismissPopoverAnimated:YES];
+    }
+}
+
+- (void)chooseEvent:(id)sender
+{
+    if([addEntryPopup isPopoverVisible])
+    {
+        [addEntryPopup dismissPopoverAnimated:YES];
+    }
+    if(![eventsPopup isPopoverVisible])
+    {
+        [eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else
+    {
+        [eventsPopup dismissPopoverAnimated:YES];
     }
 }
 
@@ -191,18 +211,6 @@
 - (void)dealloc
 {
     [super dealloc];
-}
-
-- (void)chooseEvent:(id)sender
-{
-    if(![eventsPopup isPopoverVisible])
-    {
-        [eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    else
-    {
-        [eventsPopup dismissPopoverAnimated:YES];
-    }
 }
 
 /*
