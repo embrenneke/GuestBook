@@ -54,6 +54,7 @@
 {
     [super viewDidLoad];
 
+    self.contentSizeForViewInPopover = CGSizeMake(350.0, 500.0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.contentSizeForViewInPopover = CGSizeMake(700.0, 250.0);
 }
 
 - (void)viewDidUnload
