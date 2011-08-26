@@ -316,10 +316,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // dismiss popup, change to selected event
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"popoverShouldDismiss" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"eventPopoverShouldDismiss" object:nil];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SetCurrentEvent" object:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-
+    // save current selection
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     
     // Navigation logic may go here. Create and push another view controller.
     /*

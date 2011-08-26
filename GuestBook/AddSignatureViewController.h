@@ -10,12 +10,10 @@
 
 
 @interface AddSignatureViewController : UIViewController {
-    NSManagedObject* currentEvent;
 }
 
 -(IBAction)submitSig:(id)sender;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSManagedObject *currentEvent;
 
 @end

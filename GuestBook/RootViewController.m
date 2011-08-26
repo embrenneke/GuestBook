@@ -10,7 +10,7 @@
 
 @implementation RootViewController
 
-@synthesize eventsPopup, eventsView, addEntryPopup, addSigView, currentEvent;
+@synthesize eventsPopup, eventsView, addEntryPopup, addSigView;
 @synthesize managedObjectContext=__managedObjectContext;
 
 - (void)viewDidLoad
@@ -49,10 +49,9 @@
     addSigView.title = @"Add Signature";
     [sigNavCon release];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"popoverShouldDismiss" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCurrentEvent:) name:@"SetCurrentEvent" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
 }
 
 -(IBAction) segmentedControlIndexChanged:(id)control
@@ -81,7 +80,6 @@
     }
     if(![addEntryPopup isPopoverVisible])
     {
-        [addSigView setCurrentEvent:currentEvent];
         [addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
     else

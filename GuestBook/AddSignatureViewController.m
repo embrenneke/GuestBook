@@ -12,7 +12,6 @@
 @implementation AddSignatureViewController
 
 @synthesize managedObjectContext=__managedObjectContext;
-@synthesize currentEvent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +31,7 @@
     [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
     [newManagedObject setValue:@"myName" forKey:@"name"];
     [newManagedObject setValue:[appDelegate generateUuidString] forKey:@"uuid"];
-    [newManagedObject setValue:currentEvent forKey:@"event"];
+    [newManagedObject setValue:[appDelegate currentEvent] forKey:@"event"];
 
     // Save the context.
     NSError *error = nil;
@@ -46,6 +45,9 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
+    // dismiss popup, change to selected event
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"signaturePopoverShouldDismiss" object:nil];
 }
 
 - (void)dealloc
