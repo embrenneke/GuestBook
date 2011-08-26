@@ -7,7 +7,7 @@
 //
 
 #import "EventListController.h"
-
+#import "GuestBookAppDelegate.h"
 
 @interface EventListController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -37,7 +37,8 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [[managedObject valueForKey:@"time"] description];
+    cell.detailTextLabel.text = [[managedObject valueForKey:@"uuid"] description];
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,7 +137,10 @@
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:[NSDate date] forKey:@"time"];
+    
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [newManagedObject setValue:[appDelegate generateUuidString] forKey:@"uuid"];
     
     // Save the context.
     NSError *error = nil;
@@ -172,7 +176,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -269,6 +273,9 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        // TODO: confirm delete
+
+
         // Delete the managed object for the given index path
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
@@ -308,6 +315,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // dismiss popup, change to selected event
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"popoverShouldDismiss" object:nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SetCurrentEvent" object:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
