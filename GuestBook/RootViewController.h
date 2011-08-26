@@ -16,6 +16,7 @@
     UIPopoverController        *addEntryPopup;
     EventListController        *eventsView;
     AddSignatureViewController *addSigView;
+    NSManagedObject            *currentEvent;
 }
 
 @property (nonatomic, retain) UIPopoverController *eventsPopup;
@@ -23,6 +24,7 @@
 @property (nonatomic, retain) EventListController *eventsView;
 @property (nonatomic, retain) AddSignatureViewController *addSigView;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSManagedObject *currentEvent;
 
 -(IBAction) segmentedControlIndexChanged:(id)index;
 -(IBAction) chooseEvent:(id)sender;

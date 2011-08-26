@@ -20,6 +20,8 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+// return a new autoreleased UUID string
+- (NSString *)generateUuidString;
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
