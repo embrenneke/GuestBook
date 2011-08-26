@@ -11,17 +11,19 @@
 #import "EventListController.h"
 #import "AddSignatureViewController.h"
 
-@interface RootViewController : UITableViewController {
+@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     UIPopoverController        *eventsPopup;
     UIPopoverController        *addEntryPopup;
     EventListController        *eventsView;
     AddSignatureViewController *addSigView;
+    NSFetchedResultsController *fetchedResultsController_;
 }
 
 @property (nonatomic, retain) UIPopoverController *eventsPopup;
 @property (nonatomic, retain) UIPopoverController *addEntryPopup;
 @property (nonatomic, retain) EventListController *eventsView;
 @property (nonatomic, retain) AddSignatureViewController *addSigView;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 -(IBAction) segmentedControlIndexChanged:(id)index;
