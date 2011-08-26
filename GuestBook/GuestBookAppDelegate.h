@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface GuestBookAppDelegate : NSObject <UIApplicationDelegate> {
-
+    NSManagedObject            *currentEvent;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -17,6 +18,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain) NSManagedObject *currentEvent;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
