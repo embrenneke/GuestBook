@@ -34,16 +34,8 @@
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
 
-    UISegmentedControl *ctrl = [[UISegmentedControl alloc] initWithFrame: CGRectZero];
-    ctrl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [ctrl insertSegmentWithTitle: @"Print" atIndex: 0 animated: NO];
-    [ctrl insertSegmentWithTitle: @"Book" atIndex: 0 animated: NO];
-    [ctrl insertSegmentWithTitle: @"List" atIndex: 0 animated: NO];
-    [ctrl sizeToFit];
-    [ctrl setSelectedSegmentIndex:0];
-    [ctrl addTarget:self action:@selector(segmentedControlIndexChanged:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = ctrl;
-    
+    self.navigationItem.title = @"No Event Selected";
+
     eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
     eventsView.managedObjectContext = self.managedObjectContext;
     UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:eventsView];
@@ -61,24 +53,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
-}
-
--(IBAction) segmentedControlIndexChanged:(id)control
-{
-    switch ([control selectedSegmentIndex])
-    {
-        case 0:
-            NSLog(@"List View Selected");
-            break;
-        case 1:
-            NSLog(@"Book View Selected");
-            break;
-        case 2:
-            NSLog(@"Print View Selected");
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)insertNewSignature:(id)sender
@@ -207,6 +181,9 @@
         NSLog(@"%@, %@", error, [error userInfo]);
         abort();
     }
+    
+    self.navigationItem.title = [[appDelegate currentEvent] name];
+
     [self.tableView reloadData];
 }
 
