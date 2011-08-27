@@ -277,6 +277,9 @@
         // TODO: confirm delete
 
 
+        // TODO: delete all associated signatures first
+        //Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
         // Delete the managed object for the given index path
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
