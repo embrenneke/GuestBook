@@ -28,5 +28,6 @@
 
 -(IBAction) segmentedControlIndexChanged:(id)index;
 -(IBAction) chooseEvent:(id)sender;
+-(void) updatePredicate;
 
 @end
