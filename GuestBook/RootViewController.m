@@ -157,11 +157,8 @@
     [fetchRequest setEntity:entity];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([appDelegate currentEvent] != nil)
-    {
-        NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
-        [fetchRequest setPredicate:aPredicate];
-    }
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
+    [fetchRequest setPredicate:aPredicate];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
@@ -202,18 +199,15 @@
 {
     [NSFetchedResultsController deleteCacheWithName:nil];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([appDelegate currentEvent] != nil)
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
+    [[self.fetchedResultsController fetchRequest] setPredicate:aPredicate];
+    NSError *error = nil;
+    if(![self.fetchedResultsController performFetch:&error])
     {
-        NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
-        [[self.fetchedResultsController fetchRequest] setPredicate:aPredicate];
-        NSError *error = nil;
-        if(![self.fetchedResultsController performFetch:&error])
-        {
-            NSLog(@"%@, %@", error, [error userInfo]);
-            abort();
-        }
-        [self.tableView reloadData];
+        NSLog(@"%@, %@", error, [error userInfo]);
+        abort();
     }
+    [self.tableView reloadData];
 }
 
 // Customize the number of sections in the table view.
