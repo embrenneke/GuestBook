@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "GuestBookAppDelegate.h"
 
 @implementation RootViewController
 
@@ -114,6 +115,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [NSFetchedResultsController deleteCacheWithName:nil];
     [super viewWillAppear:animated];
 }
 
@@ -153,6 +155,13 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
+
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if([appDelegate currentEvent] != nil)
+    {
+        NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
+        [fetchRequest setPredicate:aPredicate];
+    }
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
@@ -188,6 +197,24 @@
     
     return fetchedResultsController_;
 } 
+
+- (void)updatePredicate
+{
+    [NSFetchedResultsController deleteCacheWithName:nil];
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if([appDelegate currentEvent] != nil)
+    {
+        NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
+        [[self.fetchedResultsController fetchRequest] setPredicate:aPredicate];
+        NSError *error = nil;
+        if(![self.fetchedResultsController performFetch:&error])
+        {
+            NSLog(@"%@, %@", error, [error userInfo]);
+            abort();
+        }
+        [self.tableView reloadData];
+    }
+}
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

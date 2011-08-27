@@ -32,6 +32,8 @@
 		F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F80214043F6F00549C03 /* AddSignatureViewController.xib */; };
 		F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F80614043FF800549C03 /* AddEventViewController.m */; };
 		F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F80714043FF900549C03 /* AddEventViewController.xib */; };
+		F1B8013D14087964007CE067 /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B8013C14087964007CE067 /* Signature.m */; };
+		F1B8014014087995007CE067 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B8013F14087995007CE067 /* Event.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		F1B3F80514043FF800549C03 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		F1B3F80614043FF800549C03 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		F1B3F80714043FF900549C03 /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
+		F1B8013B14087964007CE067 /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
+		F1B8013C14087964007CE067 /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
+		F1B8013E14087995007CE067 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		F1B8013F14087995007CE067 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,10 @@
 				F1B3F7D3140418F000549C03 /* RootViewController.m */,
 				F1B3F7D5140418F000549C03 /* RootViewController.xib */,
 				F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */,
+				F1B8013E14087995007CE067 /* Event.h */,
+				F1B8013F14087995007CE067 /* Event.m */,
+				F1B8013B14087964007CE067 /* Signature.h */,
+				F1B8013C14087964007CE067 /* Signature.m */,
 				F1B3F7C1140418F000549C03 /* Supporting Files */,
 			);
 			path = GuestBook;
@@ -312,6 +322,8 @@
 				F1B3F7FE14043E9F00549C03 /* EventListController.m in Sources */,
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
+				F1B8013D14087964007CE067 /* Signature.m in Sources */,
+				F1B8014014087995007CE067 /* Event.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 
 @interface AddSignatureViewController : UIViewController {
+    IBOutlet UITextField *name;
 }
 
 -(IBAction)submitSig:(id)sender;

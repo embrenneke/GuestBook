@@ -25,6 +25,13 @@
 
 @synthesize currentEvent;
 
+- (void)setCurrentEvent:(Event *)newCurrentEvent
+{
+    currentEvent = newCurrentEvent;
+    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
+    [rootViewController updatePredicate];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.

@@ -24,12 +24,15 @@
 
 -(IBAction)submitSig:(id)sender
 {
+    // TODO: check for valid data before added to database
+    
+
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    [newManagedObject setValue:@"myName" forKey:@"name"];
+    [newManagedObject setValue:name.text forKey:@"name"];
     [newManagedObject setValue:[appDelegate generateUuidString] forKey:@"uuid"];
     [newManagedObject setValue:[appDelegate currentEvent] forKey:@"event"];
 
