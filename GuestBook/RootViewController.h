@@ -26,7 +26,6 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
--(IBAction) segmentedControlIndexChanged:(id)index;
 -(IBAction) chooseEvent:(id)sender;
 -(void) updatePredicate;
 
