@@ -8,6 +8,9 @@
 
 #import "AddSignatureViewController.h"
 #import "GuestBookAppDelegate.h"
+#import "Signature.h"
+#import <QuartzCore/QuartzCore.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @implementation AddSignatureViewController
 
@@ -18,6 +21,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [message.layer setBackgroundColor:[[UIColor whiteColor] CGColor]];
+        [message.layer setBorderColor:[[UIColor grayColor] CGColor]];
+        [message.layer setBorderWidth:1.0f];
+        [message.layer setCornerRadius:8.0f];
+        [message.layer setMasksToBounds:YES];
     }
     return self;
 }
@@ -28,13 +36,15 @@
     
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
+    Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    [newManagedObject setValue:name.text forKey:@"name"];
-    [newManagedObject setValue:[appDelegate generateUuidString] forKey:@"uuid"];
-    [newManagedObject setValue:[appDelegate currentEvent] forKey:@"event"];
+    signature.timeStamp = [NSDate date];
+    signature.name = name.text;
+    signature.message = message.text;
+    signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.7);
+    signature.uuid = [appDelegate generateUuidString];
+    signature.event = [appDelegate currentEvent];
 
     // Save the context.
     NSError *error = nil;
@@ -51,6 +61,94 @@
     
     // dismiss popup, change to selected event
     [[NSNotificationCenter defaultCenter] postNotificationName:@"signaturePopoverShouldDismiss" object:nil];
+    
+    [self clearFormState];
+}
+
+-(void)clearFormState
+{
+    [name setText:@""];
+    [message setText:@""];
+    [imageButton setTitle:@"Press to add image/video"  forState:UIControlStateNormal];
+    
+}
+
+- (IBAction)addMultimedia:(id)sender
+{
+    // bring up camera view, capture image/video, set thumbnail to button image
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        // Displays a control that allows the user to choose picture or
+        // movie capture, if both are available:
+        cameraUI.mediaTypes =
+        [UIImagePickerController availableMediaTypesForSourceType:
+         UIImagePickerControllerSourceTypeCamera];
+        
+        // Hides the controls for moving & scaling pictures, or for
+        // trimming movies. To instead show the controls, use YES.
+        cameraUI.allowsEditing = NO;
+        
+        cameraUI.delegate = self;
+        
+        [self presentModalViewController: cameraUI animated: YES];
+    }
+    else
+    {
+        UIButton *button = sender;
+        [button setTitle:@"Sorry, no camera found" forState:UIControlStateNormal];
+    }
+}
+
+// For responding to the user tapping Cancel.
+- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+    
+    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [picker release];
+}
+
+// For responding to the user accepting a newly-captured picture or movie
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToSave;
+    
+    // Handle a still image capture
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        editedImage = (UIImage *) [info objectForKey:
+                                   UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        
+        if (editedImage) {
+            imageToSave = editedImage;
+        } else {
+            imageToSave = originalImage;
+        }
+        
+        // TODO: save image to directory, save thumbnail and path to coreData store.
+        [imageButton setImage:imageToSave forState:UIControlStateNormal];        
+    }
+    
+    // Handle a movie capture
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
+        == kCFCompareEqualTo) {
+        
+        NSString *moviePath = [[info objectForKey:
+                                UIImagePickerControllerMediaURL] path];
+        
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+            // TODO: handle movie
+        }
+    }
+    
+    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [picker release];
 }
 
 - (void)dealloc

@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "GuestBookAppDelegate.h"
+#import "Signature.h"
 
 @implementation RootViewController
 
@@ -17,9 +18,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
-    cell.detailTextLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+    Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [sig.name description];
+    cell.detailTextLabel.text = [sig.message description];
+    cell.imageView.image = [UIImage imageWithData:[sig thumbnail]];
 }
 
 - (void)viewDidLoad
@@ -206,7 +208,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
 
     // Configure the cell....
