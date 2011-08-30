@@ -8,6 +8,7 @@
 
 #import "EventListController.h"
 #import "GuestBookAppDelegate.h"
+#import "Event.h"
 
 @interface EventListController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -36,9 +37,9 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[managedObject valueForKey:@"time"] description];
-    cell.detailTextLabel.text = [[managedObject valueForKey:@"uuid"] description];
+    Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [[event name] description];
+    cell.detailTextLabel.text = [[event time] description];
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,7 +122,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
