@@ -7,6 +7,7 @@
 //
 
 #import "EventListController.h"
+#import "AddEventViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
 
@@ -57,7 +58,7 @@
 {
     [super viewDidLoad];
 
-    self.contentSizeForViewInPopover = CGSizeMake(350.0, 500.0);
+    self.contentSizeForViewInPopover = CGSizeMake(300.0, 500.0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -132,30 +133,10 @@
 
 - (void)insertNewEvent
 {
-    // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"time"];
-    
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [newManagedObject setValue:[appDelegate generateUuidString] forKey:@"uuid"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error])
-    {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    // TODO: create just one add event view controller and keep it around
+    AddEventViewController* aevController = [[AddEventViewController alloc] init];
+    [aevController setFetchedResultsController:self.fetchedResultsController];
+    [[self navigationController] pushViewController:aevController animated:YES];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
