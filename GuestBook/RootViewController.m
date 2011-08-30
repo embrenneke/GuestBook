@@ -59,12 +59,15 @@
     NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
     if(openEvent)
     {
-        // TODO: set current event
+        // TODO: set current event to [[NSUserDefaults standardUserSomething..] stringForKey:@"OpenEvent"] (uuid)
     }
     else
     {
-        // TODO: offer to create new event
+        // offer to create new event
+        [self chooseEvent:self.navigationItem.leftBarButtonItem];
+        [eventsView insertNewEvent];
         
+        // disable add signature until event is created
         [addButton setEnabled:false];
     }
 }
