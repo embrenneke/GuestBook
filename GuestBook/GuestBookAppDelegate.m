@@ -28,6 +28,7 @@
 - (void)setCurrentEvent:(Event *)newCurrentEvent
 {
     currentEvent = newCurrentEvent;
+    [[NSUserDefaults standardUserDefaults] setValue:[currentEvent uuid] forKey:@"OpenEvent"];
     RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
     [rootViewController updatePredicate];
 }
@@ -35,6 +36,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+
+    
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
@@ -74,6 +77,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self saveContext];
 }
 

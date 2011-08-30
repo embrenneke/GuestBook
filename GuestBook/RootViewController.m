@@ -55,6 +55,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
+    
+    NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
+    if(openEvent)
+    {
+        // TODO: set current event
+    }
+    else
+    {
+        // TODO: offer to create new event
+        
+        [addButton setEnabled:false];
+    }
 }
 
 - (void)insertNewSignature:(id)sender
@@ -185,6 +197,7 @@
     }
     
     self.navigationItem.title = [[appDelegate currentEvent] name];
+    [self.navigationItem.rightBarButtonItem setEnabled:true];
 
     [self.tableView reloadData];
 }
