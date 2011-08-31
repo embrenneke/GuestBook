@@ -59,7 +59,27 @@
     NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
     if(openEvent)
     {
-        // TODO: set current event to [[NSUserDefaults standardUserSomething..] stringForKey:@"OpenEvent"] (uuid)
+        // set current event
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"uuid == %@", openEvent];
+        [fetchRequest setPredicate:aPredicate];
+        [fetchRequest setFetchBatchSize:1];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        NSError *err = nil;
+        NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&err];
+        if(array != nil)
+        {
+            GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+            Event *event = [array objectAtIndex:0];
+            [appDelegate setCurrentEvent:event];
+        }
+        [fetchRequest release];
+        [sortDescriptor release];
+        [sortDescriptors release];
     }
     else
     {
