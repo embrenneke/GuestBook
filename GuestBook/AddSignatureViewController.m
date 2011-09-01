@@ -15,6 +15,7 @@
 @implementation AddSignatureViewController
 
 @synthesize managedObjectContext=__managedObjectContext;
+@synthesize mediaPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,9 +43,10 @@
     signature.timeStamp = [NSDate date];
     signature.name = name.text;
     signature.message = message.text;
-    signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.7);
+    signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.5);
     signature.uuid = [appDelegate generateUuidString];
     signature.event = [appDelegate currentEvent];
+    //signature.mediaPath = mediaPath;
 
     // Save the context.
     NSError *error = nil;
@@ -69,6 +71,7 @@
 {
     [name setText:@""];
     [message setText:@""];
+    [imageButton setImage:nil forState:UIControlStateNormal];
     [imageButton setTitle:@"Press to add image/video"  forState:UIControlStateNormal];
     
 }
@@ -115,7 +118,8 @@
 
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
-    
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     // Handle a still image capture
     if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
         == kCFCompareEqualTo) {
@@ -132,7 +136,11 @@
         }
         
         // TODO: save image to directory, save thumbnail and path to coreData store.
-        [imageButton setImage:imageToSave forState:UIControlStateNormal];        
+        [imageButton setImage:imageToSave forState:UIControlStateNormal];
+        mediaPath = [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path];
+        mediaPath = [NSString stringWithFormat:@"%@.jpg", mediaPath];
+        [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:mediaPath atomically:YES];
+        NSLog(@"%@", mediaPath);
     }
     
     // Handle a movie capture
@@ -144,6 +152,7 @@
         
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
             // TODO: handle movie
+            NSLog(@"%@", moviePath);
         }
     }
     
@@ -171,11 +180,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.contentSizeForViewInPopover = CGSizeMake(700.0, 250.0);
+    [self clearFormState];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [self clearFormState];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

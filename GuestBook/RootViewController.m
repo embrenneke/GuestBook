@@ -12,7 +12,7 @@
 
 @implementation RootViewController
 
-@synthesize eventsPopup, eventsView, addEntryPopup, addSigView;
+@synthesize eventsPopup, eventsView, addEntryPopup, addSigView, pendingDeletePath;
 @synthesize managedObjectContext=__managedObjectContext;
 @synthesize fetchedResultsController=fetchedResultsController_;
 
@@ -225,6 +225,30 @@
     [self.tableView reloadData];
 }
 
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the Delete/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        // Delete the managed object for the given index path
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:pendingDeletePath]];
+        
+        // Save the context.
+        NSError *error = nil;
+        if (![context save:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    pendingDeletePath = nil;
+}
+
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -319,24 +343,11 @@
 {
      if (editingStyle == UITableViewCellEditingStyleDelete) {
      
-         // TODO: confirm delete
-         
-         // Delete the managed object for the given index path
-         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-
-         // Save the context.
-         NSError *error = nil;
-         if (![context save:&error])
-         {
-             /*
-              Replace this implementation with code to handle the error appropriately.
-              
-              abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-              */
-             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-             abort();
-         }
+         // confirm delete
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+         pendingDeletePath = indexPath;
+         [alert show];
+         [alert release];
      }
      else if (editingStyle == UITableViewCellEditingStyleInsert) {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

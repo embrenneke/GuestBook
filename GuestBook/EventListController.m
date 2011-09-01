@@ -133,10 +133,11 @@
 
 - (void)insertNewEvent
 {
-    // TODO: create just one add event view controller and keep it around
+    // create just one add event view controller and keep it around
     AddEventViewController* aevController = [[AddEventViewController alloc] init];
     [aevController setFetchedResultsController:self.fetchedResultsController];
     [[self navigationController] pushViewController:aevController animated:YES];
+    [aevController release];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
