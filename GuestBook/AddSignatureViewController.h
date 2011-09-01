@@ -14,6 +14,7 @@
     IBOutlet UITextView *message;
     IBOutlet UIImageView *image;
     IBOutlet UIButton* imageButton;
+    NSString* mediaPath;
 }
 
 -(IBAction)submitSig:(id)sender;
@@ -21,5 +22,6 @@
 -(void)clearFormState;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSString* mediaPath;
 
 @end
