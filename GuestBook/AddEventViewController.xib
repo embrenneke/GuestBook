@@ -48,7 +48,7 @@
 					<object class="IBUILabel" id="797073813">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {100, 21}}</string>
+						<string key="NSFrame">{{20, 5}, {100, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="600558211"/>
@@ -74,10 +74,9 @@
 					<object class="IBUITextField" id="600558211">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{128, 15}, {445, 31}}</string>
+						<string key="NSFrame">{{128, 0}, {445, 31}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -101,7 +100,7 @@
 					<object class="IBUIButton" id="846741905">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{128, 278}, {116, 37}}</string>
+						<string key="NSFrame">{{128, 252}, {116, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -131,7 +130,7 @@
 					<object class="IBUIDatePicker" id="101434594">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{351, 54}, {322, 216}}</string>
+						<string key="NSFrame">{{351, 31}, {322, 216}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -252,8 +251,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="797073813"/>
 							<reference ref="600558211"/>
-							<reference ref="846741905"/>
 							<reference ref="101434594"/>
+							<reference ref="846741905"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
