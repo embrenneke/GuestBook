@@ -30,7 +30,9 @@
     if(currentEvent != nil)
         [currentEvent release];
     currentEvent = newCurrentEvent;
-    [currentEvent retain];
+    
+    if(currentEvent != nil)
+        [currentEvent retain];
     [[NSUserDefaults standardUserDefaults] setValue:[currentEvent uuid] forKey:@"OpenEvent"];
     RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
     [rootViewController updatePredicate];

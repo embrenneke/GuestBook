@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface EventListController : UITableViewController <NSFetchedResultsControllerDelegate> {
-    
+@interface EventListController : UITableViewController <NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
+    NSIndexPath *pendingDeletePath;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSIndexPath *pendingDeletePath;
 
 -(void)insertNewEvent;
 @end
