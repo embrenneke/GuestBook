@@ -71,7 +71,7 @@
         [fetchRequest setSortDescriptors:sortDescriptors];
         NSError *err = nil;
         NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&err];
-        if(array != nil)
+        if((array != nil) && ([array count] > 0))
         {
             GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
             Event *event = [array objectAtIndex:0];

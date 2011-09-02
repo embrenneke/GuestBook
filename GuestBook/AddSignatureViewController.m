@@ -11,6 +11,7 @@
 #import "Signature.h"
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import <UIKit/UIImagePickerController.h>
 
 @implementation AddSignatureViewController
 
@@ -43,10 +44,13 @@
     signature.timeStamp = [NSDate date];
     signature.name = name.text;
     signature.message = message.text;
-    signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.5);
+    if(imageButton.imageView.image != nil)
+    {
+        signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.5);
+    }
     signature.uuid = [appDelegate generateUuidString];
     signature.event = [appDelegate currentEvent];
-    //signature.mediaPath = mediaPath;
+    signature.mediaPath = mediaPath;
 
     // Save the context.
     NSError *error = nil;
@@ -95,8 +99,10 @@
         cameraUI.allowsEditing = NO;
         
         cameraUI.delegate = self;
+        cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         
         [self presentModalViewController: cameraUI animated: YES];
+        [cameraUI release];
     }
     else
     {
@@ -135,12 +141,12 @@
             imageToSave = originalImage;
         }
         
-        // TODO: save image to directory, save thumbnail and path to coreData store.
+        // save image to directory, save thumbnail and path to coreData store.
+        // TODO: generate thumbnail and save that as button image instead of full size image
         [imageButton setImage:imageToSave forState:UIControlStateNormal];
-        mediaPath = [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path];
-        mediaPath = [NSString stringWithFormat:@"%@.jpg", mediaPath];
+        mediaPath = [NSString stringWithFormat:@"%@.jpg", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
         [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:mediaPath atomically:YES];
-        NSLog(@"%@", mediaPath);
+        
     }
     
     // Handle a movie capture
@@ -151,8 +157,15 @@
                                 UIImagePickerControllerMediaURL] path];
         
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
-            // TODO: handle movie
-            NSLog(@"%@", moviePath);
+            // handle movie
+            mediaPath = [NSString stringWithFormat:@"%@.mp4", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+            NSError *error = nil;
+            [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:mediaPath error:&error];
+            if(error)
+            {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+            
         }
     }
     

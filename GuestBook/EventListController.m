@@ -19,6 +19,7 @@
 
 @synthesize fetchedResultsController=__fetchedResultsController;
 @synthesize managedObjectContext=__managedObjectContext;
+@synthesize pendingDeletePath;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -102,6 +103,47 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the Delete/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        // delete all associated signatures first
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        Event* event = [self.fetchedResultsController objectAtIndexPath:pendingDeletePath];
+        NSEnumerator *e = [event.signatures objectEnumerator];
+        id collectionMemberObject;
+        
+        while ( (collectionMemberObject = [e nextObject]) ) {
+            // delete the signature
+            [context deleteObject:collectionMemberObject];
+        }
+        
+        // if deleting currentEvent, set current event to nil
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        if ([appDelegate currentEvent] == event)
+        {
+            [appDelegate setCurrentEvent:nil];
+        }
+        
+        // Delete the managed object for the given index path
+        [context deleteObject:event];
+        
+        // Save the context.
+        NSError *error = nil;
+        if (![context save:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    pendingDeletePath = nil;
 }
 
 #pragma mark - Table view data source
@@ -257,28 +299,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        // TODO: confirm delete
-
-
-        // TODO: delete all associated signatures first
-        //Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        // Delete the managed object for the given index path
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error])
-        {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
+        // confirm delete
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        pendingDeletePath = indexPath;
+        [alert show];
+        [alert release];
     }   
 }
 
