@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1157EC214107DB90017C2CB /* MediaPlayer.framework */; };
+		F1157EC614108D3F0017C2CB /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */; };
+		F1157ECA14108D940017C2CB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */; };
 		F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
 		F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
 		F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BC140418F000549C03 /* CoreGraphics.framework */; };
@@ -48,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F1157EC214107DB90017C2CB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = GuestBookTasks.rtf; sourceTree = SOURCE_ROOT; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -93,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */,
 				F1B8014A140C7924007CE067 /* MobileCoreServices.framework in Frameworks */,
 				F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */,
 				F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */,
@@ -118,6 +125,9 @@
 		F1B3F7A9140418EF00549C03 = {
 			isa = PBXGroup;
 			children = (
+				F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */,
+				F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */,
+				F1157EC214107DB90017C2CB /* MediaPlayer.framework */,
 				F1B80149140C7924007CE067 /* MobileCoreServices.framework */,
 				F1B3F7C0140418F000549C03 /* GuestBook */,
 				F1B3F7E4140418F000549C03 /* GuestBookTests */,
@@ -284,6 +294,8 @@
 				F1B3F7FF14043E9F00549C03 /* EventListController.xib in Resources */,
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
 				F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */,
+				F1157EC614108D3F0017C2CB /* Default-Landscape~ipad.png in Resources */,
+				F1157ECA14108D940017C2CB /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
