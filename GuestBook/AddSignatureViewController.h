@@ -20,6 +20,8 @@
 -(IBAction)submitSig:(id)sender;
 -(IBAction)addMultimedia:(id)sender;
 -(void)clearFormState;
+-(UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeKeepingAspect:(CGSize)targetSize;
+
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSString* mediaPath;
