@@ -47,7 +47,6 @@
     }
     signature.uuid = [appDelegate generateUuidString];
     signature.event = [appDelegate currentEvent];
-    NSLog(@"%@", mediaPath);
     signature.mediaPath = mediaPath;
 
     // Save the context.
@@ -123,7 +122,15 @@
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
+    // handle re-picking
+    if(mediaPath)
+    {
+        NSError *error = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:mediaPath error:&error];
+        mediaPath = nil;
+    }
+    
     // Handle a still image capture
     if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
         == kCFCompareEqualTo) {
@@ -148,7 +155,7 @@
         {
             size = CGSizeMake(235, 170);
         }
-        UIImage *thumbnailImage = [self imageWithImage:imageToSave scaledToSizeKeepingAspect:size];
+        UIImage *thumbnailImage = [UIImage imageWithCGImage:[imageToSave CGImage] scale:3.0 orientation:[imageToSave imageOrientation]];
         [imageButton setTitle:@"" forState:UIControlStateNormal];
         [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
         mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
@@ -220,107 +227,6 @@
 {
     // Return YES for supported orientations
 	return YES;
-}
-
-- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeKeepingAspect:(CGSize)targetSize
-{  
-    CGSize imageSize = sourceImage.size;
-    CGFloat width = imageSize.width;
-    CGFloat height = imageSize.height;
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-    CGFloat scaleFactor = 0.0;
-    CGFloat scaledWidth = targetWidth;
-    CGFloat scaledHeight = targetHeight;
-    CGPoint thumbnailPoint = CGPointMake(0.0, 0.0);
-    
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
-    {
-        CGFloat widthFactor = targetWidth / width;
-        CGFloat heightFactor = targetHeight / height;
-        
-        if (widthFactor > heightFactor)
-        {
-            scaleFactor = widthFactor; // scale to fit height
-        }
-        else
-        {
-            scaleFactor = heightFactor; // scale to fit width
-        }
-        
-        scaledWidth  = width * scaleFactor;
-        scaledHeight = height * scaleFactor;
-        
-        // center the image
-        if (widthFactor > heightFactor)
-        {
-            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5; 
-        }
-        else if (widthFactor < heightFactor)
-        {
-            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-        }
-    }     
-    
-    CGContextRef bitmap;
-    CGImageRef imageRef = [sourceImage CGImage];
-    CGColorSpaceRef genericColorSpace = CGColorSpaceCreateDeviceRGB();
-    if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown)
-    {
-        bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, 8, 4 * targetWidth, genericColorSpace, kCGImageAlphaPremultipliedFirst);
-        
-    }
-    else
-    {
-        bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, 8, 4 * targetWidth, genericColorSpace, kCGImageAlphaPremultipliedFirst);
-        
-    }   
-    
-    CGColorSpaceRelease(genericColorSpace);
-    CGContextSetInterpolationQuality(bitmap, kCGInterpolationDefault);
-    
-    // In the right or left cases, we need to switch scaledWidth and scaledHeight,
-    // and also the thumbnail point
-    if (sourceImage.imageOrientation == UIImageOrientationLeft)
-    {
-        thumbnailPoint = CGPointMake(thumbnailPoint.y, thumbnailPoint.x);
-        CGFloat oldScaledWidth = scaledWidth;
-        scaledWidth = scaledHeight;
-        scaledHeight = oldScaledWidth;
-        
-        CGContextRotateCTM (bitmap, 1.57079633);
-        CGContextTranslateCTM (bitmap, 0, -targetHeight);
-        
-    }
-    else if (sourceImage.imageOrientation == UIImageOrientationRight)
-    {
-        thumbnailPoint = CGPointMake(thumbnailPoint.y, thumbnailPoint.x);
-        CGFloat oldScaledWidth = scaledWidth;
-        scaledWidth = scaledHeight;
-        scaledHeight = oldScaledWidth;
-        
-        CGContextRotateCTM (bitmap, -1.57079633);
-        CGContextTranslateCTM (bitmap, -targetWidth, 0);
-        
-    }
-    else if (sourceImage.imageOrientation == UIImageOrientationUp)
-    {
-        // NOTHING
-    }
-    else if (sourceImage.imageOrientation == UIImageOrientationDown)
-    {
-        CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
-        CGContextRotateCTM (bitmap, -3.14159);
-    }
-    
-    CGContextDrawImage(bitmap, CGRectMake(thumbnailPoint.x, thumbnailPoint.y, scaledWidth, scaledHeight), imageRef);
-    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-    UIImage* newImage = [UIImage imageWithCGImage:ref];
-    
-    CGContextRelease(bitmap);
-    CGImageRelease(ref);
-    
-    return newImage; 
 }
 
 @end
