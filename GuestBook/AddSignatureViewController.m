@@ -156,8 +156,11 @@
             size = CGSizeMake(235, 170);
         }
         UIImage *thumbnailImage = [UIImage imageWithCGImage:[imageToSave CGImage] scale:3.0 orientation:[imageToSave imageOrientation]];
+        [[imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
         [imageButton setTitle:@"" forState:UIControlStateNormal];
         [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
+        imageButton.layer.cornerRadius = 15;
+        imageButton.layer.masksToBounds = YES;
         mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
         [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:mediaPath atomically:YES];        
     }

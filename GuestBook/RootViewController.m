@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "DetailViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 
@@ -20,7 +21,9 @@
 {
     Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [sig.name description];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:25.0];
     cell.detailTextLabel.text = [sig.message description];
+    cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
     cell.imageView.image = [UIImage imageWithData:[sig thumbnail]];
 }
 
@@ -368,13 +371,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-	*/
+    DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+    [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+
+    [self.navigationController pushViewController:detailView animated:YES];
+    [detailView release];
 }
 
 - (void)didReceiveMemoryWarning
