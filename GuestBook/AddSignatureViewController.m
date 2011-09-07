@@ -74,6 +74,7 @@
     [message setText:@""];
     [imageButton setImage:nil forState:UIControlStateNormal];
     [imageButton setTitle:@"Press to add image/video"  forState:UIControlStateNormal];
+    mediaPath = nil;
     
 }
 
@@ -159,6 +160,7 @@
         [[imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
         [imageButton setTitle:@"" forState:UIControlStateNormal];
         [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
+        [imageButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
         imageButton.layer.cornerRadius = 15;
         imageButton.layer.masksToBounds = YES;
         mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
@@ -187,6 +189,7 @@
             MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
             UIImage *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
             [imageButton setImage:thumb forState:UIControlStateNormal];
+            [imageButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
             [player stop];
             [player release];
         }
