@@ -9,6 +9,7 @@
 #import "AddSignatureViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
+#import "UIImage+Resize.h"
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <UIKit/UIImagePickerController.h>
@@ -148,19 +149,12 @@
         }
         
         // save image to directory, save thumbnail and path to coreData store.
-        CGSize size;
-        if (imageToSave.imageOrientation == UIImageOrientationUp || imageToSave.imageOrientation == UIImageOrientationDown) {
-            size = CGSizeMake(170, 235);
-        }
-        else
-        {
-            size = CGSizeMake(235, 170);
-        }
-        UIImage *thumbnailImage = [UIImage imageWithCGImage:[imageToSave CGImage] scale:3.0 orientation:[imageToSave imageOrientation]];
+        CGSize buttonSize = CGSizeMake(245, 180);
+        UIImage *thumbnailImage = [imageToSave resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
+        
         [[imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
         [imageButton setTitle:@"" forState:UIControlStateNormal];
         [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
-        [imageButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
         imageButton.layer.cornerRadius = 15;
         imageButton.layer.masksToBounds = YES;
         mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
@@ -188,10 +182,12 @@
             NSURL *videoURL = [NSURL fileURLWithPath:mediaPath];
             MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
             UIImage *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
-            [imageButton setImage:thumb forState:UIControlStateNormal];
-            [imageButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
+            CGSize buttonSize = CGSizeMake(245, 180);
+            UIImage *thumbnailImage = [thumb resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
+            [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
             [player stop];
             [player release];
+            [thumb release];
         }
     }
     
