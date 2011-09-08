@@ -9,7 +9,6 @@
 #import "DetailViewController.h"
 #import <MediaPlayer/MPMoviePlayerController.h>
 
-
 @implementation DetailViewController
 
 @synthesize signature;
