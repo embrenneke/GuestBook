@@ -13,6 +13,7 @@
 @interface DetailViewController : UIViewController {
     IBOutlet UIImageView *imageView;
     IBOutlet UITextView  *messageView;
+    IBOutlet UILabel     *titleView;
     Signature            *signature;
     MPMoviePlayerController *moviePlayer;
 }

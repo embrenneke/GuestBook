@@ -58,9 +58,28 @@
             [player play];
         }
     }
+    else
+    {
+        NSString* pathToImageFile = [[NSBundle mainBundle] pathForResource:@"no-media" ofType:@"png" inDirectory:@"./"];
+        [imageView setImage:[UIImage imageWithContentsOfFile:pathToImageFile]];
+    }
+    
     if(signature.message)
     {
         messageView.text = signature.message;
+    }
+    else
+    {
+        messageView.text = nil;
+    }
+    
+    if(signature.message)
+    {
+        titleView.text = signature.name;
+    }
+    else
+    {
+        titleView.text = nil;
     }
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];

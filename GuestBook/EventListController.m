@@ -10,6 +10,7 @@
 #import "AddEventViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
+#import "Signature.h"
 
 @interface EventListController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -115,8 +116,12 @@
         NSEnumerator *e = [event.signatures objectEnumerator];
         id collectionMemberObject;
         
-        while ( (collectionMemberObject = [e nextObject]) ) {
+        while ( (collectionMemberObject = [e nextObject]) )
+        {
             // delete the signature
+            NSError *error = nil;
+            Signature *sig = collectionMemberObject;
+            [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
             [context deleteObject:collectionMemberObject];
         }
         
