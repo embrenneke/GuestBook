@@ -13,6 +13,7 @@
 		F1157ECC14108F470017C2CB /* guestbook.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157ECB14108F470017C2CB /* guestbook.png */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
+		F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */ = {isa = PBXBuildFile; fileRef = F1ABACA41419AFCB00AF9BC5 /* no-media.png */; };
 		F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
 		F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
 		F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BC140418F000549C03 /* CoreGraphics.framework */; };
@@ -65,6 +66,7 @@
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F157356314119F520034BD4D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = GuestBookTasks.rtf; sourceTree = SOURCE_ROOT; };
+		F1ABACA41419AFCB00AF9BC5 /* no-media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-media.png"; sourceTree = SOURCE_ROOT; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F1B3F7BA140418F000549C03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -215,6 +217,7 @@
 				F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */,
 				F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */,
 				F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */,
+				F1ABACA41419AFCB00AF9BC5 /* no-media.png */,
 				F1B3F7C2140418F000549C03 /* GuestBook-Info.plist */,
 				F1B3F7C3140418F000549C03 /* InfoPlist.strings */,
 				F1B3F7C6140418F000549C03 /* GuestBook-Prefix.pch */,
@@ -324,6 +327,7 @@
 				F1157ECA14108D940017C2CB /* Default-Portrait~ipad.png in Resources */,
 				F1157ECC14108F470017C2CB /* guestbook.png in Resources */,
 				F157356514119F520034BD4D /* DetailViewController.xib in Resources */,
+				F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

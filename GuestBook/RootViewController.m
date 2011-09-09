@@ -233,11 +233,14 @@
     if (buttonIndex == 1)
     {
         // Delete the managed object for the given index path
+        NSError *error = nil;
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        Signature *sig = [self.fetchedResultsController objectAtIndexPath:pendingDeletePath];
+        [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
+        
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:pendingDeletePath]];
         
         // Save the context.
-        NSError *error = nil;
         if (![context save:&error])
         {
             /*
