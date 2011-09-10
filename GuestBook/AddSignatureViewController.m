@@ -213,7 +213,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.contentSizeForViewInPopover = CGSizeMake(700.0, 250.0);
+    self.contentSizeForViewInPopover = CGSizeMake(650.0, 250.0);
     [self clearFormState];
 }
 
