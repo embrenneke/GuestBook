@@ -187,7 +187,6 @@
             [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
             [player stop];
             [player release];
-            [thumb release];
         }
     }
     
