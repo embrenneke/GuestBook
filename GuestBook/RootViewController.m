@@ -130,6 +130,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [NSFetchedResultsController deleteCacheWithName:nil];
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:animated];
     [super viewWillAppear:animated];
 }
 
@@ -374,11 +375,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+    DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
     [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 
     [self.navigationController pushViewController:detailView animated:YES];
     [detailView release];
+    detailView = nil;
 }
 
 - (void)didReceiveMemoryWarning
