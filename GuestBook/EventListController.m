@@ -42,7 +42,11 @@
 {
     Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[event name] description];
-    cell.detailTextLabel.text = [[event time] description];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    cell.detailTextLabel.text = [formatter stringFromDate:[event time]];
+    [formatter release];
 }
 
 - (void)didReceiveMemoryWarning
