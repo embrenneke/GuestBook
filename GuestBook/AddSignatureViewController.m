@@ -42,7 +42,7 @@
     signature.timeStamp = [NSDate date];
     signature.name = name.text;
     signature.message = message.text;
-    if(imageButton.imageView.image != nil)
+    if(mediaPath != nil)
     {
         signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.5);
     }
@@ -100,13 +100,13 @@
         cameraUI.delegate = self;
         cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         
-        [self presentModalViewController: cameraUI animated: YES];
+        [self presentModalViewController:cameraUI animated: YES];
         [cameraUI release];
     }
     else
     {
         UIButton *button = sender;
-        [button setTitle:@"Sorry, no camera found" forState:UIControlStateNormal];
+        [button setTitle:@"Sorry, no camera found." forState:UIControlStateNormal];
     }
 }
 
