@@ -11,13 +11,14 @@
 #import "EventListController.h"
 #import "AddSignatureViewController.h"
 
-@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
+@interface RootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
     UIPopoverController        *eventsPopup;
     UIPopoverController        *addEntryPopup;
     EventListController        *eventsView;
     AddSignatureViewController *addSigView;
     NSFetchedResultsController *fetchedResultsController_;
     NSIndexPath                *pendingDeletePath;
+    IBOutlet UITableView       *tableView;
 }
 
 @property (nonatomic, retain) UIPopoverController *eventsPopup;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSIndexPath *pendingDeletePath;
+@property (nonatomic, retain) UITableView *tableView;
 
 -(IBAction) chooseEvent:(id)sender;
 -(void) updatePredicate;
