@@ -29,7 +29,6 @@
     [moviePlayer stop];
     [moviePlayer release];
     moviePlayer = nil;
-    [signature release];
     signature = nil;
 }
 
