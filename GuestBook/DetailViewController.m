@@ -27,7 +27,6 @@
 {
     [super dealloc];
     [moviePlayer stop];
-    [moviePlayer release];
     moviePlayer = nil;
     signature = nil;
 }
@@ -56,15 +55,16 @@
         else if([signature.mediaPath hasSuffix:@"mp4"])
         {
             MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:signature.mediaPath]];
+            [player stop];
             moviePlayer = player;
-            player.view.frame = imageView.frame;
-            [self.view addSubview:player.view];
-            [player play];
+            moviePlayer.view.frame = imageView.frame;
+            [self.view addSubview:moviePlayer.view];
+            [moviePlayer play];
         }
     }
     else
     {
-        NSString* pathToImageFile = [[NSBundle mainBundle] pathForResource:@"no-media" ofType:@"png" inDirectory:@"./"];
+        NSString* pathToImageFile = [[NSBundle mainBundle] pathForResource:@"no-media" ofType:@"png"];
         [imageView setImage:[UIImage imageWithContentsOfFile:pathToImageFile]];
     }
     
