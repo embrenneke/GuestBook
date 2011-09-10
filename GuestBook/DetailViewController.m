@@ -26,6 +26,11 @@
 - (void)dealloc
 {
     [super dealloc];
+    [moviePlayer stop];
+    [moviePlayer release];
+    moviePlayer = nil;
+    [signature release];
+    signature = nil;
 }
 
 - (void)didReceiveMemoryWarning
