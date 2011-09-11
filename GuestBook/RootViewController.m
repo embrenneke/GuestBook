@@ -93,6 +93,8 @@
         // disable add signature until event is created
         [addButton setEnabled:false];
     }
+    
+    [tableView setSeparatorColor:[UIColor clearColor]];
 }
 
 - (void)insertNewSignature:(id)sender
