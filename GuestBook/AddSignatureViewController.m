@@ -114,7 +114,6 @@
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     
     [[picker parentViewController] dismissModalViewControllerAnimated: YES];
-    [picker release];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
