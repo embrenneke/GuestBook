@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "GuestBookAppDelegate.h"
 #import <MediaPlayer/MPMoviePlayerController.h>
 
 @implementation DetailViewController
@@ -47,14 +48,16 @@
     // Do any additional setup after loading the view from its nib.
     if(signature.mediaPath)
     {
-        if([signature.mediaPath hasSuffix:@"jpg"])
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString* filePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:signature.mediaPath] path]];
+        
+        if([filePath hasSuffix:@"jpg"])
         {
-           [imageView setImage:[UIImage imageWithContentsOfFile:[signature mediaPath]]];
-
+           [imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
         }
-        else if([signature.mediaPath hasSuffix:@"mp4"])
+        else if([filePath hasSuffix:@"mp4"])
         {
-            MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:signature.mediaPath]];
+            MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
             [player stop];
             moviePlayer = player;
             moviePlayer.view.frame = imageView.frame;
@@ -62,6 +65,7 @@
             [moviePlayer play];
             [self performSelector:@selector(detectOrientation) withObject:nil afterDelay:0.2];
         }
+        [filePath release];
     }
     else
     {

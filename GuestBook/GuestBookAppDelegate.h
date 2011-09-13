@@ -23,6 +23,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (NSURL *)applicationLibraryDirectory;
 // return a new autoreleased UUID string
 - (NSString *)generateUuidString;
 
