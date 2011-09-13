@@ -60,6 +60,7 @@
             moviePlayer.view.frame = imageView.frame;
             [self.view addSubview:moviePlayer.view];
             [moviePlayer play];
+            [self performSelector:@selector(detectOrientation) withObject:nil afterDelay:0.2];
         }
     }
     else
