@@ -48,7 +48,7 @@
     }
     signature.uuid = [appDelegate generateUuidString];
     signature.event = [appDelegate currentEvent];
-    signature.mediaPath = mediaPath;
+    signature.mediaPath = [mediaPath lastPathComponent];
 
     // Save the context.
     NSError *error = nil;
@@ -128,7 +128,9 @@
     if(mediaPath)
     {
         NSError *error = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:mediaPath error:&error];
+        NSString *oldFilePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:mediaPath] path]];
+        [[NSFileManager defaultManager] removeItemAtPath:oldFilePath error:&error];
+        [oldFilePath release];
         mediaPath = nil;
     }
     
@@ -156,7 +158,7 @@
         [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
         imageButton.layer.cornerRadius = 15;
         imageButton.layer.masksToBounds = YES;
-        mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+        mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
         [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:mediaPath atomically:YES];        
     }
     
@@ -169,7 +171,7 @@
         
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
             // handle movie
-            mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+            mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
             NSError *error = nil;
             [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:mediaPath error:&error];
             if(error)
