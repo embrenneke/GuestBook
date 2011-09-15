@@ -61,9 +61,10 @@
 					<object class="IBUITableView" id="223799350">
 						<reference key="NSNextResponder" ref="922131086"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{128, 20}, {538, 498}}</string>
+						<string key="NSFrame">{{128, 20}, {475, 498}}</string>
 						<reference key="NSSuperview" ref="922131086"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="966800693"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -90,6 +91,20 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">spine.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="966800693">
+						<reference key="NSNextResponder" ref="922131086"/>
+						<int key="NSvFlags">273</int>
+						<string key="NSFrame">{{611, 0}, {75, 538}}</string>
+						<reference key="NSSuperview" ref="922131086"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">pages.png</string>
 						</object>
 					</object>
 				</object>
@@ -175,6 +190,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="223799350"/>
 							<reference ref="267388757"/>
+							<reference ref="966800693"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -188,6 +204,11 @@
 						<reference key="object" ref="267388757"/>
 						<reference key="parent" ref="922131086"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="966800693"/>
+						<reference key="parent" ref="922131086"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -197,6 +218,7 @@
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
 					<string>10.IBPluginDependency</string>
+					<string>18.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
@@ -205,6 +227,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RootViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -223,7 +246,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">18</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -273,8 +296,17 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">spine.png</string>
-			<string key="NS.object.0">{100, 5}</string>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>pages.png</string>
+				<string>spine.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{75, 5}</string>
+				<string>{100, 5}</string>
+			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
