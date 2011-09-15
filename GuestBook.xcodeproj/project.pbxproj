@@ -48,6 +48,7 @@
 		F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */; };
 		F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */; };
 		F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */; };
+		F1DDDDEB1422B568001248EF /* pages.png in Resources */ = {isa = PBXBuildFile; fileRef = F1DDDDEA1422B568001248EF /* pages.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		F1C9E7C014184DC1007F0E67 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		F1DDDDEA1422B568001248EF /* pages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pages.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 			children = (
 				F1157ECB14108F470017C2CB /* guestbook.png */,
 				F18EAF5B141BC02100FA99AB /* book.png */,
+				F1DDDDEA1422B568001248EF /* pages.png */,
 				F18EAF58141BBABE00FA99AB /* spine.png */,
 				F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */,
 				F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */,
@@ -349,6 +352,7 @@
 				F18EAF59141BBABE00FA99AB /* spine.png in Resources */,
 				F18EAF5C141BC02100FA99AB /* book.png in Resources */,
 				F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */,
+				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
