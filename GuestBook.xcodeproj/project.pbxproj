@@ -15,7 +15,6 @@
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
-		F18EAF5C141BC02100FA99AB /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF5B141BC02100FA99AB /* book.png */; };
 		F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */ = {isa = PBXBuildFile; fileRef = F1ABACA41419AFCB00AF9BC5 /* no-media.png */; };
 		F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
 		F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
@@ -350,7 +349,6 @@
 				F157356514119F520034BD4D /* DetailViewController.xib in Resources */,
 				F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */,
 				F18EAF59141BBABE00FA99AB /* spine.png in Resources */,
-				F18EAF5C141BC02100FA99AB /* book.png in Resources */,
 				F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */,
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
 			);
