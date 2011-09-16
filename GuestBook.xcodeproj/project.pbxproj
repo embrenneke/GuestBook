@@ -15,6 +15,8 @@
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
+		F19EAB0D1424199400AA9EF6 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EAB0B1424199300AA9EF6 /* settings.png */; };
+		F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EAB0C1424199300AA9EF6 /* spotlight.png */; };
 		F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */ = {isa = PBXBuildFile; fileRef = F1ABACA41419AFCB00AF9BC5 /* no-media.png */; };
 		F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
 		F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
@@ -72,6 +74,8 @@
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spine.png; sourceTree = SOURCE_ROOT; };
 		F18EAF5B141BC02100FA99AB /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = SOURCE_ROOT; };
 		F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = GuestBookTasks.rtf; sourceTree = SOURCE_ROOT; };
+		F19EAB0B1424199300AA9EF6 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = SOURCE_ROOT; };
+		F19EAB0C1424199300AA9EF6 /* spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotlight.png; sourceTree = SOURCE_ROOT; };
 		F1ABACA41419AFCB00AF9BC5 /* no-media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-media.png"; sourceTree = SOURCE_ROOT; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -239,6 +243,8 @@
 				F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */,
 				F1ABACA41419AFCB00AF9BC5 /* no-media.png */,
 				F1B3F7C2140418F000549C03 /* GuestBook-Info.plist */,
+				F19EAB0B1424199300AA9EF6 /* settings.png */,
+				F19EAB0C1424199300AA9EF6 /* spotlight.png */,
 				F1B3F7C3140418F000549C03 /* InfoPlist.strings */,
 				F1B3F7C6140418F000549C03 /* GuestBook-Prefix.pch */,
 				F1B3F7C7140418F000549C03 /* main.m */,
@@ -351,6 +357,8 @@
 				F18EAF59141BBABE00FA99AB /* spine.png in Resources */,
 				F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */,
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
+				F19EAB0D1424199400AA9EF6 /* settings.png in Resources */,
+				F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
