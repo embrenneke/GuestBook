@@ -475,9 +475,9 @@
 		F17A264B1410F27A00FD92C3 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -485,7 +485,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "85EE24ED-9557-4F71-87C9-FDA43FC3CEB8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "85EE24ED-9557-4F71-87C9-FDA43FC3CEB8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -530,10 +530,68 @@
 			};
 			name = "Ad Hoc";
 		};
+		F19EAB0F14242C0300AA9EF6 /* guestbookDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "08794BF2-BA9B-4727-B693-02403A4ABF0D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08794BF2-BA9B-4727-B693-02403A4ABF0D";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = guestbookDistribution;
+		};
+		F19EAB1014242C0300AA9EF6 /* guestbookDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
+				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = guestbookDistribution;
+		};
+		F19EAB1114242C0300AA9EF6 /* guestbookDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GuestBook.app/GuestBook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GuestBookTests/GuestBookTests-Prefix.pch";
+				INFOPLIST_FILE = "GuestBookTests/GuestBookTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = guestbookDistribution;
+		};
 		F1B3F7EF140418F000549C03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -551,7 +609,7 @@
 		F1B3F7F0140418F000549C03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -561,7 +619,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "85EE24ED-9557-4F71-87C9-FDA43FC3CEB8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08794BF2-BA9B-4727-B693-02403A4ABF0D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -653,6 +711,7 @@
 			buildConfigurations = (
 				F1B3F7EF140418F000549C03 /* Debug */,
 				F1B3F7F0140418F000549C03 /* Release */,
+				F19EAB0F14242C0300AA9EF6 /* guestbookDistribution */,
 				F17A264B1410F27A00FD92C3 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -663,6 +722,7 @@
 			buildConfigurations = (
 				F1B3F7F2140418F000549C03 /* Debug */,
 				F1B3F7F3140418F000549C03 /* Release */,
+				F19EAB1014242C0300AA9EF6 /* guestbookDistribution */,
 				F17A264C1410F27A00FD92C3 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -673,6 +733,7 @@
 			buildConfigurations = (
 				F1B3F7F5140418F000549C03 /* Debug */,
 				F1B3F7F6140418F000549C03 /* Release */,
+				F19EAB1114242C0300AA9EF6 /* guestbookDistribution */,
 				F17A264D1410F27A00FD92C3 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
