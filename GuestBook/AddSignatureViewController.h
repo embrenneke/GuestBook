@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AddSignatureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface AddSignatureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate> {
     IBOutlet UITextField *name;
     IBOutlet UITextView *message;
     IBOutlet UIImageView *image;
     IBOutlet UIButton* imageButton;
     NSString* mediaPath;
+    UIPopoverController* cameraPopover;
 }
 
 -(IBAction)submitSig:(id)sender;
@@ -23,5 +24,5 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSString* mediaPath;
-
+@property (nonatomic, retain) UIPopoverController* cameraPopover;
 @end
