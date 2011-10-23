@@ -310,7 +310,7 @@
     {
         // confirm delete
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-        pendingDeletePath = indexPath;
+        pendingDeletePath = [indexPath copy];
         [alert show];
         [alert release];
     }   
