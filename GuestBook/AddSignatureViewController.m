@@ -18,7 +18,7 @@
 @implementation AddSignatureViewController
 
 @synthesize managedObjectContext=__managedObjectContext;
-@synthesize mediaPath;
+@synthesize mediaPath, cameraPopover;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,10 +31,7 @@
 }
 
 -(IBAction)submitSig:(id)sender
-{
-    // TODO: check for valid data before added to database
-    
-
+{    
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -100,7 +97,10 @@
         cameraUI.delegate = self;
         cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         
-        [self presentModalViewController:cameraUI animated: YES];
+        
+        cameraPopover = [[UIPopoverController alloc] initWithContentViewController:cameraUI];
+        cameraPopover.delegate = self;
+        [cameraPopover presentPopoverFromRect:CGRectMake(0, 0, 600, 600) inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         [cameraUI release];
     }
     else
@@ -110,16 +110,22 @@
     }
 }
 
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    [cameraPopover release];
+    cameraPopover = nil;
+}
+
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    
-    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [cameraPopover dismissPopoverAnimated:YES];
+    [cameraPopover release];
+    cameraPopover = nil;
 }
 
 // For responding to the user accepting a newly-captured picture or movie
 - (void) imagePickerController: (UIImagePickerController *) picker
  didFinishPickingMediaWithInfo: (NSDictionary *) info {
-
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -191,7 +197,9 @@
         }
     }
     
-    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [cameraPopover dismissPopoverAnimated:YES];
+    [cameraPopover release];
+    cameraPopover = nil;
 }
 
 - (void)dealloc
@@ -223,6 +231,11 @@
     [self clearFormState];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [name becomeFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
