@@ -12,8 +12,11 @@
 
 @implementation DetailViewController
 
-@synthesize signature;
-@synthesize moviePlayer;
+@synthesize signature=_signature;
+@synthesize moviePlayer=_moviePlayer;
+@synthesize imageView=_imageView;
+@synthesize messageView=_messageView;
+@synthesize titleView=_titleView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,10 +29,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
-    [moviePlayer stop];
-    moviePlayer = nil;
-    signature = nil;
+    [self.moviePlayer stop];
+    self.moviePlayer = nil;
+    self.signature = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,49 +48,48 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if(signature.mediaPath)
+    if(self.signature.mediaPath)
     {
         GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-        NSString* filePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:signature.mediaPath] path]];
+        NSString* filePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:self.signature.mediaPath] path]];
         
         if([filePath hasSuffix:@"jpg"])
         {
-           [imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+           [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
         }
         else if([filePath hasSuffix:@"mp4"])
         {
             MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
             [player stop];
-            moviePlayer = player;
-            moviePlayer.view.frame = imageView.frame;
-            [self.view addSubview:moviePlayer.view];
-            [moviePlayer play];
+            self.moviePlayer = player;
+            self.moviePlayer.view.frame = self.imageView.frame;
+            [self.view addSubview:self.moviePlayer.view];
+            [self.moviePlayer play];
             [self performSelector:@selector(detectOrientation) withObject:nil afterDelay:0.2];
         }
-        [filePath release];
     }
     else
     {
         NSString* pathToImageFile = [[NSBundle mainBundle] pathForResource:@"no-media" ofType:@"png"];
-        [imageView setImage:[UIImage imageWithContentsOfFile:pathToImageFile]];
+        [self.imageView setImage:[UIImage imageWithContentsOfFile:pathToImageFile]];
     }
     
-    if(signature.message)
+    if(self.signature.message)
     {
-        messageView.text = signature.message;
+        self.messageView.text = self.signature.message;
     }
     else
     {
-        messageView.text = nil;
+        self.messageView.text = nil;
     }
     
-    if(signature.message)
+    if(self.signature.message)
     {
-        titleView.text = signature.name;
+        self.titleView.text = self.signature.name;
     }
     else
     {
-        titleView.text = nil;
+        self.titleView.text = nil;
     }
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -109,9 +110,9 @@
 }
 
 -(void) detectOrientation {
-    if(moviePlayer)
+    if(self.moviePlayer)
     {
-        moviePlayer.view.frame = imageView.frame;
+        self.moviePlayer.view.frame = self.imageView.frame;
     }
 }
 

@@ -12,7 +12,9 @@
 
 @implementation AddEventViewController
 
-@synthesize fetchedResultsController;
+@synthesize fetchedResultsController=_fetchedResultsController;
+@synthesize name=_name;
+@synthesize datePicker=_datePicker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,15 +26,15 @@
     return self;
 }
 
-- (IBAction)createEvent:(id)sender
+- (IBAction)createEvent:(UIButton*)sender
 {
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Event* event = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
-    [event setName:[name text]];
-    [event setTime:[datePicker date]];
+    [event setName:[self.name text]];
+    [event setTime:[self.datePicker date]];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [event setUuid:[appDelegate generateUuidString]];
     
@@ -52,11 +54,6 @@
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -72,8 +69,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.contentSizeForViewInPopover = CGSizeMake(700.0, 275.0);
-    [datePicker setDate:[NSDate date]];
-    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [self.datePicker setDate:[NSDate date]];
+    [self.datePicker setDatePickerMode:UIDatePickerModeDate];
 }
 
 - (void)viewDidUnload

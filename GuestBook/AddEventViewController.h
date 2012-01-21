@@ -10,12 +10,12 @@
 #import <CoreData/CoreData.h>
 
 @interface AddEventViewController : UIViewController {
-    IBOutlet UITextField* name;
-    IBOutlet UIDatePicker* datePicker;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, weak) IBOutlet UITextField* name;
+@property (nonatomic, weak) IBOutlet UIDatePicker* datePicker;
 
--(IBAction)createEvent:(id)sender;
+-(IBAction)createEvent:(UIButton*)sender;
 
 @end

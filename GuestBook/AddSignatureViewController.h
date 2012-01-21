@@ -10,19 +10,16 @@
 
 
 @interface AddSignatureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate> {
-    IBOutlet UITextField *name;
-    IBOutlet UITextView *message;
-    IBOutlet UIImageView *image;
-    IBOutlet UIButton* imageButton;
-    NSString* mediaPath;
-    UIPopoverController* cameraPopover;
 }
 
--(IBAction)submitSig:(id)sender;
--(IBAction)addMultimedia:(id)sender;
+-(IBAction)submitSig:(UIButton*)sender;
+-(IBAction)addMultimedia:(UIButton*)sender;
 -(void)clearFormState;
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSString* mediaPath;
-@property (nonatomic, retain) UIPopoverController* cameraPopover;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak) IBOutlet UITextField *name;
+@property (nonatomic, weak) IBOutlet UITextView *message;
+@property (nonatomic, weak) IBOutlet UIButton *imageButton;
+@property (nonatomic, weak) IBOutlet UIImageView *image;
+
 @end

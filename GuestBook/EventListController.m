@@ -14,13 +14,14 @@
 
 @interface EventListController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@property (nonatomic, strong) NSIndexPath *pendingDeletePath;
 @end
 
 @implementation EventListController
 
 @synthesize fetchedResultsController=__fetchedResultsController;
 @synthesize managedObjectContext=__managedObjectContext;
-@synthesize pendingDeletePath;
+@synthesize pendingDeletePath=_pendingDeletePath;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,13 +32,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [__fetchedResultsController release];
-    [__managedObjectContext release];
-    [super dealloc];
-}
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -46,7 +40,6 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     cell.detailTextLabel.text = [formatter stringFromDate:[event time]];
-    [formatter release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +67,6 @@
     // add button for creating a new event
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewEvent)];
     self.navigationItem.rightBarButtonItem = addButton;
-    [addButton release];
 }
 
 - (void)viewDidUnload
@@ -116,7 +108,7 @@
     {
         // delete all associated signatures first
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        Event* event = [self.fetchedResultsController objectAtIndexPath:pendingDeletePath];
+        Event* event = [self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath];
         NSEnumerator *e = [event.signatures objectEnumerator];
         id collectionMemberObject;
         
@@ -152,7 +144,7 @@
             abort();
         }
     }
-    pendingDeletePath = nil;
+    self.pendingDeletePath = nil;
 }
 
 #pragma mark - Table view data source
@@ -174,7 +166,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -188,7 +180,6 @@
     AddEventViewController* aevController = [[AddEventViewController alloc] init];
     [aevController setFetchedResultsController:self.fetchedResultsController];
     [[self navigationController] pushViewController:aevController animated:YES];
-    [aevController release];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -221,11 +212,6 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
-    
-    [aFetchedResultsController release];
-    [fetchRequest release];
-    [sortDescriptor release];
-    [sortDescriptors release];
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error])
@@ -310,18 +296,10 @@
     {
         // confirm delete
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-        pendingDeletePath = [indexPath copy];
+        self.pendingDeletePath = [indexPath copy];
         [alert show];
-        [alert release];
     }   
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
 
 // Override to support conditional rearranging of the table view.
@@ -342,15 +320,6 @@
     // save current selection
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-    
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
 }
 
 @end

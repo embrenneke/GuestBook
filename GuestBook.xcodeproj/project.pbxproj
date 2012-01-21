@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F10DBC4D14CB73FA007E22DA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4C14CB73F9007E22DA /* Event.m */; };
+		F10DBC5014CB73FB007E22DA /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4F14CB73FA007E22DA /* Signature.m */; };
 		F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1157EC214107DB90017C2CB /* MediaPlayer.framework */; };
 		F1157EC614108D3F0017C2CB /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */; };
 		F1157ECA14108D940017C2CB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */; };
@@ -43,8 +45,6 @@
 		F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F80214043F6F00549C03 /* AddSignatureViewController.xib */; };
 		F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F80614043FF800549C03 /* AddEventViewController.m */; };
 		F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F80714043FF900549C03 /* AddEventViewController.xib */; };
-		F1B8013D14087964007CE067 /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B8013C14087964007CE067 /* Signature.m */; };
-		F1B8014014087995007CE067 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B8013F14087995007CE067 /* Event.m */; };
 		F1B8014A140C7924007CE067 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B80149140C7924007CE067 /* MobileCoreServices.framework */; };
 		F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */; };
 		F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */; };
@@ -63,6 +63,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F10DBC4B14CB73F9007E22DA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		F10DBC4C14CB73F9007E22DA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		F10DBC4E14CB73FA007E22DA /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
+		F10DBC4F14CB73FA007E22DA /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
 		F1157EC214107DB90017C2CB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -109,10 +113,6 @@
 		F1B3F80514043FF800549C03 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		F1B3F80614043FF800549C03 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		F1B3F80714043FF900549C03 /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
-		F1B8013B14087964007CE067 /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
-		F1B8013C14087964007CE067 /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
-		F1B8013E14087995007CE067 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		F1B8013F14087995007CE067 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		F1B80149140C7924007CE067 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F1C9E7B914184D03007F0E67 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
@@ -215,11 +215,11 @@
 				F157356114119F520034BD4D /* DetailViewController.h */,
 				F157356214119F520034BD4D /* DetailViewController.m */,
 				F157356314119F520034BD4D /* DetailViewController.xib */,
+				F10DBC4B14CB73F9007E22DA /* Event.h */,
+				F10DBC4C14CB73F9007E22DA /* Event.m */,
+				F10DBC4E14CB73FA007E22DA /* Signature.h */,
+				F10DBC4F14CB73FA007E22DA /* Signature.m */,
 				F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */,
-				F1B8013E14087995007CE067 /* Event.h */,
-				F1B8013F14087995007CE067 /* Event.m */,
-				F1B8013B14087964007CE067 /* Signature.h */,
-				F1B8013C14087964007CE067 /* Signature.m */,
 				F1C9E7B914184D03007F0E67 /* UIImage+Resize.h */,
 				F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */,
 				F1C9E7BD14184D82007F0E67 /* UIImage+RoundedCorner.h */,
@@ -402,12 +402,12 @@
 				F1B3F7FE14043E9F00549C03 /* EventListController.m in Sources */,
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
-				F1B8013D14087964007CE067 /* Signature.m in Sources */,
-				F1B8014014087995007CE067 /* Event.m in Sources */,
 				F157356414119F520034BD4D /* DetailViewController.m in Sources */,
 				F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */,
 				F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */,
 				F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */,
+				F10DBC4D14CB73FA007E22DA /* Event.m in Sources */,
+				F10DBC5014CB73FB007E22DA /* Signature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,13 +477,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "85EE24ED-9557-4F71-87C9-FDA43FC3CEB8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "85EE24ED-9557-4F71-87C9-FDA43FC3CEB8";
@@ -503,7 +504,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "46147FE2-644B-45E5-BDA7-732B51AC6C2F";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -539,13 +540,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "08794BF2-BA9B-4727-B693-02403A4ABF0D";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08794BF2-BA9B-4727-B693-02403A4ABF0D";
@@ -564,7 +566,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -599,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -607,7 +610,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -617,13 +620,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08794BF2-BA9B-4727-B693-02403A4ABF0D";
@@ -643,7 +647,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -660,7 +664,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
