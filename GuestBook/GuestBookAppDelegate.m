@@ -12,37 +12,24 @@
 
 @implementation GuestBookAppDelegate
 
-
-@synthesize window=_window;
-
 @synthesize managedObjectContext=__managedObjectContext;
-
 @synthesize managedObjectModel=__managedObjectModel;
-
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
-
 @synthesize navigationController=_navigationController;
-
-@synthesize currentEvent;
+@synthesize currentEvent=_currentEvent;
+@synthesize window=_window;
 
 - (void)setCurrentEvent:(Event *)newCurrentEvent
 {
-    if(currentEvent != nil)
-        [currentEvent release];
-    currentEvent = newCurrentEvent;
+    _currentEvent = newCurrentEvent;
     
-    if(currentEvent != nil)
-        [currentEvent retain];
-    [[NSUserDefaults standardUserDefaults] setValue:[currentEvent uuid] forKey:@"OpenEvent"];
+    [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
     RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
     [rootViewController updatePredicate];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-
-    
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
@@ -78,9 +65,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
+
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
@@ -92,16 +77,6 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
-- (void)dealloc
-{
-    [_window release];
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
-    [_navigationController release];
-    [super dealloc];
-}
-
 - (void)awakeFromNib
 {
     RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
@@ -111,10 +86,9 @@
 - (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil)
+    if (self.managedObjectContext)
     {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
+        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
         {
             /*
              Replace this implementation with code to handle the error appropriately.
@@ -234,11 +208,8 @@
     
     // create a new CFStringRef (toll-free bridged to NSString)
     // that you own
-    NSString *uuidString = (NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    NSString *uuidString = [NSString stringWithFormat:@"%@", CFUUIDCreateString(kCFAllocatorDefault, uuid)];
     
-    // transfer ownership of the string
-    // to the autorelease pool
-    [uuidString autorelease];
     
     // release the UUID
     CFRelease(uuid);

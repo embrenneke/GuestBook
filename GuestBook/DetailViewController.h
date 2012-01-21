@@ -11,14 +11,11 @@
 #import "Signature.h"
 
 @interface DetailViewController : UIViewController {
-    IBOutlet UIImageView *imageView;
-    IBOutlet UITextView  *messageView;
-    IBOutlet UILabel     *titleView;
-    Signature            *signature;
-    MPMoviePlayerController *moviePlayer;
 }
 
-@property (nonatomic, retain) Signature *signature;
-@property (nonatomic, retain) MPMoviePlayerController *moviePlayer;
-
+@property (nonatomic, strong) Signature *signature;
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UITextView  *messageView;
+@property (nonatomic, weak) IBOutlet UILabel     *titleView;
 @end

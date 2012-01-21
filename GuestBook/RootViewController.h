@@ -12,23 +12,16 @@
 #import "AddSignatureViewController.h"
 
 @interface RootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
-    UIPopoverController        *eventsPopup;
-    UIPopoverController        *addEntryPopup;
-    EventListController        *eventsView;
-    AddSignatureViewController *addSigView;
-    NSFetchedResultsController *fetchedResultsController_;
-    NSIndexPath                *pendingDeletePath;
-    IBOutlet UITableView       *tableView;
 }
 
-@property (nonatomic, retain) UIPopoverController *eventsPopup;
-@property (nonatomic, retain) UIPopoverController *addEntryPopup;
-@property (nonatomic, retain) EventListController *eventsView;
-@property (nonatomic, retain) AddSignatureViewController *addSigView;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSIndexPath *pendingDeletePath;
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, strong) UIPopoverController *eventsPopup;
+@property (nonatomic, strong) UIPopoverController *addEntryPopup;
+@property (nonatomic, strong) EventListController *eventsView;
+@property (nonatomic, strong) AddSignatureViewController *addSigView;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSIndexPath *pendingDeletePath;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 -(IBAction) chooseEvent:(id)sender;
 -(void) updatePredicate;

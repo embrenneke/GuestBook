@@ -11,22 +11,18 @@
 #import "Event.h"
 
 @interface GuestBookAppDelegate : NSObject <UIApplicationDelegate> {
-    Event *currentEvent;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, retain) Event *currentEvent;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) Event *currentEvent;
+@property (nonatomic, weak) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UIWindow* window;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (NSURL *)applicationLibraryDirectory;
-// return a new autoreleased UUID string
 - (NSString *)generateUuidString;
-
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end

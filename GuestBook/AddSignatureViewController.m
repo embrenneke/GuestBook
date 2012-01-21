@@ -15,37 +15,47 @@
 #import <UIKit/UIImagePickerController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
+@interface AddSignatureViewController ()
+@property (nonatomic, strong) NSString* mediaPath;
+@property (nonatomic, strong) UIPopoverController* cameraPopover;
+@end
+
 @implementation AddSignatureViewController
 
 @synthesize managedObjectContext=__managedObjectContext;
-@synthesize mediaPath, cameraPopover;
+@synthesize name=_name;
+@synthesize message=_message;
+@synthesize imageButton=_imageButton;
+@synthesize image=_image;
+@synthesize mediaPath=_mediaPath;
+@synthesize cameraPopover=_cameraPopover;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        mediaPath = nil;
+        self.mediaPath = nil;
     }
     return self;
 }
 
--(IBAction)submitSig:(id)sender
+-(IBAction)submitSig:(UIButton*)sender
 {    
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     signature.timeStamp = [NSDate date];
-    signature.name = name.text;
-    signature.message = message.text;
-    if(mediaPath != nil)
+    signature.name = self.name.text;
+    signature.message = self.message.text;
+    if(self.mediaPath)
     {
-        signature.thumbnail = UIImageJPEGRepresentation(imageButton.imageView.image, 0.5);
+        signature.thumbnail = UIImageJPEGRepresentation(self.imageButton.imageView.image, 0.5);
     }
     signature.uuid = [appDelegate generateUuidString];
     signature.event = [appDelegate currentEvent];
-    signature.mediaPath = [mediaPath lastPathComponent];
+    signature.mediaPath = [self.mediaPath lastPathComponent];
 
     // Save the context.
     NSError *error = nil;
@@ -68,15 +78,15 @@
 
 -(void)clearFormState
 {
-    [name setText:@""];
-    [message setText:@""];
-    [imageButton setImage:nil forState:UIControlStateNormal];
-    [imageButton setTitle:@"Press to add image/video"  forState:UIControlStateNormal];
-    mediaPath = nil;
+    [self.name setText:@""];
+    [self.message setText:@""];
+    [self.imageButton setImage:nil forState:UIControlStateNormal];
+    [self.imageButton setTitle:@"Press to add image/video"  forState:UIControlStateNormal];
+    self.mediaPath = nil;
     
 }
 
-- (IBAction)addMultimedia:(id)sender
+- (IBAction)addMultimedia:(UIButton*)sender
 {
     // bring up camera view, capture image/video, set thumbnail to button image
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -98,10 +108,9 @@
         cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         
         
-        cameraPopover = [[UIPopoverController alloc] initWithContentViewController:cameraUI];
-        cameraPopover.delegate = self;
-        [cameraPopover presentPopoverFromRect:CGRectMake(0, 0, 600, 600) inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        [cameraUI release];
+        self.cameraPopover = [[UIPopoverController alloc] initWithContentViewController:cameraUI];
+        self.cameraPopover.delegate = self;
+        [self.cameraPopover presentPopoverFromRect:CGRectMake(0, 0, 600, 600) inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
     else
     {
@@ -112,15 +121,13 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    [cameraPopover release];
-    cameraPopover = nil;
+    self.cameraPopover = nil;
 }
 
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [cameraPopover dismissPopoverAnimated:YES];
-    [cameraPopover release];
-    cameraPopover = nil;
+    [self.cameraPopover dismissPopoverAnimated:YES];
+    self.cameraPopover = nil;
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -131,17 +138,16 @@
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // handle re-picking
-    if(mediaPath)
+    if(self.mediaPath)
     {
         NSError *error = nil;
-        NSString *oldFilePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:mediaPath] path]];
+        NSString *oldFilePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:self.mediaPath] path]];
         [[NSFileManager defaultManager] removeItemAtPath:oldFilePath error:&error];
-        [oldFilePath release];
-        mediaPath = nil;
+        self.mediaPath = nil;
     }
     
     // Handle a still image capture
-    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+    if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeImage, 0)
         == kCFCompareEqualTo) {
         
         editedImage = (UIImage *) [info objectForKey:
@@ -159,17 +165,17 @@
         CGSize buttonSize = CGSizeMake(245, 180);
         UIImage *thumbnailImage = [imageToSave resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
         
-        [[imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
-        [imageButton setTitle:@"" forState:UIControlStateNormal];
-        [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
-        imageButton.layer.cornerRadius = 15;
-        imageButton.layer.masksToBounds = YES;
-        mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
-        [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:mediaPath atomically:YES];        
+        [[self.imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
+        [self.imageButton setTitle:@"" forState:UIControlStateNormal];
+        [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
+        self.imageButton.layer.cornerRadius = 15;
+        self.imageButton.layer.masksToBounds = YES;
+        self.mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+        [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:self.mediaPath atomically:YES];        
     }
     
     // Handle a movie capture
-    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
+    if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeMovie, 0)
         == kCFCompareEqualTo) {
         
         NSString *moviePath = [[info objectForKey:
@@ -177,34 +183,27 @@
         
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
             // handle movie
-            mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+            self.mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
             NSError *error = nil;
-            [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:mediaPath error:&error];
+            [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:self.mediaPath error:&error];
             if(error)
             {
                 NSLog(@"%@", [error localizedDescription]);
             }
 
             // use movie player to generate a thumbnail
-            NSURL *videoURL = [NSURL fileURLWithPath:mediaPath];
+            NSURL *videoURL = [NSURL fileURLWithPath:self.mediaPath];
             MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
             UIImage *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
             CGSize buttonSize = CGSizeMake(245, 180);
             UIImage *thumbnailImage = [thumb resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
-            [imageButton setImage:thumbnailImage forState:UIControlStateNormal];
+            [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
             [player stop];
-            [player release];
         }
     }
     
-    [cameraPopover dismissPopoverAnimated:YES];
-    [cameraPopover release];
-    cameraPopover = nil;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
+    [self.cameraPopover dismissPopoverAnimated:YES];
+    self.cameraPopover = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -235,7 +234,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [name becomeFirstResponder];
+    [self.name becomeFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

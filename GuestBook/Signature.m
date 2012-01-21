@@ -2,8 +2,8 @@
 //  Signature.m
 //  GuestBook
 //
-//  Created by Emily Brenneke on 8/26/11.
-//  Copyright (c) 2011 UnspunProductions. All rights reserved.
+//  Created by Emily Brenneke on 1/21/12.
+//  Copyright (c) 2012 UnspunProductions. All rights reserved.
 //
 
 #import "Signature.h"
@@ -11,13 +11,13 @@
 
 
 @implementation Signature
-@dynamic mediaPath;
+
+@dynamic uuid;
 @dynamic message;
 @dynamic name;
-@dynamic thumbnail;
+@dynamic mediaPath;
 @dynamic timeStamp;
-@dynamic uuid;
+@dynamic thumbnail;
 @dynamic event;
-
 
 @end

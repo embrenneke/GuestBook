@@ -13,9 +13,14 @@
 
 @implementation RootViewController
 
-@synthesize eventsPopup, eventsView, addEntryPopup, addSigView, pendingDeletePath, tableView;
+@synthesize eventsPopup=_eventsPopup;
+@synthesize eventsView=_eventsView;
+@synthesize addEntryPopup=_addEntryPopup;
+@synthesize addSigView=_addSigView;
+@synthesize pendingDeletePath=_pendingDeletePath; 
+@synthesize tableView=_tableView;
 @synthesize managedObjectContext=__managedObjectContext;
-@synthesize fetchedResultsController=fetchedResultsController_;
+@synthesize fetchedResultsController=_fetchedResultsController;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -35,27 +40,23 @@
     // Set up the events and add signature buttons.
     UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithTitle:@"Events" style:UIBarButtonItemStylePlain target:self action:@selector(chooseEvent:)];
     self.navigationItem.leftBarButtonItem = events;
-    [events release];
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    [addButton release];
 
     self.navigationItem.title = @"No Event Selected";
 
-    eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
-    eventsView.managedObjectContext = self.managedObjectContext;
-    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:eventsView];
-    eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
-    eventsView.title = @"Event List";
-    [navCon release];
+    self.eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
+    self.eventsView.managedObjectContext = self.managedObjectContext;
+    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:self.eventsView];
+    self.eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
+    self.eventsView.title = @"Event List";
     
-    addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
-    addSigView.managedObjectContext = self.managedObjectContext;
-    UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:addSigView];
-    addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
-    addSigView.title = @"Add Signature";
-    [sigNavCon release];
+    self.addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
+    self.addSigView.managedObjectContext = self.managedObjectContext;
+    UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:self.addSigView];
+    self.addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
+    self.addSigView.title = @"Add Signature";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
     
@@ -82,59 +83,56 @@
             Event *event = [array objectAtIndex:0];
             [appDelegate setCurrentEvent:event];
         }
-        [fetchRequest release];
-        [sortDescriptor release];
-        [sortDescriptors release];
     }
     else
     {
         // offer to create new event
         [self chooseEvent:self.navigationItem.leftBarButtonItem];
-        [eventsView insertNewEvent];
+        [self.eventsView insertNewEvent];
         
         // disable add signature until event is created
         [addButton setEnabled:false];
     }
     
-    [tableView setSeparatorColor:[UIColor clearColor]];
+    [self.tableView setSeparatorColor:[UIColor clearColor]];
 }
 
 - (void)insertNewSignature:(id)sender
 {
-    if([eventsPopup isPopoverVisible])
+    if([self.eventsPopup isPopoverVisible])
     {
-        [eventsPopup dismissPopoverAnimated:YES];
+        [self.eventsPopup dismissPopoverAnimated:YES];
     }
-    if(![addEntryPopup isPopoverVisible])
+    if(![self.addEntryPopup isPopoverVisible])
     {
-        [addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [self.addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
     else
     {
-        [addEntryPopup dismissPopoverAnimated:YES];
+        [self.addEntryPopup dismissPopoverAnimated:YES];
     }
 }
 
 - (void)chooseEvent:(id)sender
 {
-    if([addEntryPopup isPopoverVisible])
+    if([self.addEntryPopup isPopoverVisible])
     {
-        [addEntryPopup dismissPopoverAnimated:YES];
+        [self.addEntryPopup dismissPopoverAnimated:YES];
     }
-    if(![eventsPopup isPopoverVisible])
+    if(![self.eventsPopup isPopoverVisible])
     {
-        [eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [self.eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
     else
     {
-        [eventsPopup dismissPopoverAnimated:YES];
+        [self.eventsPopup dismissPopoverAnimated:YES];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [NSFetchedResultsController deleteCacheWithName:nil];
-    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     [super viewWillAppear:animated];
 }
 
@@ -161,9 +159,9 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (fetchedResultsController_ != nil)
+    if (_fetchedResultsController != nil)
     {
-        return fetchedResultsController_;
+        return _fetchedResultsController;
     }
     
     /*
@@ -192,12 +190,7 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"SigsCache"];
     aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-    [aFetchedResultsController release];
-    [fetchRequest release];
-    [sortDescriptor release];
-    [sortDescriptors release];
+    _fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error])
@@ -211,7 +204,7 @@
 	    abort();
 	}
     
-    return fetchedResultsController_;
+    return _fetchedResultsController;
 } 
 
 - (void)updatePredicate
@@ -240,10 +233,10 @@
         // Delete the managed object for the given index path
         NSError *error = nil;
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        Signature *sig = [self.fetchedResultsController objectAtIndexPath:pendingDeletePath];
+        Signature *sig = [self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath];
         [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
         
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:pendingDeletePath]];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath]];
         
         // Save the context.
         if (![context save:&error])
@@ -257,7 +250,7 @@
             abort();
         }
     }
-    pendingDeletePath = nil;
+    self.pendingDeletePath = nil;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -284,22 +277,13 @@
     
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
     // Configure the cell....
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // TODO: Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
@@ -361,12 +345,8 @@
      
          // confirm delete
          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-         pendingDeletePath = [indexPath copy];
+         self.pendingDeletePath = [indexPath copy];
          [alert show];
-         [alert release];
-     }
-     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
      }
 }
  
@@ -383,7 +363,6 @@
     [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 
     [self.navigationController pushViewController:detailView animated:YES];
-    [detailView release];
     detailView = nil;
 }
 
@@ -392,33 +371,17 @@
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
-    // Relinquish ownership any cached data, images, etc that aren't in use.
     [NSFetchedResultsController deleteCacheWithName:nil];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [fetchedResultsController_ release];
-    [super dealloc];
 }
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
 
 @end
