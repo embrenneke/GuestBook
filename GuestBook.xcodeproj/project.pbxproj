@@ -16,6 +16,22 @@
 		F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F1528C9B141BC40D004BA1EF /* iTunesArtwork */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
+		F15CD85F14CCAA1D00217B8E /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85A14CCAA1D00217B8E /* AQGridSelection.png */; };
+		F15CD86014CCAA1D00217B8E /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85B14CCAA1D00217B8E /* AQGridSelectionGray.png */; };
+		F15CD86114CCAA1D00217B8E /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85C14CCAA1D00217B8E /* AQGridSelectionGrayBlue.png */; };
+		F15CD86214CCAA1D00217B8E /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85D14CCAA1D00217B8E /* AQGridSelectionGreen.png */; };
+		F15CD86314CCAA1D00217B8E /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85E14CCAA1D00217B8E /* AQGridSelectionRed.png */; };
+		F15CD87E14CCAB5600217B8E /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD86814CCAB5600217B8E /* AQGridView.m */; };
+		F15CD87F14CCAB5600217B8E /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD86C14CCAB5600217B8E /* AQGridViewAnimatorItem.m */; };
+		F15CD88014CCAB5600217B8E /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD86E14CCAB5600217B8E /* AQGridViewCell.m */; };
+		F15CD88114CCAB5600217B8E /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87114CCAB5600217B8E /* AQGridViewController.m */; };
+		F15CD88214CCAB5600217B8E /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87314CCAB5600217B8E /* AQGridViewData.m */; };
+		F15CD88314CCAB5600217B8E /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87514CCAB5600217B8E /* AQGridViewUpdateInfo.m */; };
+		F15CD88414CCAB5600217B8E /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87714CCAB5600217B8E /* AQGridViewUpdateItem.m */; };
+		F15CD88514CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87914CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		F15CD88614CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87B14CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m */; };
+		F15CD88714CCAB5600217B8E /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = F15CD87D14CCAB5600217B8E /* UIColor+AQGridView.m */; };
+		F15CD88914CCABDC00217B8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15CD88814CCABDC00217B8E /* QuartzCore.framework */; };
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
 		F19EAB0D1424199400AA9EF6 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EAB0B1424199300AA9EF6 /* settings.png */; };
 		F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EAB0C1424199300AA9EF6 /* spotlight.png */; };
@@ -28,7 +44,6 @@
 		F1B3F7C8140418F000549C03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7C7140418F000549C03 /* main.m */; };
 		F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */; };
 		F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */; };
-		F1B3F7D1140418F000549C03 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7CF140418F000549C03 /* MainWindow.xib */; };
 		F1B3F7D4140418F000549C03 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7D3140418F000549C03 /* RootViewController.m */; };
 		F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7D5140418F000549C03 /* RootViewController.xib */; };
 		F1B3F7DE140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
@@ -75,6 +90,35 @@
 		F157356114119F520034BD4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F157356314119F520034BD4D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		F15CD85A14CCAA1D00217B8E /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelection.png; sourceTree = "<group>"; };
+		F15CD85B14CCAA1D00217B8E /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGray.png; sourceTree = "<group>"; };
+		F15CD85C14CCAA1D00217B8E /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
+		F15CD85D14CCAA1D00217B8E /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGreen.png; sourceTree = "<group>"; };
+		F15CD85E14CCAA1D00217B8E /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionRed.png; sourceTree = "<group>"; };
+		F15CD86714CCAB5600217B8E /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView.h; sourceTree = "<group>"; };
+		F15CD86814CCAB5600217B8E /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridView.m; sourceTree = "<group>"; };
+		F15CD86914CCAB5600217B8E /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
+		F15CD86A14CCAB5600217B8E /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
+		F15CD86B14CCAB5600217B8E /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
+		F15CD86C14CCAB5600217B8E /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
+		F15CD86D14CCAB5600217B8E /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewCell.h; sourceTree = "<group>"; };
+		F15CD86E14CCAB5600217B8E /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewCell.m; sourceTree = "<group>"; };
+		F15CD86F14CCAB5600217B8E /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
+		F15CD87014CCAB5600217B8E /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewController.h; sourceTree = "<group>"; };
+		F15CD87114CCAB5600217B8E /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewController.m; sourceTree = "<group>"; };
+		F15CD87214CCAB5600217B8E /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewData.h; sourceTree = "<group>"; };
+		F15CD87314CCAB5600217B8E /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewData.m; sourceTree = "<group>"; };
+		F15CD87414CCAB5600217B8E /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
+		F15CD87514CCAB5600217B8E /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
+		F15CD87614CCAB5600217B8E /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateItem.h; sourceTree = "<group>"; };
+		F15CD87714CCAB5600217B8E /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateItem.m; sourceTree = "<group>"; };
+		F15CD87814CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
+		F15CD87914CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
+		F15CD87A14CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
+		F15CD87B14CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
+		F15CD87C14CCAB5600217B8E /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
+		F15CD87D14CCAB5600217B8E /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		F15CD88814CCABDC00217B8E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spine.png; sourceTree = SOURCE_ROOT; };
 		F18EAF5B141BC02100FA99AB /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = SOURCE_ROOT; };
 		F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = GuestBookTasks.rtf; sourceTree = SOURCE_ROOT; };
@@ -93,7 +137,6 @@
 		F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestBookAppDelegate.h; sourceTree = "<group>"; };
 		F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuestBookAppDelegate.m; sourceTree = "<group>"; };
 		F1B3F7CD140418F000549C03 /* GuestBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuestBook.xcdatamodel; sourceTree = "<group>"; };
-		F1B3F7D0140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		F1B3F7D2140418F000549C03 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		F1B3F7D3140418F000549C03 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		F1B3F7D6140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
@@ -128,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F15CD88914CCABDC00217B8E /* QuartzCore.framework in Frameworks */,
 				F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */,
 				F1B8014A140C7924007CE067 /* MobileCoreServices.framework in Frameworks */,
 				F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */,
@@ -154,15 +198,76 @@
 		F1528C9A141BC3B0004BA1EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F15CD85A14CCAA1D00217B8E /* AQGridSelection.png */,
+				F15CD85B14CCAA1D00217B8E /* AQGridSelectionGray.png */,
+				F15CD85C14CCAA1D00217B8E /* AQGridSelectionGrayBlue.png */,
+				F15CD85D14CCAA1D00217B8E /* AQGridSelectionGreen.png */,
+				F15CD85E14CCAA1D00217B8E /* AQGridSelectionRed.png */,
 				F1528C9B141BC40D004BA1EF /* iTunesArtwork */,
 			);
 			name = Resources;
 			path = GuestBook;
 			sourceTree = "<group>";
 		};
+		F15CD86414CCAA3600217B8E /* UIImageHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				F1C9E7B914184D03007F0E67 /* UIImage+Resize.h */,
+				F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */,
+				F1C9E7BD14184D82007F0E67 /* UIImage+RoundedCorner.h */,
+				F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */,
+				F1C9E7C014184DC1007F0E67 /* UIImage+Alpha.h */,
+				F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */,
+			);
+			name = UIImageHelpers;
+			sourceTree = "<group>";
+		};
+		F15CD86514CCAA5B00217B8E /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F10DBC4B14CB73F9007E22DA /* Event.h */,
+				F10DBC4C14CB73F9007E22DA /* Event.m */,
+				F10DBC4E14CB73FA007E22DA /* Signature.h */,
+				F10DBC4F14CB73FA007E22DA /* Signature.m */,
+				F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		F15CD86614CCAB0700217B8E /* AQGridView */ = {
+			isa = PBXGroup;
+			children = (
+				F15CD86714CCAB5600217B8E /* AQGridView.h */,
+				F15CD86814CCAB5600217B8E /* AQGridView.m */,
+				F15CD86914CCAB5600217B8E /* AQGridView+CellLayout.h */,
+				F15CD86A14CCAB5600217B8E /* AQGridView+CellLocationDelegation.h */,
+				F15CD86B14CCAB5600217B8E /* AQGridViewAnimatorItem.h */,
+				F15CD86C14CCAB5600217B8E /* AQGridViewAnimatorItem.m */,
+				F15CD86D14CCAB5600217B8E /* AQGridViewCell.h */,
+				F15CD86E14CCAB5600217B8E /* AQGridViewCell.m */,
+				F15CD86F14CCAB5600217B8E /* AQGridViewCell+AQGridViewCellPrivate.h */,
+				F15CD87014CCAB5600217B8E /* AQGridViewController.h */,
+				F15CD87114CCAB5600217B8E /* AQGridViewController.m */,
+				F15CD87214CCAB5600217B8E /* AQGridViewData.h */,
+				F15CD87314CCAB5600217B8E /* AQGridViewData.m */,
+				F15CD87414CCAB5600217B8E /* AQGridViewUpdateInfo.h */,
+				F15CD87514CCAB5600217B8E /* AQGridViewUpdateInfo.m */,
+				F15CD87614CCAB5600217B8E /* AQGridViewUpdateItem.h */,
+				F15CD87714CCAB5600217B8E /* AQGridViewUpdateItem.m */,
+				F15CD87814CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.h */,
+				F15CD87914CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.m */,
+				F15CD87A14CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.h */,
+				F15CD87B14CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m */,
+				F15CD87C14CCAB5600217B8E /* UIColor+AQGridView.h */,
+				F15CD87D14CCAB5600217B8E /* UIColor+AQGridView.m */,
+			);
+			name = AQGridView;
+			sourceTree = "<group>";
+		};
 		F1B3F7A9140418EF00549C03 = {
 			isa = PBXGroup;
 			children = (
+				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1B3F7C0140418F000549C03 /* GuestBook */,
 				F1B3F7E4140418F000549C03 /* GuestBookTests */,
 				F1528C9A141BC3B0004BA1EF /* Resources */,
@@ -197,7 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				F1B3F7F81404190B00549C03 /* MainWindow-iPad.xib */,
-				F1B3F7CF140418F000549C03 /* MainWindow.xib */,
 				F1B3F80514043FF800549C03 /* AddEventViewController.h */,
 				F1B3F80614043FF800549C03 /* AddEventViewController.m */,
 				F1B3F80714043FF900549C03 /* AddEventViewController.xib */,
@@ -215,17 +319,9 @@
 				F157356114119F520034BD4D /* DetailViewController.h */,
 				F157356214119F520034BD4D /* DetailViewController.m */,
 				F157356314119F520034BD4D /* DetailViewController.xib */,
-				F10DBC4B14CB73F9007E22DA /* Event.h */,
-				F10DBC4C14CB73F9007E22DA /* Event.m */,
-				F10DBC4E14CB73FA007E22DA /* Signature.h */,
-				F10DBC4F14CB73FA007E22DA /* Signature.m */,
-				F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */,
-				F1C9E7B914184D03007F0E67 /* UIImage+Resize.h */,
-				F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */,
-				F1C9E7BD14184D82007F0E67 /* UIImage+RoundedCorner.h */,
-				F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */,
-				F1C9E7C014184DC1007F0E67 /* UIImage+Alpha.h */,
-				F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */,
+				F15CD86614CCAB0700217B8E /* AQGridView */,
+				F15CD86514CCAA5B00217B8E /* DataModel */,
+				F15CD86414CCAA3600217B8E /* UIImageHelpers */,
 				F1B3F7C1140418F000549C03 /* Supporting Files */,
 			);
 			path = GuestBook;
@@ -344,7 +440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */,
-				F1B3F7D1140418F000549C03 /* MainWindow.xib in Resources */,
 				F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */,
 				F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */,
 				F1B3F7FF14043E9F00549C03 /* EventListController.xib in Resources */,
@@ -360,6 +455,11 @@
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
 				F19EAB0D1424199400AA9EF6 /* settings.png in Resources */,
 				F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */,
+				F15CD85F14CCAA1D00217B8E /* AQGridSelection.png in Resources */,
+				F15CD86014CCAA1D00217B8E /* AQGridSelectionGray.png in Resources */,
+				F15CD86114CCAA1D00217B8E /* AQGridSelectionGrayBlue.png in Resources */,
+				F15CD86214CCAA1D00217B8E /* AQGridSelectionGreen.png in Resources */,
+				F15CD86314CCAA1D00217B8E /* AQGridSelectionRed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +508,16 @@
 				F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */,
 				F10DBC4D14CB73FA007E22DA /* Event.m in Sources */,
 				F10DBC5014CB73FB007E22DA /* Signature.m in Sources */,
+				F15CD87E14CCAB5600217B8E /* AQGridView.m in Sources */,
+				F15CD87F14CCAB5600217B8E /* AQGridViewAnimatorItem.m in Sources */,
+				F15CD88014CCAB5600217B8E /* AQGridViewCell.m in Sources */,
+				F15CD88114CCAB5600217B8E /* AQGridViewController.m in Sources */,
+				F15CD88214CCAB5600217B8E /* AQGridViewData.m in Sources */,
+				F15CD88314CCAB5600217B8E /* AQGridViewUpdateInfo.m in Sources */,
+				F15CD88414CCAB5600217B8E /* AQGridViewUpdateItem.m in Sources */,
+				F15CD88514CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
+				F15CD88614CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				F15CD88714CCAB5600217B8E /* UIColor+AQGridView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,14 +546,6 @@
 				F1B3F7C4140418F000549C03 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F1B3F7CF140418F000549C03 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F1B3F7D0140418F000549C03 /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 		F1B3F7D5140418F000549C03 /* RootViewController.xib */ = {
