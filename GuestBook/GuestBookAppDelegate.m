@@ -206,12 +206,12 @@
     // create a new UUID which you own
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     
-    // create a new CFStringRef (toll-free bridged to NSString)
-    // that you own
-    NSString *uuidString = [NSString stringWithFormat:@"%@", CFUUIDCreateString(kCFAllocatorDefault, uuid)];
+    CFStringRef uuidCFString = CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    NSString *uuidString = [NSString stringWithFormat:@"%@", uuidCFString];
     
     
     // release the UUID
+    CFRelease(uuidCFString);
     CFRelease(uuid);
     
     return uuidString;
