@@ -9,13 +9,13 @@
 #import "GuestBookAppDelegate.h"
 
 #import "RootViewController.h"
+#import "EventListGridViewController.h"
 
 @implementation GuestBookAppDelegate
 
 @synthesize managedObjectContext=__managedObjectContext;
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
-@synthesize navigationController=_navigationController;
 @synthesize currentEvent=_currentEvent;
 @synthesize window=_window;
 
@@ -24,15 +24,14 @@
     _currentEvent = newCurrentEvent;
     
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
-    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
+/*
+ RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
     [rootViewController updatePredicate];
+*/
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Add the navigation controller's view to the window and display.
-    self.window.rootViewController = self.navigationController;
-    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -65,7 +64,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
@@ -79,8 +77,7 @@
 
 - (void)awakeFromNib
 {
-    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
-    rootViewController.managedObjectContext = self.managedObjectContext;
+    
 }
 
 - (void)saveContext
