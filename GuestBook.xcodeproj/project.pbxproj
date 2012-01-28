@@ -13,6 +13,8 @@
 		F1157EC614108D3F0017C2CB /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */; };
 		F1157ECA14108D940017C2CB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */; };
 		F1157ECC14108F470017C2CB /* guestbook.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157ECB14108F470017C2CB /* guestbook.png */; };
+		F11E52E614CCDD1800092822 /* EventListGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E52E414CCDD1800092822 /* EventListGridViewController.m */; };
+		F1310A4D14D374DB0093118C /* iPadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1310A4C14D374DB0093118C /* iPadStoryboard.storyboard */; };
 		F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F1528C9B141BC40D004BA1EF /* iTunesArtwork */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
@@ -86,6 +88,9 @@
 		F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F1157ECB14108F470017C2CB /* guestbook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guestbook.png; path = ../guestbook.png; sourceTree = "<group>"; };
+		F11E52E314CCDD1800092822 /* EventListGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListGridViewController.h; sourceTree = "<group>"; };
+		F11E52E414CCDD1800092822 /* EventListGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListGridViewController.m; sourceTree = "<group>"; };
+		F1310A4C14D374DB0093118C /* iPadStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPadStoryboard.storyboard; sourceTree = "<group>"; };
 		F1528C9B141BC40D004BA1EF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		F157356114119F520034BD4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
@@ -264,10 +269,19 @@
 			name = AQGridView;
 			sourceTree = "<group>";
 		};
+		F15CD88A14CCAD6000217B8E /* NewInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				F11E52E314CCDD1800092822 /* EventListGridViewController.h */,
+				F11E52E414CCDD1800092822 /* EventListGridViewController.m */,
+				F1310A4C14D374DB0093118C /* iPadStoryboard.storyboard */,
+			);
+			name = NewInterfaces;
+			sourceTree = "<group>";
+		};
 		F1B3F7A9140418EF00549C03 = {
 			isa = PBXGroup;
 			children = (
-				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1B3F7C0140418F000549C03 /* GuestBook */,
 				F1B3F7E4140418F000549C03 /* GuestBookTests */,
 				F1528C9A141BC3B0004BA1EF /* Resources */,
@@ -288,6 +302,7 @@
 		F1B3F7B7140418F000549C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1157EC214107DB90017C2CB /* MediaPlayer.framework */,
 				F1B80149140C7924007CE067 /* MobileCoreServices.framework */,
 				F1B3F7B8140418F000549C03 /* UIKit.framework */,
@@ -319,6 +334,7 @@
 				F157356114119F520034BD4D /* DetailViewController.h */,
 				F157356214119F520034BD4D /* DetailViewController.m */,
 				F157356314119F520034BD4D /* DetailViewController.xib */,
+				F15CD88A14CCAD6000217B8E /* NewInterfaces */,
 				F15CD86614CCAB0700217B8E /* AQGridView */,
 				F15CD86514CCAA5B00217B8E /* DataModel */,
 				F15CD86414CCAA3600217B8E /* UIImageHelpers */,
@@ -460,6 +476,7 @@
 				F15CD86114CCAA1D00217B8E /* AQGridSelectionGrayBlue.png in Resources */,
 				F15CD86214CCAA1D00217B8E /* AQGridSelectionGreen.png in Resources */,
 				F15CD86314CCAA1D00217B8E /* AQGridSelectionRed.png in Resources */,
+				F1310A4D14D374DB0093118C /* iPadStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +535,7 @@
 				F15CD88514CCAB5600217B8E /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
 				F15CD88614CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				F15CD88714CCAB5600217B8E /* UIColor+AQGridView.m in Sources */,
+				F11E52E614CCDD1800092822 /* EventListGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
