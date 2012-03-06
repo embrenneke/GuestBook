@@ -8,6 +8,11 @@
 
 #import "EventListGridViewController.h"
 #import "GuestBookAppDelegate.h"
+#import "Event.h"
+
+@interface EventListGridViewController ()
+- (void)configureCell:(AQGridViewCell *)cell atIndex:(NSUInteger) index;
+@end
 
 @implementation EventListGridViewController
 
@@ -106,6 +111,20 @@
     return _fetchedResultsController;
 } 
 
+- (void)configureCell:(AQGridViewCell *)cell atIndex:(NSUInteger) index
+{
+    Event* event = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 50)];
+    name.text = [[event name] description];
+    [cell.contentView addSubview:name];
+    UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 180, 50)];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    date.text = [formatter stringFromDate:[event time]];
+    [cell.contentView addSubview:date];
+}
+
 #pragma mark -
 #pragma mark Grid View Data Source
 
@@ -125,7 +144,7 @@
         cell = [[AQGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 200.0, 150.0) reuseIdentifier:CellIdentifier];
     }
 
-    // TODO: draw something in the cell
+    [self configureCell:cell atIndex:index];
 
     return cell;
 }
