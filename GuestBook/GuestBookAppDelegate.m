@@ -8,7 +8,7 @@
 
 #import "GuestBookAppDelegate.h"
 
-#import "RootViewController.h"
+#import "SignatureTableViewController.h"
 
 @implementation GuestBookAppDelegate
 
@@ -24,8 +24,8 @@
     _currentEvent = newCurrentEvent;
     
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
-    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
-    [rootViewController updatePredicate];
+    SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
+    [signatureTableViewController updatePredicate];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -79,8 +79,8 @@
 
 - (void)awakeFromNib
 {
-    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
-    rootViewController.managedObjectContext = self.managedObjectContext;
+    SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
+    signatureTableViewController.managedObjectContext = self.managedObjectContext;
 }
 
 - (void)saveContext
