@@ -44,8 +44,8 @@
 		F1B3F7C8140418F000549C03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7C7140418F000549C03 /* main.m */; };
 		F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */; };
 		F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7CC140418F000549C03 /* GuestBook.xcdatamodeld */; };
-		F1B3F7D4140418F000549C03 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7D3140418F000549C03 /* RootViewController.m */; };
-		F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7D5140418F000549C03 /* RootViewController.xib */; };
+		F1B3F7D4140418F000549C03 /* SignatureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3F7D3140418F000549C03 /* SignatureTableViewController.m */; };
+		F1B3F7D7140418F000549C03 /* SignatureTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B3F7D5140418F000549C03 /* SignatureTableViewController.xib */; };
 		F1B3F7DE140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
 		F1B3F7DF140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
 		F1B3F7E0140418F000549C03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BC140418F000549C03 /* CoreGraphics.framework */; };
@@ -137,9 +137,9 @@
 		F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestBookAppDelegate.h; sourceTree = "<group>"; };
 		F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuestBookAppDelegate.m; sourceTree = "<group>"; };
 		F1B3F7CD140418F000549C03 /* GuestBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuestBook.xcdatamodel; sourceTree = "<group>"; };
-		F1B3F7D2140418F000549C03 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		F1B3F7D3140418F000549C03 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		F1B3F7D6140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		F1B3F7D2140418F000549C03 /* SignatureTableViewController.h */ = {isa = PBXFileReference; path = SignatureTableViewController.h; sourceTree = "<group>"; };
+		F1B3F7D3140418F000549C03 /* SignatureTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignatureTableViewController.m; sourceTree = "<group>"; };
+		F1B3F7D6140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SignatureTableViewController.xib; sourceTree = "<group>"; };
 		F1B3F7DD140418F000549C03 /* GuestBookTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuestBookTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7E6140418F000549C03 /* GuestBookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuestBookTests-Info.plist"; sourceTree = "<group>"; };
 		F1B3F7E8140418F000549C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -267,7 +267,6 @@
 		F1B3F7A9140418EF00549C03 = {
 			isa = PBXGroup;
 			children = (
-				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1B3F7C0140418F000549C03 /* GuestBook */,
 				F1B3F7E4140418F000549C03 /* GuestBookTests */,
 				F1528C9A141BC3B0004BA1EF /* Resources */,
@@ -288,6 +287,7 @@
 		F1B3F7B7140418F000549C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1157EC214107DB90017C2CB /* MediaPlayer.framework */,
 				F1B80149140C7924007CE067 /* MobileCoreServices.framework */,
 				F1B3F7B8140418F000549C03 /* UIKit.framework */,
@@ -313,9 +313,9 @@
 				F1B3F7FD14043E9F00549C03 /* EventListController.xib */,
 				F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */,
 				F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */,
-				F1B3F7D2140418F000549C03 /* RootViewController.h */,
-				F1B3F7D3140418F000549C03 /* RootViewController.m */,
-				F1B3F7D5140418F000549C03 /* RootViewController.xib */,
+				F1B3F7D2140418F000549C03 /* SignatureTableViewController.h */,
+				F1B3F7D3140418F000549C03 /* SignatureTableViewController.m */,
+				F1B3F7D5140418F000549C03 /* SignatureTableViewController.xib */,
 				F157356114119F520034BD4D /* DetailViewController.h */,
 				F157356214119F520034BD4D /* DetailViewController.m */,
 				F157356314119F520034BD4D /* DetailViewController.xib */,
@@ -440,7 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */,
-				F1B3F7D7140418F000549C03 /* RootViewController.xib in Resources */,
+				F1B3F7D7140418F000549C03 /* SignatureTableViewController.xib in Resources */,
 				F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */,
 				F1B3F7FF14043E9F00549C03 /* EventListController.xib in Resources */,
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
@@ -498,7 +498,7 @@
 				F1B3F7C8140418F000549C03 /* main.m in Sources */,
 				F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */,
 				F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */,
-				F1B3F7D4140418F000549C03 /* RootViewController.m in Sources */,
+				F1B3F7D4140418F000549C03 /* SignatureTableViewController.m in Sources */,
 				F1B3F7FE14043E9F00549C03 /* EventListController.m in Sources */,
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
@@ -548,12 +548,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F1B3F7D5140418F000549C03 /* RootViewController.xib */ = {
+		F1B3F7D5140418F000549C03 /* SignatureTableViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F1B3F7D6140418F000549C03 /* en */,
 			);
-			name = RootViewController.xib;
+			name = SignatureTableViewController.xib;
 			sourceTree = "<group>";
 		};
 		F1B3F7E7140418F000549C03 /* InfoPlist.strings */ = {
