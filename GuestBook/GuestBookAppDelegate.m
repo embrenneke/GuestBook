@@ -8,7 +8,7 @@
 
 #import "GuestBookAppDelegate.h"
 
-#import "SignatureTableViewController.h"
+#import "EventListGridViewController.h"
 
 @implementation GuestBookAppDelegate
 
@@ -24,8 +24,10 @@
     _currentEvent = newCurrentEvent;
     
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
+    /*
     SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
     [signatureTableViewController updatePredicate];
+     */
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -79,8 +81,12 @@
 
 - (void)awakeFromNib
 {
+    /*
     SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
     signatureTableViewController.managedObjectContext = self.managedObjectContext;
+     */
+    EventListGridViewController* elgvController = (EventListGridViewController *)[self.navigationController topViewController];
+    elgvController.managedObjectContext = self.managedObjectContext;
 }
 
 - (void)saveContext

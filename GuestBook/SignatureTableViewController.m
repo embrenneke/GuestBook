@@ -38,27 +38,30 @@
 {
     [super viewDidLoad];
     // Set up the events and add signature buttons.
+/*
     UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithTitle:@"Events" style:UIBarButtonItemStylePlain target:self action:@selector(chooseEvent:)];
     self.navigationItem.leftBarButtonItem = events;
-
+*/
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
     self.navigationItem.title = @"No Event Selected";
 
+/*
     self.eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
     self.eventsView.managedObjectContext = self.managedObjectContext;
     UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:self.eventsView];
     self.eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
     self.eventsView.title = @"Event List";
-    
+*/
+
     self.addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
     self.addSigView.managedObjectContext = self.managedObjectContext;
     UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:self.addSigView];
     self.addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
     self.addSigView.title = @"Add Signature";
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
     
@@ -87,8 +90,8 @@
     else
     {
         // offer to create new event
-        [self chooseEvent:self.navigationItem.leftBarButtonItem];
-        [self.eventsView insertNewEvent];
+        //[self chooseEvent:self.navigationItem.leftBarButtonItem];
+        //[self.eventsView insertNewEvent];
         
         // disable add signature until event is created
         [addButton setEnabled:false];
