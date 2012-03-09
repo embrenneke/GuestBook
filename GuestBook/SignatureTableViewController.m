@@ -37,23 +37,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Set up the events and add signature buttons.
-/*
-    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithTitle:@"Events" style:UIBarButtonItemStylePlain target:self action:@selector(chooseEvent:)];
-    self.navigationItem.leftBarButtonItem = events;
-*/
+    // Set up the add signature buttons.
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
     self.navigationItem.title = @"No Event Selected";
-
-/*
-    self.eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
-    self.eventsView.managedObjectContext = self.managedObjectContext;
-    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:self.eventsView];
-    self.eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
-    self.eventsView.title = @"Event List";
-*/
 
     self.addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
     self.addSigView.managedObjectContext = self.managedObjectContext;
@@ -61,41 +49,12 @@
     self.addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
     self.addSigView.title = @"Add Signature";
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
-    
-    NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
-    if(openEvent)
-    {
-        // set current event
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"uuid == %@", openEvent];
-        [fetchRequest setPredicate:aPredicate];
-        [fetchRequest setFetchBatchSize:1];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-        [fetchRequest setSortDescriptors:sortDescriptors];
-        NSError *err = nil;
-        NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&err];
-        if((array != nil) && ([array count] > 0))
-        {
-            GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-            Event *event = [array objectAtIndex:0];
-            [appDelegate setCurrentEvent:event];
-        }
-    }
-    else
-    {
-        // offer to create new event
-        //[self chooseEvent:self.navigationItem.leftBarButtonItem];
-        //[self.eventsView insertNewEvent];
-        
-        // disable add signature until event is created
-        [addButton setEnabled:false];
-    }
+
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Event* event = [appDelegate currentEvent];
+    self.navigationItem.title = [event name];
+    [self.tableView reloadData];
     
     [self.tableView setSeparatorColor:[UIColor clearColor]];
 }
@@ -113,22 +72,6 @@
     else
     {
         [self.addEntryPopup dismissPopoverAnimated:YES];
-    }
-}
-
-- (void)chooseEvent:(id)sender
-{
-    if([self.addEntryPopup isPopoverVisible])
-    {
-        [self.addEntryPopup dismissPopoverAnimated:YES];
-    }
-    if(![self.eventsPopup isPopoverVisible])
-    {
-        [self.eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    else
-    {
-        [self.eventsPopup dismissPopoverAnimated:YES];
     }
 }
 
@@ -209,25 +152,6 @@
     
     return _fetchedResultsController;
 } 
-
-- (void)updatePredicate
-{
-    [NSFetchedResultsController deleteCacheWithName:nil];
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
-    [[self.fetchedResultsController fetchRequest] setPredicate:aPredicate];
-    NSError *error = nil;
-    if(![self.fetchedResultsController performFetch:&error])
-    {
-        NSLog(@"%@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    self.navigationItem.title = [[appDelegate currentEvent] name];
-    [self.navigationItem.rightBarButtonItem setEnabled:true];
-
-    [self.tableView reloadData];
-}
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     // the user clicked one of the Delete/Cancel buttons

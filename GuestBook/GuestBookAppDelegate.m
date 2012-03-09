@@ -24,10 +24,35 @@
     _currentEvent = newCurrentEvent;
     
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
-    /*
-    SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
-    [signatureTableViewController updatePredicate];
-     */
+}
+
+-(Event *)getCurrentEvent
+{
+    if(!_currentEvent)
+    {
+        NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
+        if(openEvent)
+        {
+            // set current event
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+            [fetchRequest setEntity:entity];
+            NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"uuid == %@", openEvent];
+            [fetchRequest setPredicate:aPredicate];
+            [fetchRequest setFetchBatchSize:1];
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
+            NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+            [fetchRequest setSortDescriptors:sortDescriptors];
+            NSError *err = nil;
+            NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&err];
+            if((array != nil) && ([array count] > 0))
+            {
+                _currentEvent = [array objectAtIndex:0];
+            }
+        }
+        
+    }
+    return _currentEvent;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
