@@ -23,7 +23,4 @@
 @property (nonatomic, strong) NSIndexPath *pendingDeletePath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
--(IBAction) chooseEvent:(id)sender;
--(void) updatePredicate;
-
 @end

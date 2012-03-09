@@ -44,6 +44,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Events";
+    
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
     self.gridView.backgroundColor = [UIColor darkGrayColor];
@@ -173,7 +175,6 @@
     
     SignatureTableViewController *sigView = [[SignatureTableViewController alloc] initWithNibName:@"SignatureTableViewController" bundle:[NSBundle mainBundle]];
     sigView.managedObjectContext = self.managedObjectContext;
-    [sigView updatePredicate];
     [self.navigationController pushViewController:sigView animated:YES];
 }
 
