@@ -66,6 +66,11 @@
 		F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */; };
 		F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */; };
 		F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */; };
+		F1D3A093150ABBF800C9C7C3 /* SignaturePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */; };
+		F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */; };
+		F1DA699F150B96E000DF0175 /* SignaturePageModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA699E150B96E000DF0175 /* SignaturePageModelController.m */; };
+		F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */; };
+		F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */; };
 		F1DDDDEB1422B568001248EF /* pages.png in Resources */ = {isa = PBXBuildFile; fileRef = F1DDDDEA1422B568001248EF /* pages.png */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +173,14 @@
 		F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		F1C9E7C014184DC1007F0E67 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		F1D3A090150ABBF800C9C7C3 /* SignaturePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePageViewController.h; sourceTree = "<group>"; };
+		F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageViewController.m; sourceTree = "<group>"; };
+		F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageViewController.xib; sourceTree = "<group>"; };
+		F1DA699D150B96E000DF0175 /* SignaturePageModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePageModelController.h; sourceTree = "<group>"; };
+		F1DA699E150B96E000DF0175 /* SignaturePageModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageModelController.m; sourceTree = "<group>"; };
+		F1DA69A1150B98E900DF0175 /* SignaturePageRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePageRootViewController.h; sourceTree = "<group>"; };
+		F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageRootViewController.m; sourceTree = "<group>"; };
+		F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageRootViewController.xib; sourceTree = "<group>"; };
 		F1DDDDEA1422B568001248EF /* pages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pages.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -317,6 +330,14 @@
 				F1B3F7FC14043E9F00549C03 /* EventListController.m */,
 				F1B3F7FD14043E9F00549C03 /* EventListController.xib */,
 				F1B3F7C9140418F000549C03 /* GuestBookAppDelegate.h */,
+				F1D3A090150ABBF800C9C7C3 /* SignaturePageViewController.h */,
+				F1DA69A1150B98E900DF0175 /* SignaturePageRootViewController.h */,
+				F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */,
+				F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */,
+				F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */,
+				F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */,
+				F1DA699D150B96E000DF0175 /* SignaturePageModelController.h */,
+				F1DA699E150B96E000DF0175 /* SignaturePageModelController.m */,
 				F1B3F7CA140418F000549C03 /* GuestBookAppDelegate.m */,
 				F191B8651508D45900CBF5B5 /* EventListGridViewController.h */,
 				F191B8661508D45900CBF5B5 /* EventListGridViewController.m */,
@@ -469,6 +490,8 @@
 				F15CD86214CCAA1D00217B8E /* AQGridSelectionGreen.png in Resources */,
 				F15CD86314CCAA1D00217B8E /* AQGridSelectionRed.png in Resources */,
 				F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */,
+				F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */,
+				F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +551,9 @@
 				F15CD88614CCAB5600217B8E /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				F15CD88714CCAB5600217B8E /* UIColor+AQGridView.m in Sources */,
 				F191B8681508D45900CBF5B5 /* EventListGridViewController.m in Sources */,
+				F1D3A093150ABBF800C9C7C3 /* SignaturePageViewController.m in Sources */,
+				F1DA699F150B96E000DF0175 /* SignaturePageModelController.m in Sources */,
+				F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
