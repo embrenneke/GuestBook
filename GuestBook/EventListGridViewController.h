@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AQGridView.h"
+#import "GMGridView.h"
 
-@interface EventListGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource, NSFetchedResultsControllerDelegate>
+@interface EventListGridViewController : UIViewController <GMGridViewDataSource, GMGridViewActionDelegate, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet AQGridView * gridView;
+@property (nonatomic, weak) IBOutlet GMGridView * gridView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

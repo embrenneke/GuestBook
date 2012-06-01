@@ -9,11 +9,10 @@
 #import "EventListGridViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
-//#import "SignatureTableViewController.h"
 #import "SignaturePageRootViewController.h"
 
 @interface EventListGridViewController ()
-- (void)configureCell:(AQGridViewCell *)cell atIndex:(NSUInteger) index;
+- (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index;
 @end
 
 @implementation EventListGridViewController
@@ -124,53 +123,55 @@
     return _fetchedResultsController;
 } 
 
-- (void)configureCell:(AQGridViewCell *)cell atIndex:(NSUInteger) index
+- (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index
 {
     Event* event = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 50)];
     name.text = [[event name] description];
-    [cell.contentView addSubview:name];
+    [cell addSubview:name];
     UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 180, 50)];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     date.text = [formatter stringFromDate:[event time]];
-    [cell.contentView addSubview:date];
+    [cell addSubview:date];
 }
 
 #pragma mark -
 #pragma mark Grid View Data Source
 
-- (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
+- (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView;
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     return [sectionInfo numberOfObjects];
 }
 
-- (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
     static NSString *CellIdentifier = @"EventCell";
-    
-    AQGridViewCell *cell = [aGridView dequeueReusableCellWithIdentifier:CellIdentifier];
+    GMGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
-        cell = [[AQGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 200.0, 150.0) reuseIdentifier:CellIdentifier];
+        cell = [[GMGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 224.0, 168.0)];
     }
-    
     [self configureCell:cell atIndex:index];
-    
     return cell;
 }
 
-- (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
+- (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     return ( CGSizeMake(224.0, 168.0) );
 }
 
-- (void) gridView: (AQGridView *) gridView didSelectItemAtIndex:(NSUInteger) index
+- (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
+{
+    return NO;
+}
+
+-(void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     // save current selection
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:position inSection:0];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     
