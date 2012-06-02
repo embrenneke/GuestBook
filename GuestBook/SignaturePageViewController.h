@@ -12,6 +12,5 @@
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property(nonatomic) BOOL clearsSelectionOnViewWillAppear;
 
 @end
