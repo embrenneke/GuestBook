@@ -9,6 +9,7 @@
 #import "EventListGridViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
+#import "SignatureTableViewController.h"
 #import "SignaturePageRootViewController.h"
 
 @interface EventListGridViewController ()
@@ -175,8 +176,8 @@
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     
-//    SignatureTableViewController *sigView = [[SignatureTableViewController alloc] initWithNibName:@"SignatureTableViewController" bundle:[NSBundle mainBundle]];
-//    sigView.managedObjectContext = self.managedObjectContext;
+    //SignatureTableViewController *sigView = [[SignatureTableViewController alloc] initWithNibName:@"SignatureTableViewController" bundle:[NSBundle mainBundle]];
+    //sigView.managedObjectContext = self.managedObjectContext;
     SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:sigView animated:YES];
 }
