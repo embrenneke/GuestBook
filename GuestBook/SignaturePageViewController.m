@@ -9,17 +9,12 @@
 #import "SignaturePageViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
+#import "DetailViewController.h"
 
 @implementation SignaturePageViewController
 
 @synthesize tableView = _tableView;
 @synthesize fetchedResultsController = _fetchedResultsController;
-@synthesize clearsSelectionOnViewWillAppear = _clearsSelectionOnViewWillAppear;
-
--(BOOL)clearsSelectionOnViewWillAppear
-{
-    return YES;
-}
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -40,6 +35,11 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +103,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 155;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -131,6 +131,15 @@
     // Configure the cell....
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
+    [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    
+    [self.navigationController pushViewController:detailView animated:YES];
+    detailView = nil;
 }
 
 #pragma mark - View lifecycle
