@@ -8,6 +8,8 @@
 
 #import "SignaturePageRootViewController.h"
 #import "SignaturePageModelController.h"
+#import "GuestBookAppDelegate.h"
+#import "Event.h"
 
 @interface SignaturePageRootViewController ()
 @property (readonly, strong, nonatomic) SignaturePageModelController *modelController;
@@ -61,7 +63,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Event* event = [appDelegate currentEvent];
+    self.navigationItem.title = [event name];
 }
 
 - (void)viewDidUnload

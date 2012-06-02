@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignaturePageViewController : UIViewController
+@interface SignaturePageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
-
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property(nonatomic) BOOL clearsSelectionOnViewWillAppear;
 
 @end
