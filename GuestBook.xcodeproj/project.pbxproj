@@ -420,7 +420,7 @@
 		F1B3F7AB140418EF00549C03 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = UnspunProductions;
 			};
 			buildConfigurationList = F1B3F7AE140418EF00549C03 /* Build configuration list for PBXProject "GuestBook" */;
