@@ -8,7 +8,7 @@
 #import "UIImage+Alpha.h"
 
 // Private helper methods
-@interface UIImage ()
+@interface UIImage (ResizePrivate)
 
 - (UIImage *)resizedImage:(CGSize)newSize
                 transform:(CGAffineTransform)transform
