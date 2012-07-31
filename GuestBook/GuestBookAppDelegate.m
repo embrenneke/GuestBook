@@ -106,10 +106,6 @@
 
 - (void)awakeFromNib
 {
-    /*
-    SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
-    signatureTableViewController.managedObjectContext = self.managedObjectContext;
-     */
     EventListGridViewController* elgvController = (EventListGridViewController *)[self.navigationController topViewController];
     elgvController.managedObjectContext = self.managedObjectContext;
 }

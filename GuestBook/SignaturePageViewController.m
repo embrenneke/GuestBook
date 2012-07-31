@@ -11,10 +11,19 @@
 #import "Signature.h"
 #import "DetailViewController.h"
 
+@interface SignaturePageViewController ()
+
+-(NSIndexPath*)adjustedIndexPath:(NSIndexPath*)indexPath;
+-(BOOL)isPortrait;
+
+@end
+
 @implementation SignaturePageViewController
 
 @synthesize tableView = _tableView;
 @synthesize fetchedResultsController = _fetchedResultsController;
+@synthesize firstElement = _firstElement;
+@synthesize renderPrint = _renderPrint;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -33,6 +42,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.renderPrint = NO;
+        self.firstElement = 0;
     }
     return self;
 }
@@ -101,6 +112,27 @@
     return _fetchedResultsController;
 } 
 
+- (NSIndexPath*)adjustedIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger row = indexPath.row;
+    row += self.firstElement;
+    NSIndexPath* newIndexPath = [indexPath indexPathByRemovingLastIndex];
+    newIndexPath = [newIndexPath indexPathByAddingIndex:row];
+    return newIndexPath;
+}
+
+- (BOOL)isPortrait
+{
+    // get current orientation
+    bool isDevicePortrait = YES;
+    if(!self.renderPrint)
+    {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        isDevicePortrait = UIInterfaceOrientationIsPortrait(orientation);
+    }
+    return isDevicePortrait;
+}
+
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 155;
@@ -113,9 +145,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSUInteger maxRows = 4;
+    if([self isPortrait])
+    {
+        maxRows = 6;
+    }
+
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-    //return 4; //or 6
+    NSInteger rowsLeft = [sectionInfo numberOfObjects] - self.firstElement;
+    return MIN(maxRows, rowsLeft);
 }
 
 // Customize the appearance of table view cells.
@@ -129,14 +167,14 @@
     }
     
     // Configure the cell....
-    [self configureCell:cell atIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:[self adjustedIndexPath:indexPath]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
-    [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:[self adjustedIndexPath:indexPath]]];
     
     [self.navigationController pushViewController:detailView animated:YES];
     detailView = nil;

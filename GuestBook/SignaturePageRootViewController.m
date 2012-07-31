@@ -24,8 +24,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        // get current orientation
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        BOOL landscape = UIInterfaceOrientationIsLandscape(orientation);
+
         // Configure the page view controller and add it as a child view controller.
-        self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        NSDictionary * options = nil;
+        if(landscape)
+        {
+            options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:UIPageViewControllerSpineLocationMid] forKey:UIPageViewControllerOptionSpineLocationKey];
+        }
+        self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
         self.pageViewController.delegate = self;
         self.pageViewController.dataSource = self.modelController;
         [self addChildViewController:self.pageViewController];
@@ -40,8 +49,17 @@
         // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
         self.view.gestureRecognizers = self.pageViewController.gestureRecognizers;
 
+        NSArray* viewControllers = nil;
         SignaturePageViewController *startingViewController = [self.modelController viewControllerAtIndex:0];
-        NSArray *viewControllers = [NSArray arrayWithObject:startingViewController];
+        if(landscape)
+        {
+            SignaturePageViewController *secondViewController = [self.modelController viewControllerAtIndex:1];
+            viewControllers = [NSArray arrayWithObjects:startingViewController, secondViewController, nil];
+        }
+        else
+        {
+            viewControllers = [NSArray arrayWithObject:startingViewController];
+        }
 
         [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
