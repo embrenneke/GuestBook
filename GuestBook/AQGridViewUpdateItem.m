@@ -101,14 +101,14 @@
 		case UITableViewRowAnimationNone:
 			animationDesc = @"None";
 			break;
-		case UITableViewRowAnimationMiddle:
-			animationDesc = @"Middle";
-			break;
+		//case UITableViewRowAnimationMiddle:
+		//	animationDesc = @"Middle";
+		//	break;
 		default:
 			break;
 	}
 	
-	return ( [NSString stringWithFormat: @"%@{index=%u, action=%@, animation=%@, offset=%.02f}", [super description], (unsigned)_index, actionDesc, animationDesc, _offset] );
+	return ( [NSString stringWithFormat: @"%@{index=%u, action=%@, animation=%@, offset=%.2d}", [super description], (unsigned)_index, actionDesc, animationDesc, _offset] );
 }
 
 - (NSComparisonResult) compare: (AQGridViewUpdateItem *) other
