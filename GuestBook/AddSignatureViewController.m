@@ -17,7 +17,7 @@
 
 @interface AddSignatureViewController ()
 @property (nonatomic, strong) NSString* mediaPath;
-@property (nonatomic, strong) UIPopoverController* cameraPopover;
+@property (nonatomic, strong) UIImagePickerController *cameraUI;
 @end
 
 @implementation AddSignatureViewController
@@ -28,7 +28,7 @@
 @synthesize imageButton=_imageButton;
 @synthesize image=_image;
 @synthesize mediaPath=_mediaPath;
-@synthesize cameraPopover=_cameraPopover;
+@synthesize cameraUI;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -91,26 +91,23 @@
     // bring up camera view, capture image/video, set thumbnail to button image
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.cameraUI = [[UIImagePickerController alloc] init];
+        self.cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         // Displays a control that allows the user to choose picture or
         // movie capture, if both are available:
-        cameraUI.mediaTypes =
+        self.cameraUI.mediaTypes =
         [UIImagePickerController availableMediaTypesForSourceType:
          UIImagePickerControllerSourceTypeCamera];
         
         // Hides the controls for moving & scaling pictures, or for
         // trimming movies. To instead show the controls, use YES.
-        cameraUI.allowsEditing = NO;
+        self.cameraUI.allowsEditing = NO;
         
-        cameraUI.delegate = self;
-        cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        self.cameraUI.delegate = self;
+        self.cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         
-        
-        self.cameraPopover = [[UIPopoverController alloc] initWithContentViewController:cameraUI];
-        self.cameraPopover.delegate = self;
-        [self.cameraPopover presentPopoverFromRect:CGRectMake(0, 0, 600, 600) inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [self.delegate presentCameraViewController:cameraUI];
     }
     else
     {
@@ -119,15 +116,11 @@
     }
 }
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    self.cameraPopover = nil;
-}
-
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [self.cameraPopover dismissPopoverAnimated:YES];
-    self.cameraPopover = nil;
+    [self.cameraUI dismissModalViewControllerAnimated:YES];
+    self.cameraUI = nil;
+    [self.delegate finishedPickingImage];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -202,8 +195,9 @@
         }
     }
     
-    [self.cameraPopover dismissPopoverAnimated:YES];
-    self.cameraPopover = nil;
+    [self.cameraUI dismissModalViewControllerAnimated:YES];
+    self.cameraUI = nil;
+    [self.delegate finishedPickingImage];
 }
 
 - (void)didReceiveMemoryWarning
