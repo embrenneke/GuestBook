@@ -54,6 +54,7 @@
     
     self.addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
     self.addSigView.managedObjectContext = self.managedObjectContext;
+    self.addSigView.delegate = self;
     UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:self.addSigView];
     self.addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
     self.addSigView.title = @"Add Signature";
@@ -364,6 +365,17 @@
 
     [self.navigationController pushViewController:detailView animated:YES];
     detailView = nil;
+}
+
+-(void)presentCameraViewController:(UIViewController*)viewController
+{
+    [self.addEntryPopup dismissPopoverAnimated:YES];
+    [self presentModalViewController:viewController animated:YES];
+}
+
+-(void)finishedPickingImage
+{
+    [self.addEntryPopup presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
