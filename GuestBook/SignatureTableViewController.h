@@ -11,7 +11,7 @@
 #import "EventListController.h"
 #import "AddSignatureViewController.h"
 
-@interface SignatureTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
+@interface SignatureTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate, AddSignaturePopupProtocol> {
 }
 
 @property (nonatomic, strong) UIPopoverController *eventsPopup;
