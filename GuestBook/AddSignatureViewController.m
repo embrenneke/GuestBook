@@ -74,6 +74,8 @@
     }
     else
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Signatures cannot be added without selecting an Event.  Please select an event First." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
     }
 
     // dismiss popup, change to selected event
