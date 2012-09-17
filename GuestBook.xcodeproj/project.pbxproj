@@ -610,7 +610,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Brenneke (7XG2CL3L4K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
@@ -618,7 +619,8 @@
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46147FE2-644B-45E5-BDA7-732B51AC6C2F";
+				PROVISIONING_PROFILE = "06BCC62A-2791-4C92-BFA8-CADA6F96FF13";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "06BCC62A-2791-4C92-BFA8-CADA6F96FF13";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -673,6 +675,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
@@ -680,6 +684,8 @@
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A36B227A-1BD3-4BD5-9EC6-A234E3D3FA71";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A36B227A-1BD3-4BD5-9EC6-A234E3D3FA71";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -771,6 +777,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
@@ -778,6 +786,8 @@
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A36B227A-1BD3-4BD5-9EC6-A234E3D3FA71";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A36B227A-1BD3-4BD5-9EC6-A234E3D3FA71";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
