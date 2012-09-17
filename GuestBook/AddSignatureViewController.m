@@ -41,35 +41,41 @@
 }
 
 -(IBAction)submitSig:(UIButton*)sender
-{    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
-    Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
+{
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    signature.timeStamp = [NSDate date];
-    signature.name = self.name.text;
-    signature.message = self.message.text;
-    if(self.mediaPath)
+    if([appDelegate currentEvent])
     {
-        signature.thumbnail = UIImageJPEGRepresentation(self.imageButton.imageView.image, 0.5);
-    }
-    signature.uuid = [appDelegate generateUuidString];
-    signature.event = [appDelegate currentEvent];
-    signature.mediaPath = [self.mediaPath lastPathComponent];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
+        Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
 
-    // Save the context.
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error])
-    {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        signature.timeStamp = [NSDate date];
+        signature.name = self.name.text;
+        signature.message = self.message.text;
+        if(self.mediaPath)
+        {
+            signature.thumbnail = UIImageJPEGRepresentation(self.imageButton.imageView.image, 0.5);
+        }
+        signature.uuid = [appDelegate generateUuidString];
+        signature.event = [appDelegate currentEvent];
+        signature.mediaPath = [self.mediaPath lastPathComponent];
+
+        // Save the context.
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
     }
-    
+    else
+    {
+    }
+
     // dismiss popup, change to selected event
     [[NSNotificationCenter defaultCenter] postNotificationName:@"signaturePopoverShouldDismiss" object:nil];
     
