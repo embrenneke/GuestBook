@@ -10,6 +10,7 @@
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
 #import "SignaturePageRootViewController.h"
+#import "AddEventViewController.h"
 
 @interface EventListGridViewController ()
 - (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index;
@@ -51,8 +52,6 @@
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
     self.gridView.backgroundColor = [UIColor darkGrayColor];
-    
-    [self.gridView reloadData];
 }
 
 - (void)viewDidUnload
@@ -63,14 +62,32 @@
     self.gridView = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // re-fetch data in case event was added
+    [self.fetchedResultsController performFetch:nil];
+    [self.gridView reloadData];
+}
+
 - (void)addEvent:(id)sender
 {
-    NSLog(@"Add event from %@", sender);
+    // create just one add event view controller and keep it around
+    AddEventViewController* aevController = [[AddEventViewController alloc] init];
+    [aevController setFetchedResultsController:self.fetchedResultsController];
+    [[self navigationController] pushViewController:aevController animated:YES];
 }
 
 - (void)editEventList:(id)sender
 {
-    NSLog(@"Edit List from %@", sender);
+    self.gridView.editing = !self.gridView.editing;
+    if(self.gridView.editing)
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editEventList:)];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventList:)];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,7 +126,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -189,6 +206,11 @@
     
     SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:sigView animated:YES];
+}
+
+- (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
+{
+
 }
 
 @end
