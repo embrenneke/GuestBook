@@ -19,10 +19,6 @@
 
 @implementation EventListController
 
-@synthesize fetchedResultsController=__fetchedResultsController;
-@synthesize managedObjectContext=__managedObjectContext;
-@synthesize pendingDeletePath=_pendingDeletePath;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -184,9 +180,9 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (__fetchedResultsController != nil)
+    if (_fetchedResultsController != nil)
     {
-        return __fetchedResultsController;
+        return _fetchedResultsController;
     }
     
     /*
@@ -225,7 +221,7 @@
 	    abort();
 	}
     
-    return __fetchedResultsController;
+    return _fetchedResultsController;
 } 
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller

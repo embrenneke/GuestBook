@@ -18,7 +18,6 @@
 
 @implementation SignaturePageRootViewController
 
-@synthesize pageViewController = _pageViewController;
 @synthesize modelController = _modelController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

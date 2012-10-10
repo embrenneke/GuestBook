@@ -12,12 +12,6 @@
 
 @implementation DetailViewController
 
-@synthesize signature=_signature;
-@synthesize moviePlayer=_moviePlayer;
-@synthesize imageView=_imageView;
-@synthesize messageView=_messageView;
-@synthesize titleView=_titleView;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

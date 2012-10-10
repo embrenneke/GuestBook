@@ -12,10 +12,6 @@
 
 @implementation AddEventViewController
 
-@synthesize fetchedResultsController=_fetchedResultsController;
-@synthesize name=_name;
-@synthesize datePicker=_datePicker;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -20,11 +20,6 @@
 
 @implementation SignaturePageViewController
 
-@synthesize tableView = _tableView;
-@synthesize fetchedResultsController = _fetchedResultsController;
-@synthesize firstElement = _firstElement;
-@synthesize renderPrint = _renderPrint;
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
