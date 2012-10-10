@@ -22,14 +22,18 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [sig.name description];
-    cell.textLabel.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:25.0];
-    cell.detailTextLabel.text = [sig.message description];
-    cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
-    cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.detailTextLabel.numberOfLines = 3;
-    cell.imageView.image = [UIImage imageWithData:[sig thumbnail]];
+    GuestBookAppDelegate* appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if ([indexPath row] < [[[appDelegate currentEvent] signatures] count])
+    {
+        Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textLabel.text = [sig.name description];
+        cell.textLabel.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:25.0];
+        cell.detailTextLabel.text = [sig.message description];
+        cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
+        cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.detailTextLabel.numberOfLines = 3;
+        cell.imageView.image = [UIImage imageWithData:[sig thumbnail]];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
