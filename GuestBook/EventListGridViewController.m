@@ -9,7 +9,6 @@
 #import "EventListGridViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
-#import "SignatureTableViewController.h"
 #import "SignaturePageRootViewController.h"
 
 @interface EventListGridViewController ()
@@ -46,6 +45,8 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Events";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventList:)];
     
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
@@ -60,6 +61,16 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.gridView = nil;
+}
+
+- (void)addEvent:(id)sender
+{
+    NSLog(@"Add event from %@", sender);
+}
+
+- (void)editEventList:(id)sender
+{
+    NSLog(@"Edit List from %@", sender);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -153,7 +164,7 @@
     GMGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
-        cell = [[GMGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 224.0, 168.0)];
+        cell = [[GMGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 224.0, 200.0)];
     }
     [self configureCell:cell atIndex:index];
     return cell;
@@ -161,7 +172,7 @@
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    return ( CGSizeMake(224.0, 168.0) );
+    return ( CGSizeMake(224.0, 200.0) );
 }
 
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
@@ -176,8 +187,6 @@
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     
-    //SignatureTableViewController *sigView = [[SignatureTableViewController alloc] initWithNibName:@"SignatureTableViewController" bundle:[NSBundle mainBundle]];
-    //sigView.managedObjectContext = self.managedObjectContext;
     SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:sigView animated:YES];
 }
