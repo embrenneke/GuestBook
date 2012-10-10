@@ -60,10 +60,10 @@
     
     index++;
 
-    GuestBookAppDelegate* appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-    if (index*[self signaturesPerPage] > [[[appDelegate currentEvent] signatures] count]) {
-        return nil;
-    }
+    //GuestBookAppDelegate* appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+    //if (index*[self signaturesPerPage] > [[[appDelegate currentEvent] signatures] count]) {
+    //    return nil;
+    //}
     return [self viewControllerAtIndex:index];
 }
 
