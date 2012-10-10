@@ -15,6 +15,10 @@
 {   
     // Create a new view controller and pass suitable data.
     SignaturePageViewController*  sigView = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:[NSBundle mainBundle]];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL landscape = UIInterfaceOrientationIsLandscape(orientation);
+    NSUInteger sigsPerPage = landscape?4:6;
+    sigView.firstElement = index*sigsPerPage;
     return sigView;
 }
 
@@ -23,7 +27,12 @@
     /*
      Return the index of the given data view controller.
      */
-    return 1;
+    // get current orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL landscape = UIInterfaceOrientationIsLandscape(orientation);
+    NSUInteger sigsPerPage = landscape?4:6;
+    NSUInteger pageNo = (viewController.firstElement)/sigsPerPage;
+    return pageNo;
 }
 
 #pragma mark - Page View Controller Data Source
