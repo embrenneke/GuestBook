@@ -8,6 +8,7 @@
 
 #import "SignaturePageRootViewController.h"
 #import "SignaturePageModelController.h"
+#import "AddSignatureViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
 
@@ -83,6 +84,8 @@
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     Event* event = [appDelegate currentEvent];
     self.navigationItem.title = [event name];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSignature:)];
 }
 
 - (void)viewDidUnload
@@ -108,6 +111,14 @@
         _modelController = [[SignaturePageModelController alloc] init];
     }
     return _modelController;
+}
+
+-(void)addSignature:(id)sender
+{
+    NSLog(@"Add Signature");
+    AddSignatureViewController* addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
+    //[self presentModalViewController:addVC animated:YES];
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 #pragma mark - UIPageViewController delegate methods
