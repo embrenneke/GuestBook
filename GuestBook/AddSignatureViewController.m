@@ -36,6 +36,9 @@
     if (self) {
         // Custom initialization
         self.mediaPath = nil;
+        self.title = @"Add Signature";
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.managedObjectContext = appDelegate.managedObjectContext;
     }
     return self;
 }
