@@ -8,17 +8,22 @@
 
 #import "SignaturePageModelController.h"
 #import "SignaturePageViewController.h"
+#import "GuestBookAppDelegate.h"
 
 @implementation SignaturePageModelController
+
+- (NSUInteger)signaturesPerPage
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL landscape = UIInterfaceOrientationIsLandscape(orientation);
+    return landscape?4:6;
+}
 
 - (SignaturePageViewController *)viewControllerAtIndex:(NSUInteger)index
 {   
     // Create a new view controller and pass suitable data.
     SignaturePageViewController*  sigView = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:[NSBundle mainBundle]];
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    BOOL landscape = UIInterfaceOrientationIsLandscape(orientation);
-    NSUInteger sigsPerPage = landscape?4:6;
-    sigView.firstElement = index*sigsPerPage;
+    sigView.firstElement = index*[self signaturesPerPage];
     return sigView;
 }
 
@@ -28,10 +33,8 @@
      Return the index of the given data view controller.
      */
     // get current orientation
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    BOOL landscape = UIInterfaceOrientationIsLandscape(orientation);
-    NSUInteger sigsPerPage = landscape?4:6;
-    NSUInteger pageNo = (viewController.firstElement)/sigsPerPage;
+
+    NSUInteger pageNo = (viewController.firstElement)/[self signaturesPerPage];
     return pageNo;
 }
 
@@ -56,9 +59,11 @@
     }
     
     index++;
-    //if (index == LAST) {
-    //    return nil;
-   // }
+
+    GuestBookAppDelegate* appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (index*[self signaturesPerPage] > [[[appDelegate currentEvent] signatures] count]) {
+        return nil;
+    }
     return [self viewControllerAtIndex:index];
 }
 
