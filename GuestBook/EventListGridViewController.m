@@ -18,10 +18,6 @@
 
 @implementation EventListGridViewController
 
-@synthesize gridView=_gridView;
-@synthesize managedObjectContext=_managedObjectContext;
-@synthesize fetchedResultsController=_fetchedResultsController;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

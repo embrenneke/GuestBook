@@ -22,14 +22,6 @@
 
 @implementation AddSignatureViewController
 
-@synthesize managedObjectContext=__managedObjectContext;
-@synthesize name=_name;
-@synthesize message=_message;
-@synthesize imageButton=_imageButton;
-@synthesize image=_image;
-@synthesize mediaPath=_mediaPath;
-@synthesize cameraUI;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -118,7 +110,7 @@
         self.cameraUI.delegate = self;
         self.cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         
-        [self.delegate presentCameraViewController:cameraUI];
+        [self.delegate presentCameraViewController:self.cameraUI];
     }
     else
     {

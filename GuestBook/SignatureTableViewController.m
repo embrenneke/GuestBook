@@ -13,15 +13,6 @@
 
 @implementation SignatureTableViewController
 
-@synthesize eventsPopup=_eventsPopup;
-@synthesize eventsView=_eventsView;
-@synthesize addEntryPopup=_addEntryPopup;
-@synthesize addSigView=_addSigView;
-@synthesize pendingDeletePath=_pendingDeletePath; 
-@synthesize tableView=_tableView;
-@synthesize managedObjectContext=__managedObjectContext;
-@synthesize fetchedResultsController=_fetchedResultsController;
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
