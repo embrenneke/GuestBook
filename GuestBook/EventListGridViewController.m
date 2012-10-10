@@ -181,7 +181,7 @@
     GMGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
-        cell = [[GMGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 224.0, 200.0)];
+        cell = [[GMGridViewCell alloc] initWithFrame:CGRectMake(0, 0, 224.0, 168.0)];
     }
     [self configureCell:cell atIndex:index];
     return cell;
@@ -189,12 +189,12 @@
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    return ( CGSizeMake(224.0, 200.0) );
+    return ( CGSizeMake(224.0, 168.0) );
 }
 
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
 {
-    return NO;
+    return YES;
 }
 
 -(void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
