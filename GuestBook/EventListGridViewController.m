@@ -79,11 +79,27 @@
     if(self.gridView.editing)
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editEventList:)];
+        UIBarButtonItem* shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareEvent:)];
+        UIBarButtonItem* deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteEvent:)];
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:shareButton, deleteButton, nil];
     }
     else
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventList:)];
+        self.navigationItem.leftBarButtonItems = nil;
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
     }
+}
+
+- (void)shareEvent:(id)sender
+{
+    NSLog(@"Share Event");
+}
+
+- (void)deleteEvent:(id)sender
+{
+    NSLog(@"Delete Event");
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
