@@ -73,8 +73,8 @@
         [alert show];
     }
 
-    // dismiss popup, change to selected event
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"signaturePopoverShouldDismiss" object:nil];
+    // remove self from navigation stack
+    [[self navigationController] popViewControllerAnimated:YES];
     
     [self clearFormState];
 }
