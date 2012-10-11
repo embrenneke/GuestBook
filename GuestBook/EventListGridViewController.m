@@ -14,6 +14,7 @@
 
 @interface EventListGridViewController ()
 - (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index;
+@property (nonatomic, weak) GMGridViewCell* selectedCell;
 @end
 
 @implementation EventListGridViewController
@@ -89,6 +90,12 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventList:)];
         self.navigationItem.leftBarButtonItems = nil;
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
+        if(self.selectedCell)
+        {
+            [self.selectedCell setBackgroundColor:[UIColor clearColor]];
+            self.selectedCell.highlighted = NO;
+            self.selectedCell = nil;
+        }
     }
 }
 
@@ -222,8 +229,15 @@
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
+    if(self.selectedCell)
+    {
+        [self.selectedCell setBackgroundColor:[UIColor clearColor]];
+        self.selectedCell.highlighted = NO;
+    }
     GMGridViewCell* cell = [self.gridView cellForItemAtIndex:index];
-    [cell setHighlighted:YES];
+    self.selectedCell = cell;
+    cell.highlighted = YES;
+    [cell setBackgroundColor:[UIColor blueColor]];
 }
 
 @end
