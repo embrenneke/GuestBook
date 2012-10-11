@@ -222,7 +222,8 @@
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-
+    GMGridViewCell* cell = [self.gridView cellForItemAtIndex:index];
+    [cell setHighlighted:YES];
 }
 
 @end
