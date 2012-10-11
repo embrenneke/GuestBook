@@ -36,6 +36,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)setSelectedCell:(GMGridViewCell *)selectedCell
+{
+    _selectedCell = selectedCell;
+    for(UIBarButtonItem* bbItem in self.navigationItem.leftBarButtonItems) {
+        bbItem.enabled = (_selectedCell?true:false);
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -84,21 +92,21 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editEventList:)];
         UIBarButtonItem* shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareEvent:)];
         UIBarButtonItem* deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteEvent:)];
-        [deleteButton setTintColor:[UIColor redColor]];
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:shareButton, deleteButton, nil];
+        self.selectedCell = nil;
     }
     else
     {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventList:)];
-        self.navigationItem.leftBarButtonItems = nil;
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
         if(self.selectedCell)
         {
             [self.selectedCell setBackgroundColor:[UIColor clearColor]];
             self.selectedCell.highlighted = NO;
             self.selectedCell = nil;
         }
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventList:)];
+        self.navigationItem.leftBarButtonItems = nil;
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
     }
 }
 
