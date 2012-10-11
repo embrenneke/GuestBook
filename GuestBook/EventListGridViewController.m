@@ -48,6 +48,7 @@
     
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
+    self.gridView.centerGrid = NO;
     self.gridView.backgroundColor = [UIColor darkGrayColor];
 }
 
