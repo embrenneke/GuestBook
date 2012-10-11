@@ -49,6 +49,7 @@
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
     self.gridView.centerGrid = NO;
+    self.gridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 5, 5);
     self.gridView.backgroundColor = [UIColor darkGrayColor];
 }
 
