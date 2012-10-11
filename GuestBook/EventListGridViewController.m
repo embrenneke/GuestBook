@@ -236,11 +236,18 @@
 -(void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     // save current selection
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate setCurrentEvent:[self getEventForPosition:position]];
+    if(self.gridView.editing)
+    {
+        [self GMGridView:self.gridView processDeleteActionForItemAtIndex:position];
+    }
+    else
+    {
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate setCurrentEvent:[self getEventForPosition:position]];
     
-    SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:sigView animated:YES];
+        SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:sigView animated:YES];
+    }
 }
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
