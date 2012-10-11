@@ -15,6 +15,7 @@
 @interface EventListGridViewController ()
 - (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index;
 @property (nonatomic, weak) GMGridViewCell* selectedCell;
+@property (nonatomic, strong) UIActionSheet* deleteActionSheet;
 @end
 
 @implementation EventListGridViewController
@@ -126,10 +127,24 @@
 }
 - (void)deleteEvent:(id)sender
 {
-    if(self.selectedCell)
+    if(self.selectedCell && !self.deleteActionSheet)
     {
         Event* event = [self getEventForPosition:self.selectedCell.position];
+        NSString* title = [NSString stringWithFormat:@"Delete \"%@\"?", [event name]];
+        self.deleteActionSheet = [[UIActionSheet alloc]
+                                    initWithTitle:title
+                                    delegate:self
+                                    cancelButtonTitle:@"Cancel"
+                                    destructiveButtonTitle:@"Delete"
+                                    otherButtonTitles:@"Cancel",nil];
+
+        [self.deleteActionSheet showFromBarButtonItem:sender animated:YES];
         NSLog(@"Delete Event %@", [event name]);
+    }
+    else if (self.deleteActionSheet)
+    {
+        [self.deleteActionSheet dismissWithClickedButtonIndex:1 animated:YES];
+        self.deleteActionSheet = nil;
     }
 }
 
@@ -195,6 +210,23 @@
     return _fetchedResultsController;
 } 
 
+#pragma mark -
+#pragma mark actionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(actionSheet == self.deleteActionSheet)
+    {
+        self.deleteActionSheet = nil;
+    }
+
+    // TODO: if delete was clicked, remove entity
+    NSLog(@"clicked action sheet button %d", buttonIndex);
+}
+
+#pragma mark -
+#pragma mark Grid View Data Source
+
 - (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index
 {
     Event* event = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
@@ -210,9 +242,6 @@
     cell.position = index;
     cell.deleteButtonIcon = [UIImage imageNamed:@"blank"];
 }
-
-#pragma mark -
-#pragma mark Grid View Data Source
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView;
 {

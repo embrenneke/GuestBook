@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GMGridView.h"
 
-@interface EventListGridViewController : UIViewController <GMGridViewDataSource, GMGridViewActionDelegate, NSFetchedResultsControllerDelegate>
+@interface EventListGridViewController : UIViewController <GMGridViewDataSource, GMGridViewActionDelegate, NSFetchedResultsControllerDelegate, UIActionSheetDelegate>
 
-@property (nonatomic, weak) IBOutlet GMGridView * gridView;
+@property (nonatomic, weak) IBOutlet GMGridView *gridView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
