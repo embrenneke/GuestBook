@@ -82,6 +82,7 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editEventList:)];
         UIBarButtonItem* shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareEvent:)];
         UIBarButtonItem* deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteEvent:)];
+        [deleteButton setTintColor:[UIColor redColor]];
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:shareButton, deleteButton, nil];
     }
