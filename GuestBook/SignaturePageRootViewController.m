@@ -120,6 +120,18 @@
     [self.navigationController pushViewController:addVC animated:YES];
 }
 
+-(NSUInteger)elementsPerPageForOrientation:(UIInterfaceOrientation)orientation
+{
+    return UIInterfaceOrientationIsPortrait(orientation)?6:4;
+}
+
+-(NSUInteger)fixFirstElement:(NSUInteger)oldElement forOrientation:(UIInterfaceOrientation)orienation
+{
+    // normalize index to multiple of 4 or 6
+    NSUInteger pageSize = [self elementsPerPageForOrientation:orienation];
+    return (oldElement / pageSize) * pageSize;
+}
+
 #pragma mark - UIPageViewController delegate methods
 
 /*
@@ -133,8 +145,10 @@
 {
     if (UIInterfaceOrientationIsPortrait(orientation)) {
         // In portrait orientation: Set the spine position to "min" and the page view controller's view controllers array to contain just one view controller. Setting the spine position to 'UIPageViewControllerSpineLocationMid' in landscape orientation sets the doubleSided property to YES, so set it to NO here.
-        UIViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
-        NSArray *viewControllers = [NSArray arrayWithObject:currentViewController];
+        SignaturePageViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
+        SignaturePageViewController *newVC = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:nil];
+        newVC.firstElement = [self fixFirstElement:currentViewController.firstElement forOrientation:orientation];
+        NSArray *viewControllers = [NSArray arrayWithObject:newVC];
         [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
         
         self.pageViewController.doubleSided = NO;
@@ -143,15 +157,19 @@
     
     // In landscape orientation: Set set the spine location to "mid" and the page view controller's view controllers array to contain two view controllers. If the current page is even, set it to contain the current and next view controllers; if it is odd, set the array to contain the previous and current view controllers.
     SignaturePageViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
+    SignaturePageViewController *firstVC = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:nil];
+    firstVC.firstElement = [self fixFirstElement:currentViewController.firstElement forOrientation:orientation];
     NSArray *viewControllers = nil;
-    
+
+    // TODO: this still doesn't seem first. probably need to adjust odd/evenness of page number when adjusting element count.
+    // TODO: and do the math to figure out if we need to return a blank page as well at the end.
     NSUInteger indexOfCurrentViewController = [self.modelController indexOfViewController:currentViewController];
     if (indexOfCurrentViewController == 0 || indexOfCurrentViewController % 2 == 0) {
-        UIViewController *nextViewController = [self.modelController pageViewController:self.pageViewController viewControllerAfterViewController:currentViewController];
-        viewControllers = [NSArray arrayWithObjects:currentViewController, nextViewController, nil];
+        UIViewController *nextViewController = [self.modelController pageViewController:self.pageViewController viewControllerAfterViewController:firstVC];
+        viewControllers = [NSArray arrayWithObjects:firstVC, nextViewController, nil];
     } else {
-        UIViewController *previousViewController = [self.modelController pageViewController:self.pageViewController viewControllerBeforeViewController:currentViewController];
-        viewControllers = [NSArray arrayWithObjects:previousViewController, currentViewController, nil];
+        UIViewController *previousViewController = [self.modelController pageViewController:self.pageViewController viewControllerBeforeViewController:firstVC];
+        viewControllers = [NSArray arrayWithObjects:previousViewController, firstVC, nil];
     }
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
 
