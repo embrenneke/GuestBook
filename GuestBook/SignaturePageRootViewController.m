@@ -161,10 +161,8 @@
     firstVC.firstElement = [self fixFirstElement:currentViewController.firstElement forOrientation:orientation];
     NSArray *viewControllers = nil;
 
-    // TODO: this still doesn't seem first. probably need to adjust odd/evenness of page number when adjusting element count.
-    // TODO: and do the math to figure out if we need to return a blank page as well at the end.
-    NSUInteger indexOfCurrentViewController = [self.modelController indexOfViewController:currentViewController];
-    if (indexOfCurrentViewController == 0 || indexOfCurrentViewController % 2 == 0) {
+    NSUInteger indexOfFirstVC = [self.modelController indexOfViewController:firstVC];
+    if (indexOfFirstVC == 0 || indexOfFirstVC % 2 == 0) {
         UIViewController *nextViewController = [self.modelController pageViewController:self.pageViewController viewControllerAfterViewController:firstVC];
         viewControllers = [NSArray arrayWithObjects:firstVC, nextViewController, nil];
     } else {
