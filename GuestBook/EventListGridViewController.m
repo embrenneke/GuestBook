@@ -102,14 +102,27 @@
     }
 }
 
-- (void)shareEvent:(id)sender
+- (Event*)getEventForPosition:(NSUInteger)position
 {
-    NSLog(@"Share Event");
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:position inSection:0];
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
+- (void)shareEvent:(id)sender
+{
+    if(self.selectedCell)
+    {
+        Event* event = [self getEventForPosition:self.selectedCell.position];
+        NSLog(@"Share Event %@", [event name]);
+    }
+}
 - (void)deleteEvent:(id)sender
 {
-    NSLog(@"Delete Event");
+    if(self.selectedCell)
+    {
+        Event* event = [self getEventForPosition:self.selectedCell.position];
+        NSLog(@"Delete Event %@", [event name]);
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -186,6 +199,7 @@
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     date.text = [formatter stringFromDate:[event time]];
     [cell addSubview:date];
+    cell.position = index;
 }
 
 #pragma mark -
@@ -222,9 +236,8 @@
 -(void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     // save current selection
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:position inSection:0];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [appDelegate setCurrentEvent:[self getEventForPosition:position]];
     
     SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:sigView animated:YES];
