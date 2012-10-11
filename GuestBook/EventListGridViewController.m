@@ -200,6 +200,7 @@
     date.text = [formatter stringFromDate:[event time]];
     [cell addSubview:date];
     cell.position = index;
+    cell.deleteButtonIcon = [UIImage imageNamed:@"blank"];
 }
 
 #pragma mark -

@@ -62,6 +62,7 @@
 		F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */; };
 		F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */; };
 		F1DDDDEB1422B568001248EF /* pages.png in Resources */ = {isa = PBXBuildFile; fileRef = F1DDDDEA1422B568001248EF /* pages.png */; };
+		F1EF5D7D162738FD00B0542F /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = F1EF5D7C162738FD00B0542F /* blank.png */; };
 		F1FCE4361579827C00C2A904 /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42C1579827C00C2A904 /* GMGridView.m */; };
 		F1FCE4371579827C00C2A904 /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42C1579827C00C2A904 /* GMGridView.m */; };
 		F1FCE4381579827C00C2A904 /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42E1579827C00C2A904 /* GMGridViewCell.m */; };
@@ -159,6 +160,7 @@
 		F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageRootViewController.m; sourceTree = "<group>"; };
 		F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageRootViewController.xib; sourceTree = "<group>"; };
 		F1DDDDEA1422B568001248EF /* pages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pages.png; sourceTree = SOURCE_ROOT; };
+		F1EF5D7C162738FD00B0542F /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = SOURCE_ROOT; };
 		F1FCE42A1579826000C2A904 /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMGridView-Constants.h"; sourceTree = "<group>"; };
 		F1FCE42B1579827C00C2A904 /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridView.h; sourceTree = "<group>"; };
 		F1FCE42C1579827C00C2A904 /* GMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridView.m; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				F1157ECB14108F470017C2CB /* guestbook.png */,
+				F1EF5D7C162738FD00B0542F /* blank.png */,
 				F18EAF5B141BC02100FA99AB /* book.png */,
 				F1DDDDEA1422B568001248EF /* pages.png */,
 				F18EAF58141BBABE00FA99AB /* spine.png */,
@@ -470,6 +473,7 @@
 				F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */,
 				F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */,
 				F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */,
+				F1EF5D7D162738FD00B0542F /* blank.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
