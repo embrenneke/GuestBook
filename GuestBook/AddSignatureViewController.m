@@ -31,6 +31,8 @@
         self.title = @"Add Signature";
         GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.managedObjectContext = appDelegate.managedObjectContext;
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController action:@selector(popViewControllerAnimated:)];
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
     }
     return self;
 }
