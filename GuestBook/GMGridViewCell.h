@@ -36,6 +36,7 @@
 @property (nonatomic) CGPoint deleteButtonOffset;          // Delete button offset relative to the origin
 @property (nonatomic, strong) NSString *reuseIdentifier;
 @property (nonatomic, getter=isHighlighted) BOOL highlighted;
+@property (nonatomic) NSUInteger position;
 
 /// Override to release custom data before cell is reused.
 - (void)prepareForReuse;
