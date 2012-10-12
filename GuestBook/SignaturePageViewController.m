@@ -152,6 +152,7 @@
 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     NSInteger rowsLeft = [sectionInfo numberOfObjects] - self.firstElement;
+    rowsLeft = MAX(rowsLeft, 0);
     return MIN(maxRows, rowsLeft);
 }
 
@@ -176,7 +177,6 @@
     [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:[self adjustedIndexPath:indexPath]]];
     
     [self.navigationController pushViewController:detailView animated:YES];
-    detailView = nil;
 }
 
 #pragma mark - View lifecycle
