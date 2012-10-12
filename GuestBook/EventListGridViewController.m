@@ -236,6 +236,7 @@
         if (buttonIndex == 0)
         {
             // delete all associated signatures first
+            NSUInteger position = self.selectedCell.position;
             Event* event = [self getEventForPosition:self.selectedCell.position];
             NSEnumerator *e = [event.signatures objectEnumerator];
             id collectionMemberObject;
@@ -273,7 +274,8 @@
             }
             self.selectedCell = nil;
             [self editEventList:self];
-            [self.gridView reloadData];
+            [NSFetchedResultsController deleteCacheWithName:nil];
+            [self.gridView removeObjectAtIndex:position animated:YES];
             // TODO: delete object from gridView, it is still showing the box after delete.
             
         }
