@@ -274,8 +274,7 @@
             }
             self.selectedCell = nil;
             [self editEventList:self];
-            [NSFetchedResultsController deleteCacheWithName:nil];
-            [self.gridView removeObjectAtIndex:position animated:YES];            
+            [self.gridView removeObjectAtIndex:position animated:YES];
         }
     }
     else if(actionSheet == self.shareActionSheet)
