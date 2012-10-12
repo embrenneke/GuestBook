@@ -111,8 +111,8 @@
         
         self.cameraUI.delegate = self;
         self.cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-        
-        [self.delegate presentCameraViewController:self.cameraUI];
+
+        [self presentModalViewController:self.cameraUI animated:YES];
     }
     else
     {
@@ -125,7 +125,6 @@
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     [self.cameraUI dismissModalViewControllerAnimated:YES];
     self.cameraUI = nil;
-    [self.delegate finishedPickingImage];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -202,7 +201,6 @@
     
     [self.cameraUI dismissModalViewControllerAnimated:YES];
     self.cameraUI = nil;
-    [self.delegate finishedPickingImage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -219,7 +217,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.contentSizeForViewInPopover = CGSizeMake(650.0, 250.0);
     [self clearFormState];
 }
 

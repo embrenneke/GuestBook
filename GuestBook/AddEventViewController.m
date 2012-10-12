@@ -17,7 +17,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"Create a New Event";
+        self.title = @"Create a New Event";
     }
     return self;
 }
@@ -64,7 +64,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.contentSizeForViewInPopover = CGSizeMake(700.0, 275.0);
     [self.datePicker setDate:[NSDate date]];
     [self.datePicker setDatePickerMode:UIDatePickerModeDate];
 }

@@ -275,9 +275,7 @@
             self.selectedCell = nil;
             [self editEventList:self];
             [NSFetchedResultsController deleteCacheWithName:nil];
-            [self.gridView removeObjectAtIndex:position animated:YES];
-            // TODO: delete object from gridView, it is still showing the box after delete.
-            
+            [self.gridView removeObjectAtIndex:position animated:YES];            
         }
     }
     else if(actionSheet == self.shareActionSheet)
