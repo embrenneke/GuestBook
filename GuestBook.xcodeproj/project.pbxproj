@@ -16,11 +16,6 @@
 		F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F1528C9B141BC40D004BA1EF /* iTunesArtwork */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
-		F15CD85F14CCAA1D00217B8E /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85A14CCAA1D00217B8E /* AQGridSelection.png */; };
-		F15CD86014CCAA1D00217B8E /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85B14CCAA1D00217B8E /* AQGridSelectionGray.png */; };
-		F15CD86114CCAA1D00217B8E /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85C14CCAA1D00217B8E /* AQGridSelectionGrayBlue.png */; };
-		F15CD86214CCAA1D00217B8E /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85D14CCAA1D00217B8E /* AQGridSelectionGreen.png */; };
-		F15CD86314CCAA1D00217B8E /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = F15CD85E14CCAA1D00217B8E /* AQGridSelectionRed.png */; };
 		F15CD88914CCABDC00217B8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15CD88814CCABDC00217B8E /* QuartzCore.framework */; };
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
 		F191B8681508D45900CBF5B5 /* EventListGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F191B8661508D45900CBF5B5 /* EventListGridViewController.m */; };
@@ -94,11 +89,6 @@
 		F157356114119F520034BD4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F157356314119F520034BD4D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
-		F15CD85A14CCAA1D00217B8E /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelection.png; sourceTree = "<group>"; };
-		F15CD85B14CCAA1D00217B8E /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGray.png; sourceTree = "<group>"; };
-		F15CD85C14CCAA1D00217B8E /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
-		F15CD85D14CCAA1D00217B8E /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGreen.png; sourceTree = "<group>"; };
-		F15CD85E14CCAA1D00217B8E /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionRed.png; sourceTree = "<group>"; };
 		F15CD88814CCABDC00217B8E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spine.png; sourceTree = SOURCE_ROOT; };
 		F18EAF5B141BC02100FA99AB /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = SOURCE_ROOT; };
@@ -197,11 +187,6 @@
 		F1528C9A141BC3B0004BA1EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F15CD85A14CCAA1D00217B8E /* AQGridSelection.png */,
-				F15CD85B14CCAA1D00217B8E /* AQGridSelectionGray.png */,
-				F15CD85C14CCAA1D00217B8E /* AQGridSelectionGrayBlue.png */,
-				F15CD85D14CCAA1D00217B8E /* AQGridSelectionGreen.png */,
-				F15CD85E14CCAA1D00217B8E /* AQGridSelectionRed.png */,
 				F1528C9B141BC40D004BA1EF /* iTunesArtwork */,
 			);
 			name = Resources;
@@ -447,11 +432,6 @@
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
 				F19EAB0D1424199400AA9EF6 /* settings.png in Resources */,
 				F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */,
-				F15CD85F14CCAA1D00217B8E /* AQGridSelection.png in Resources */,
-				F15CD86014CCAA1D00217B8E /* AQGridSelectionGray.png in Resources */,
-				F15CD86114CCAA1D00217B8E /* AQGridSelectionGrayBlue.png in Resources */,
-				F15CD86214CCAA1D00217B8E /* AQGridSelectionGreen.png in Resources */,
-				F15CD86314CCAA1D00217B8E /* AQGridSelectionRed.png in Resources */,
 				F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */,
 				F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */,
 				F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */,

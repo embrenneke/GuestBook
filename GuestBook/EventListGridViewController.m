@@ -61,7 +61,8 @@
 	self.gridView.autoresizesSubviews = YES;
     self.gridView.centerGrid = NO;
     self.gridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 5, 5);
-    self.gridView.backgroundColor = [UIColor darkGrayColor];
+    //self.gridView.backgroundColor = [UIColor darkGrayColor];
+    self.gridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"spine"]];
 }
 
 - (void)viewDidUnload
