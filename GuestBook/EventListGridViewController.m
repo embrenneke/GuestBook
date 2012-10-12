@@ -9,6 +9,7 @@
 #import "EventListGridViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
+#import "Signature.h"
 #import "SignaturePageRootViewController.h"
 #import "AddEventViewController.h"
 
@@ -230,8 +231,52 @@
     if(actionSheet == self.deleteActionSheet)
     {
         self.deleteActionSheet = nil;
-        // TODO: if delete was clicked, remove entity
-        NSLog(@"TODO: delete event dismiss with button %d", buttonIndex);
+        // if delete was clicked, remove entity
+
+        if (buttonIndex == 0)
+        {
+            // delete all associated signatures first
+            Event* event = [self getEventForPosition:self.selectedCell.position];
+            NSEnumerator *e = [event.signatures objectEnumerator];
+            id collectionMemberObject;
+
+            while ( (collectionMemberObject = [e nextObject]) )
+            {
+                // delete the signature
+                NSError *error = nil;
+                Signature *sig = collectionMemberObject;
+                [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
+                [self.managedObjectContext deleteObject:collectionMemberObject];
+            }
+
+            // if deleting currentEvent, set current event to nil
+            GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+            if ([appDelegate currentEvent] == event)
+            {
+                [appDelegate setCurrentEvent:nil];
+            }
+
+            // Delete the managed object for the given index path
+            [self.managedObjectContext deleteObject:event];
+
+            // Save the context.
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error])
+            {
+                /*
+                 Replace this implementation with code to handle the error appropriately.
+
+                 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+                 */
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
+            self.selectedCell = nil;
+            [self editEventList:self];
+            [self.gridView reloadData];
+            // TODO: delete object from gridView, it is still showing the box after delete.
+            
+        }
     }
     else if(actionSheet == self.shareActionSheet)
     {
