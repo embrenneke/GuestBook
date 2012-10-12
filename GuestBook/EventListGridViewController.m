@@ -16,6 +16,7 @@
 - (void)configureCell:(GMGridViewCell *)cell atIndex:(NSUInteger) index;
 @property (nonatomic, weak) GMGridViewCell* selectedCell;
 @property (nonatomic, strong) UIActionSheet* deleteActionSheet;
+@property (nonatomic, strong) UIActionSheet* shareActionSheet;
 @end
 
 @implementation EventListGridViewController
@@ -119,10 +120,22 @@
 
 - (void)shareEvent:(id)sender
 {
-    if(self.selectedCell)
+    if(self.selectedCell && !self.shareActionSheet)
     {
         Event* event = [self getEventForPosition:self.selectedCell.position];
-        NSLog(@"Share Event %@", [event name]);
+        NSString* title = [NSString stringWithFormat:@"Share %@ how?", [event name]];
+        self.shareActionSheet = [[UIActionSheet alloc]
+                                 initWithTitle:title
+                                 delegate:self
+                                 cancelButtonTitle:@"Cancel"
+                                 destructiveButtonTitle:nil
+                                 otherButtonTitles:@"E-Mail", @"iTunes", @"Cancel", nil];
+        [self.shareActionSheet showFromBarButtonItem:sender animated:YES];
+    }
+    else if (self.shareActionSheet)
+    {
+        [self.shareActionSheet dismissWithClickedButtonIndex:2 animated:YES];
+        self.shareActionSheet = nil;
     }
 }
 - (void)deleteEvent:(id)sender
@@ -139,7 +152,6 @@
                                     otherButtonTitles:@"Cancel",nil];
 
         [self.deleteActionSheet showFromBarButtonItem:sender animated:YES];
-        NSLog(@"Delete Event %@", [event name]);
     }
     else if (self.deleteActionSheet)
     {
@@ -218,10 +230,15 @@
     if(actionSheet == self.deleteActionSheet)
     {
         self.deleteActionSheet = nil;
+        // TODO: if delete was clicked, remove entity
+        NSLog(@"TODO: delete event dismiss with button %d", buttonIndex);
     }
-
-    // TODO: if delete was clicked, remove entity
-    NSLog(@"clicked action sheet button %d", buttonIndex);
+    else if(actionSheet == self.shareActionSheet)
+    {
+        self.shareActionSheet = nil;
+        // TODO: show pdf/xml/archive form
+        NSLog(@"TODO: share event dismiss with button %d", buttonIndex);
+    }
 }
 
 #pragma mark -
