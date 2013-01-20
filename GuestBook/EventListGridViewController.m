@@ -63,7 +63,7 @@
     self.gridView.centerGrid = NO;
     self.gridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 5, 5);
     //self.gridView.backgroundColor = [UIColor darkGrayColor];
-    self.gridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"spine"]];
+    self.gridView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ios-linen.jpg"]];
 }
 
 - (void)viewDidUnload
