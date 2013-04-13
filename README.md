@@ -9,14 +9,3 @@ or pretty.
 
 Original Guestbook code is under the MIT license.  Third-party code remains
 under it's own license.
-
-## TODO
-
-* Add exporting of guestbooks to pdf or xml
-* make it pretty again
-
-## Nice to have:
-
-* originally started using GMGridView before iOS 6 was announced. I'd like to
-switch to an API compatible UICollectionView clone now.
-
