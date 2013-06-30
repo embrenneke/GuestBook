@@ -11,6 +11,14 @@
 
 #import "EventListGridViewController.h"
 
+@interface GuestBookAppDelegate ()
+
+@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, weak, readwrite) IBOutlet UINavigationController *navigationController;
+
+@end
+
 @implementation GuestBookAppDelegate
 
 @synthesize managedObjectContext=_managedObjectContext;

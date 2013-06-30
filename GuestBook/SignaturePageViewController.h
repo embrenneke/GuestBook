@@ -9,11 +9,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignaturePageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface SignaturePageViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UITableView* tableView;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic) NSUInteger firstElement;
-@property (nonatomic) BOOL renderPrint;
+@property (nonatomic, assign, readwrite) NSUInteger firstElement;
 
 @end

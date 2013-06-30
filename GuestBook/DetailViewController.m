@@ -9,7 +9,17 @@
 
 #import "DetailViewController.h"
 #import "GuestBookAppDelegate.h"
+#import "Signature.h"
 #import <MediaPlayer/MPMoviePlayerController.h>
+
+@interface DetailViewController ()
+
+@property (nonatomic, strong, readwrite) MPMoviePlayerController *moviePlayer;
+@property (nonatomic, weak, readwrite) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak, readwrite) IBOutlet UITextView *messageView;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *titleView;
+
+@end
 
 @implementation DetailViewController
 
@@ -27,14 +37,6 @@
     [self.moviePlayer stop];
     self.moviePlayer = nil;
     self.signature = nil;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -89,13 +91,6 @@
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

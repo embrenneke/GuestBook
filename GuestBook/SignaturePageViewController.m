@@ -12,10 +12,11 @@
 #import "Signature.h"
 #import "DetailViewController.h"
 
-@interface SignaturePageViewController ()
+@interface SignaturePageViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
--(NSIndexPath*)adjustedIndexPath:(NSIndexPath*)indexPath;
--(BOOL)isPortrait;
+@property (nonatomic, strong, readwrite) IBOutlet UITableView* tableView;
+@property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, assign, readwrite) BOOL renderPrint;
 
 @end
 

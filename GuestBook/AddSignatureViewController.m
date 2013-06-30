@@ -16,9 +16,16 @@
 #import <UIKit/UIImagePickerController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
-@interface AddSignatureViewController ()
-@property (nonatomic, strong) NSString* mediaPath;
-@property (nonatomic, strong) UIImagePickerController *cameraUI;
+@interface AddSignatureViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, strong, readwrite) NSString* mediaPath;
+@property (nonatomic, strong, readwrite) UIImagePickerController *cameraUI;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak, readwrite) IBOutlet UITextField *name;
+@property (nonatomic, weak, readwrite) IBOutlet UITextView *message;
+@property (nonatomic, weak, readwrite) IBOutlet UIButton *imageButton;
+@property (nonatomic, weak, readwrite) IBOutlet UIImageView *image;
+
 @end
 
 @implementation AddSignatureViewController
@@ -202,14 +209,6 @@
     
     [self.cameraUI dismissModalViewControllerAnimated:YES];
     self.cameraUI = nil;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
