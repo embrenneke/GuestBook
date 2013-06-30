@@ -11,6 +11,8 @@
 
 #import "EventListGridViewController.h"
 
+#import <Crashlytics/Crashlytics.h>
+
 @interface GuestBookAppDelegate ()
 
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
@@ -63,6 +65,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Place Crashlytics startWithAPIKey here
+
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];

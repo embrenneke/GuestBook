@@ -68,6 +68,7 @@
 		F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */; };
 		F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */; };
 		F1DDDDEB1422B568001248EF /* pages.png in Resources */ = {isa = PBXBuildFile; fileRef = F1DDDDEA1422B568001248EF /* pages.png */; };
+		F1FD869916DC5F96009CEA2C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FD869816DC5F96009CEA2C /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +174,7 @@
 		F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageRootViewController.m; sourceTree = "<group>"; };
 		F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageRootViewController.xib; sourceTree = "<group>"; };
 		F1DDDDEA1422B568001248EF /* pages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pages.png; path = images/pages.png; sourceTree = SOURCE_ROOT; };
+		F1FD869816DC5F96009CEA2C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */,
 				F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */,
 				F1B3F7BF140418F000549C03 /* CoreData.framework in Frameworks */,
+				F1FD869916DC5F96009CEA2C /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +300,7 @@
 		F1B3F7B7140418F000549C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1FD869816DC5F96009CEA2C /* Crashlytics.framework */,
 				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1157EC214107DB90017C2CB /* MediaPlayer.framework */,
 				F1B80149140C7924007CE067 /* MobileCoreServices.framework */,
@@ -394,6 +398,7 @@
 				F1B3F7B0140418F000549C03 /* Sources */,
 				F1B3F7B1140418F000549C03 /* Frameworks */,
 				F1B3F7B2140418F000549C03 /* Resources */,
+				F18295371780C45300886DE1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -429,7 +434,7 @@
 		F1B3F7AB140418EF00549C03 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = UnspunProductions;
 			};
 			buildConfigurationList = F1B3F7AE140418EF00549C03 /* Build configuration list for PBXProject "GuestBook" */;
@@ -489,6 +494,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		F18295371780C45300886DE1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Place running of crashlytics script here.\n";
+		};
 		F1B3F7DB140418F000549C03 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,7 +607,6 @@
 		F17A264B1410F27A00FD92C3 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
@@ -610,10 +627,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -656,7 +676,6 @@
 		F19EAB0F14242C0300AA9EF6 /* guestbookDistribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
@@ -677,10 +696,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -723,7 +745,6 @@
 		F1B3F7EF140418F000549C03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -734,6 +755,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -742,7 +764,6 @@
 		F1B3F7F0140418F000549C03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
@@ -763,9 +784,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
@@ -785,10 +809,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Brenneke";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Brenneke";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
