@@ -9,8 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignaturePageRootViewController : UIViewController <UIPageViewControllerDelegate>
-
-@property (strong, nonatomic) UIPageViewController *pageViewController;
+@interface SignaturePageRootViewController : UIViewController
 
 @end

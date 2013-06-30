@@ -13,8 +13,11 @@
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
 
-@interface SignaturePageRootViewController ()
-@property (readonly, strong, nonatomic) SignaturePageModelController *modelController;
+@interface SignaturePageRootViewController () <UIPageViewControllerDelegate>
+
+@property (nonatomic, strong, readwrite) UIPageViewController *pageViewController;
+@property (nonatomic, strong, readonly) SignaturePageModelController *modelController;
+
 @end
 
 @implementation SignaturePageRootViewController
@@ -67,14 +70,6 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -86,13 +81,6 @@
     self.navigationItem.title = [event name];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSignature:)];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -115,7 +103,6 @@
 
 -(void)addSignature:(id)sender
 {
-    NSLog(@"Add Signature");
     AddSignatureViewController* addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
     //[self presentModalViewController:addVC animated:YES];
     [self.navigationController pushViewController:addVC animated:YES];
@@ -134,13 +121,6 @@
 }
 
 #pragma mark - UIPageViewController delegate methods
-
-/*
- - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
- {
- 
- }
- */
 
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {

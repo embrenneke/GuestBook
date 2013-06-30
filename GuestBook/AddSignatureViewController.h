@@ -9,16 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddSignatureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
-}
+@interface AddSignatureViewController : UIViewController
 
--(IBAction)submitSig:(UIButton*)sender;
--(IBAction)addMultimedia:(UIButton*)sender;
--(void)clearFormState;
-
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, weak) IBOutlet UITextField *name;
-@property (nonatomic, weak) IBOutlet UITextView *message;
-@property (nonatomic, weak) IBOutlet UIButton *imageButton;
-@property (nonatomic, weak) IBOutlet UIImageView *image;
 @end
