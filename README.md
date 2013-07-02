@@ -1,6 +1,6 @@
 # Guestbook #
 
-There are many guestbook apps, this one is named Guestbook.
+There are many guestbook apps, this one is named [Guestbook](https://itunes.apple.com/us/app/guestbook/id466198467?mt=8) (app store link).
 
 [See release announcement here](http://mbrennek.2nw.net/2013/01/guestbook-open-source.html)
 
