@@ -361,8 +361,8 @@
 				F15CD86514CCAA5B00217B8E /* DataModel */,
 				F1FCE4281579822700C2A904 /* GMGridView */,
 				F18295381780CD1100886DE1 /* PSTCollectionView */,
-				F1B3F7C1140418F000549C03 /* Supporting Files */,
 				F15CD86414CCAA3600217B8E /* UIImageHelpers */,
+				F1B3F7C1140418F000549C03 /* Supporting Files */,
 			);
 			path = GuestBook;
 			sourceTree = "<group>";
