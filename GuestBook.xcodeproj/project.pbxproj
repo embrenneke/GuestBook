@@ -68,17 +68,6 @@
 		F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */; };
 		F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */; };
 		F1DDDDEB1422B568001248EF /* pages.png in Resources */ = {isa = PBXBuildFile; fileRef = F1DDDDEA1422B568001248EF /* pages.png */; };
-		F1EF5D7D162738FD00B0542F /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = F1EF5D7C162738FD00B0542F /* blank.png */; };
-		F1FCE4361579827C00C2A904 /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42C1579827C00C2A904 /* GMGridView.m */; };
-		F1FCE4371579827C00C2A904 /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42C1579827C00C2A904 /* GMGridView.m */; };
-		F1FCE4381579827C00C2A904 /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42E1579827C00C2A904 /* GMGridViewCell.m */; };
-		F1FCE4391579827C00C2A904 /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE42E1579827C00C2A904 /* GMGridViewCell.m */; };
-		F1FCE43A1579827C00C2A904 /* GMGridViewLayoutStrategies.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE4311579827C00C2A904 /* GMGridViewLayoutStrategies.m */; };
-		F1FCE43B1579827C00C2A904 /* GMGridViewLayoutStrategies.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE4311579827C00C2A904 /* GMGridViewLayoutStrategies.m */; };
-		F1FCE43C1579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE4331579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m */; };
-		F1FCE43D1579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE4331579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m */; };
-		F1FCE43E1579827C00C2A904 /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE4351579827C00C2A904 /* UIView+GMGridViewAdditions.m */; };
-		F1FCE43F1579827C00C2A904 /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FCE4351579827C00C2A904 /* UIView+GMGridViewAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,19 +173,6 @@
 		F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageRootViewController.m; sourceTree = "<group>"; };
 		F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageRootViewController.xib; sourceTree = "<group>"; };
 		F1DDDDEA1422B568001248EF /* pages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pages.png; path = images/pages.png; sourceTree = SOURCE_ROOT; };
-		F1EF5D7C162738FD00B0542F /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = images/blank.png; sourceTree = SOURCE_ROOT; };
-		F1FCE42A1579826000C2A904 /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GMGridView-Constants.h"; path = "../Vendor/GMGridView/GMGridView-Constants.h"; sourceTree = "<group>"; };
-		F1FCE42B1579827C00C2A904 /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGridView.h; path = ../Vendor/GMGridView/GMGridView.h; sourceTree = "<group>"; };
-		F1FCE42C1579827C00C2A904 /* GMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMGridView.m; path = ../Vendor/GMGridView/GMGridView.m; sourceTree = "<group>"; };
-		F1FCE42D1579827C00C2A904 /* GMGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGridViewCell.h; path = ../Vendor/GMGridView/GMGridViewCell.h; sourceTree = "<group>"; };
-		F1FCE42E1579827C00C2A904 /* GMGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMGridViewCell.m; path = ../Vendor/GMGridView/GMGridViewCell.m; sourceTree = "<group>"; };
-		F1FCE42F1579827C00C2A904 /* GMGridViewCell+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GMGridViewCell+Extended.h"; path = "../Vendor/GMGridView/GMGridViewCell+Extended.h"; sourceTree = "<group>"; };
-		F1FCE4301579827C00C2A904 /* GMGridViewLayoutStrategies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGridViewLayoutStrategies.h; path = ../Vendor/GMGridView/GMGridViewLayoutStrategies.h; sourceTree = "<group>"; };
-		F1FCE4311579827C00C2A904 /* GMGridViewLayoutStrategies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMGridViewLayoutStrategies.m; path = ../Vendor/GMGridView/GMGridViewLayoutStrategies.m; sourceTree = "<group>"; };
-		F1FCE4321579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIGestureRecognizer+GMGridViewAdditions.h"; path = "../Vendor/GMGridView/UIGestureRecognizer+GMGridViewAdditions.h"; sourceTree = "<group>"; };
-		F1FCE4331579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+GMGridViewAdditions.m"; path = "../Vendor/GMGridView/UIGestureRecognizer+GMGridViewAdditions.m"; sourceTree = "<group>"; };
-		F1FCE4341579827C00C2A904 /* UIView+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+GMGridViewAdditions.h"; path = "../Vendor/GMGridView/UIView+GMGridViewAdditions.h"; sourceTree = "<group>"; };
-		F1FCE4351579827C00C2A904 /* UIView+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+GMGridViewAdditions.m"; path = "../Vendor/GMGridView/UIView+GMGridViewAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,7 +335,6 @@
 				F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */,
 				F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */,
 				F15CD86514CCAA5B00217B8E /* DataModel */,
-				F1FCE4281579822700C2A904 /* GMGridView */,
 				F18295381780CD1100886DE1 /* PSTCollectionView */,
 				F15CD86414CCAA3600217B8E /* UIImageHelpers */,
 				F1B3F7C1140418F000549C03 /* Supporting Files */,
@@ -373,7 +348,6 @@
 				F1B3F7C7140418F000549C03 /* main.m */,
 				F1B3F7C6140418F000549C03 /* GuestBook-Prefix.pch */,
 				F1B3F7C2140418F000549C03 /* GuestBook-Info.plist */,
-				F1EF5D7C162738FD00B0542F /* blank.png */,
 				F18EAF5B141BC02100FA99AB /* book.png */,
 				F1157EC514108D3F0017C2CB /* Default-Landscape~ipad.png */,
 				F1157EC914108D940017C2CB /* Default-Portrait~ipad.png */,
@@ -408,25 +382,6 @@
 				F1B3F7EA140418F000549C03 /* GuestBookTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F1FCE4281579822700C2A904 /* GMGridView */ = {
-			isa = PBXGroup;
-			children = (
-				F1FCE42B1579827C00C2A904 /* GMGridView.h */,
-				F1FCE42C1579827C00C2A904 /* GMGridView.m */,
-				F1FCE42D1579827C00C2A904 /* GMGridViewCell.h */,
-				F1FCE42E1579827C00C2A904 /* GMGridViewCell.m */,
-				F1FCE42F1579827C00C2A904 /* GMGridViewCell+Extended.h */,
-				F1FCE4301579827C00C2A904 /* GMGridViewLayoutStrategies.h */,
-				F1FCE4311579827C00C2A904 /* GMGridViewLayoutStrategies.m */,
-				F1FCE4321579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.h */,
-				F1FCE4331579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m */,
-				F1FCE4341579827C00C2A904 /* UIView+GMGridViewAdditions.h */,
-				F1FCE4351579827C00C2A904 /* UIView+GMGridViewAdditions.m */,
-				F1FCE42A1579826000C2A904 /* GMGridView-Constants.h */,
-			);
-			name = GMGridView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,7 +472,6 @@
 				F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */,
 				F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */,
 				F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */,
-				F1EF5D7D162738FD00B0542F /* blank.png in Resources */,
 				F1A973F016AB8EB000165418 /* ios-linen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,11 +524,6 @@
 				F1D3A093150ABBF800C9C7C3 /* SignaturePageViewController.m in Sources */,
 				F1DA699F150B96E000DF0175 /* SignaturePageModelController.m in Sources */,
 				F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */,
-				F1FCE4361579827C00C2A904 /* GMGridView.m in Sources */,
-				F1FCE4381579827C00C2A904 /* GMGridViewCell.m in Sources */,
-				F1FCE43A1579827C00C2A904 /* GMGridViewLayoutStrategies.m in Sources */,
-				F1FCE43C1579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */,
-				F1FCE43E1579827C00C2A904 /* UIView+GMGridViewAdditions.m in Sources */,
 				F18295551780CD1100886DE1 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				F18295561780CD1100886DE1 /* PSTCollectionView.m in Sources */,
 				F18295571780CD1100886DE1 /* PSTCollectionViewCell.m in Sources */,
@@ -596,11 +545,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1B3F7EE140418F000549C03 /* GuestBookTests.m in Sources */,
-				F1FCE4371579827C00C2A904 /* GMGridView.m in Sources */,
-				F1FCE4391579827C00C2A904 /* GMGridViewCell.m in Sources */,
-				F1FCE43B1579827C00C2A904 /* GMGridViewLayoutStrategies.m in Sources */,
-				F1FCE43D1579827C00C2A904 /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */,
-				F1FCE43F1579827C00C2A904 /* UIView+GMGridViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +618,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IBC_ERRORS = NO;
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -740,6 +685,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IBC_ERRORS = NO;
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -825,6 +771,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IBC_ERRORS = NO;
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -846,6 +793,7 @@
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IBC_ERRORS = NO;
 				INFOPLIST_FILE = "GuestBook/GuestBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
