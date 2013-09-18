@@ -8,12 +8,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GMGridView.h"
+#import "PSTCollectionView.h"
 
-@interface EventListGridViewController : UIViewController <GMGridViewDataSource, GMGridViewActionDelegate, NSFetchedResultsControllerDelegate, UIActionSheetDelegate>
+@interface EventListGridViewController : UIViewController <NSFetchedResultsControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, weak) IBOutlet GMGridView *gridView;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak, readwrite) IBOutlet PSTCollectionView *collectionView;
+@property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
 
 @end
