@@ -12,6 +12,4 @@
 
 @interface AddEventViewController : UIViewController
 
-@property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;
-
 @end

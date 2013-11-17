@@ -53,10 +53,8 @@
 
 - (void)addEvent:(id)sender
 {
-    // TODO: create just one add event view controller and keep it around
-    AddEventViewController* aevController = [[AddEventViewController alloc] init];
-    [aevController setFetchedResultsController:self.fetchedResultsController];
-    [[self navigationController] pushViewController:aevController animated:YES];
+    AddEventViewController* addEventViewController = [[AddEventViewController alloc] init];
+    [self presentModalViewController:addEventViewController animated:YES];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer*)gestureRecognizer
@@ -219,16 +217,19 @@
 
     cell.backgroundColor = [UIColor whiteColor];
 
-    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 50)];
-    name.text = [[event name] description];
-    [cell addSubview:name];
+    // hacky hack hack just for testing purposes.  Eventually need to subclass UICollectionViewCell.
+    if ([cell.contentView.subviews count] == 0) {
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 50)];
+        name.text = [[event name] description];
+        [cell.contentView addSubview:name];
 
-    UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 180, 50)];
-    date.text = [self.dateFormatter stringFromDate:[event time]];
-    [cell addSubview:date];
+        UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 180, 50)];
+        date.text = [self.dateFormatter stringFromDate:[event time]];
+        [cell.contentView addSubview:date];
 
-    UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [cell addGestureRecognizer:gesture];
+        UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        [cell addGestureRecognizer:gesture];
+    }
 
     return cell;
 }
