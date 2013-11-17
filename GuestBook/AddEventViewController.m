@@ -35,29 +35,25 @@
 
 - (IBAction)createEvent:(UIButton*)sender
 {
-    // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    Event* event = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = appDelegate.managedObjectContext;
+    Event* event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
     
     [event setName:[self.name text]];
     [event setTime:[self.datePicker date]];
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [event setUuid:[appDelegate generateUuidString]];
     
     // Save the context.
     NSError *error = nil;
-    if (![context save:&error])
-    {
+    if (![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    
-    [[self navigationController] popViewControllerAnimated:YES];
+
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
 	return YES;
 }
 
