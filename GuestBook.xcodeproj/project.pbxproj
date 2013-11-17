@@ -41,6 +41,7 @@
 		F15AE9F9183C4EB2007F4659 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = F15AE9F3183C4EB2007F4659 /* Default-Portrait.png */; };
 		F15AE9FA183C4EB2007F4659 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F15AE9F4183C4EB2007F4659 /* Default-Portrait@2x.png */; };
 		F15CD88914CCABDC00217B8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15CD88814CCABDC00217B8E /* QuartzCore.framework */; };
+		F16EDFF41DC182EB00A9BD26 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16EDFF31DC182EB00A9BD26 /* Crashlytics.framework */; };
 		F184479D194A91B4001B8529 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F184479C194A91B4001B8529 /* Settings.bundle */; };
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
 		F191B8681508D45900CBF5B5 /* EventListGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F191B8661508D45900CBF5B5 /* EventListGridViewController.m */; };
@@ -124,7 +125,7 @@
 		F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */; };
 		F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */; };
 		F1DDDDEB1422B568001248EF /* pages.png in Resources */ = {isa = PBXBuildFile; fileRef = F1DDDDEA1422B568001248EF /* pages.png */; };
-		F1FD869916DC5F96009CEA2C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FD869816DC5F96009CEA2C /* Crashlytics.framework */; };
+		F1EFB6F01CC8581C0075FF37 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EFB6EF1CC8581C0075FF37 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +192,7 @@
 		F15AE9F3183C4EB2007F4659 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "images/Launch Images/Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 		F15AE9F4183C4EB2007F4659 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x.png"; path = "images/Launch Images/Default-Portrait@2x.png"; sourceTree = SOURCE_ROOT; };
 		F15CD88814CCABDC00217B8E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F16EDFF31DC182EB00A9BD26 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Vendor/Crashlytics.framework; sourceTree = "<group>"; };
 		F184479C194A91B4001B8529 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spine.png; path = images/spine.png; sourceTree = SOURCE_ROOT; };
 		F191B8651508D45900CBF5B5 /* EventListGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListGridViewController.h; sourceTree = "<group>"; };
@@ -346,7 +348,7 @@
 		F1DA69A2150B98E900DF0175 /* SignaturePageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageRootViewController.m; sourceTree = "<group>"; };
 		F1DA69A3150B98E900DF0175 /* SignaturePageRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageRootViewController.xib; sourceTree = "<group>"; };
 		F1DDDDEA1422B568001248EF /* pages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pages.png; path = images/pages.png; sourceTree = SOURCE_ROOT; };
-		F1FD869816DC5F96009CEA2C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Vendor/Crashlytics.framework; sourceTree = "<group>"; };
+		F1EFB6EF1CC8581C0075FF37 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Vendor/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,7 +374,8 @@
 				F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */,
 				F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */,
 				F1B3F7BF140418F000549C03 /* CoreData.framework in Frameworks */,
-				F1FD869916DC5F96009CEA2C /* Crashlytics.framework in Frameworks */,
+				F16EDFF41DC182EB00A9BD26 /* Crashlytics.framework in Frameworks */,
+				F1EFB6F01CC8581C0075FF37 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +633,8 @@
 			children = (
 				F1CA00531947F0DC00E20F43 /* MessageUI.framework */,
 				F1CA00511947E9DD00E20F43 /* libz.dylib */,
-				F1FD869816DC5F96009CEA2C /* Crashlytics.framework */,
+				F1EFB6EF1CC8581C0075FF37 /* Fabric.framework */,
+				F16EDFF31DC182EB00A9BD26 /* Crashlytics.framework */,
 				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1157EC214107DB90017C2CB /* MediaPlayer.framework */,
 				F1B80149140C7924007CE067 /* MobileCoreServices.framework */,
@@ -1091,6 +1095,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1175,6 +1183,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1423,6 +1435,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
@@ -1446,6 +1462,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuestBook/GuestBook-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;

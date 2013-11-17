@@ -11,6 +11,9 @@
 
 #import "SignatureTableViewController.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 @interface GuestBookAppDelegate ()
 
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
@@ -63,7 +66,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Place Crashlytics startWithAPIKey here
+    // For AppStore builds, uncomment Crashlytics initialization here, put key into info plist, add build script step
+//    [Fabric with:@[[Crashlytics class]]];
 
     // Delete any leftover CoreData caches
     [NSFetchedResultsController deleteCacheWithName:nil];
