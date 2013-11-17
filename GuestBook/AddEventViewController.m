@@ -20,15 +20,18 @@
 
 @implementation AddEventViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - View Life Cycle
+
+- (void)viewDidLoad
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.title = @"Create a New Event";
-    }
-    return self;
+    [super viewDidLoad];
+
+    self.title = @"Create a New Event";
+    self.datePicker.date = [NSDate date];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
 }
+
+#pragma mark - Actions
 
 - (IBAction)createEvent:(UIButton*)sender
 {
@@ -46,26 +49,10 @@
     NSError *error = nil;
     if (![context save:&error])
     {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
     }
     
     [[self navigationController] popViewControllerAnimated:YES];
-}
-
-#pragma mark - View Life Cycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self.datePicker setDate:[NSDate date]];
-    [self.datePicker setDatePickerMode:UIDatePickerModeDate];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

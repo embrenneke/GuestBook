@@ -125,12 +125,13 @@
 		F18295541780CD1100886DE1 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spine.png; path = images/spine.png; sourceTree = SOURCE_ROOT; };
 		F18EAF5B141BC02100FA99AB /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = book.png; path = images/book.png; sourceTree = SOURCE_ROOT; };
-		F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = GuestBookTasks.rtf; sourceTree = SOURCE_ROOT; };
 		F191B8651508D45900CBF5B5 /* EventListGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListGridViewController.h; sourceTree = "<group>"; };
 		F191B8661508D45900CBF5B5 /* EventListGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListGridViewController.m; sourceTree = "<group>"; };
 		F191B8671508D45900CBF5B5 /* EventListGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventListGridViewController.xib; sourceTree = "<group>"; };
 		F19EAB0B1424199300AA9EF6 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = SOURCE_ROOT; };
 		F19EAB0C1424199300AA9EF6 /* spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spotlight.png; path = images/spotlight.png; sourceTree = SOURCE_ROOT; };
+		F1A171DA18396FED0095E0B9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		F1A171DB18396FED0095E0B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		F1A973EF16AB8EB000165418 /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ios-linen.jpg"; path = "../images/ios-linen.jpg"; sourceTree = "<group>"; };
 		F1ABACA41419AFCB00AF9BC5 /* no-media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "no-media.png"; path = "images/no-media.png"; sourceTree = SOURCE_ROOT; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,8 +363,9 @@
 				F18EAF58141BBABE00FA99AB /* spine.png */,
 				F19EAB0C1424199300AA9EF6 /* spotlight.png */,
 				F1A973EF16AB8EB000165418 /* ios-linen.jpg */,
-				F18F8754140488E2000DD6A4 /* GuestBookTasks.rtf */,
 				F1B3F7C3140418F000549C03 /* InfoPlist.strings */,
+				F1A171DA18396FED0095E0B9 /* LICENSE */,
+				F1A171DB18396FED0095E0B9 /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

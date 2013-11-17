@@ -27,4 +27,6 @@ The poorly-named __ios6__ branch contains the current 1.3.0 release, which is ta
 * sharing/export
 * remove navigation bars
 * make pretty and add retina assests
-
+* use MagicalRecord for CoreData interface?
+* Get everything non-delegate out of the AppDelegate and into it's own class
+* Add 3-letter prefix to all classes
