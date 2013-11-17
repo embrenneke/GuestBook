@@ -11,11 +11,8 @@
 
 @interface PSTCollectionView ()
 - (id)currentUpdate;
-
 - (NSDictionary *)visibleViewsDict;
-
 - (PSTCollectionViewData *)collectionViewData;
-
 - (CGRect)visibleBoundRects; // visibleBounds is flagged as private API (wtf)
 @end
 
@@ -33,9 +30,10 @@
         unsigned int isDecorationView:1;
         unsigned int isHidden:1;
     }_layoutFlags;
+    char filler[20]; // [HACK] Our class needs to be larger than Apple's class for the superclass change to work.
 }
+@property (nonatomic) PSTCollectionViewItemType elementCategory;
 @property (nonatomic, copy) NSString *elementKind;
-@property (nonatomic, copy) NSString *reuseIdentifier;
 @end
 
 @interface PSTCollectionViewUpdateItem ()
@@ -50,21 +48,23 @@
 + (instancetype)layoutAttributesForCellWithIndexPath:(NSIndexPath *)indexPath {
     PSTCollectionViewLayoutAttributes *attributes = [self new];
     attributes.elementKind = PSTCollectionElementKindCell;
+    attributes.elementCategory = PSTCollectionViewItemTypeCell;
     attributes.indexPath = indexPath;
     return attributes;
 }
 
 + (instancetype)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind withIndexPath:(NSIndexPath *)indexPath {
     PSTCollectionViewLayoutAttributes *attributes = [self new];
+    attributes.elementCategory = PSTCollectionViewItemTypeSupplementaryView;
     attributes.elementKind = elementKind;
     attributes.indexPath = indexPath;
     return attributes;
 }
 
-+ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)kind withIndexPath:(NSIndexPath *)indexPath {
++ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)elementKind withIndexPath:(NSIndexPath *)indexPath {
     PSTCollectionViewLayoutAttributes *attributes = [self new];
-    attributes.elementKind = PSTCollectionElementKindDecorationView;
-    attributes.reuseIdentifier = kind;
+    attributes.elementCategory = PSTCollectionViewItemTypeDecorationView;
+    attributes.elementKind = elementKind;
     attributes.indexPath = indexPath;
     return attributes;
 }
@@ -87,7 +87,7 @@
 - (BOOL)isEqual:(id)other {
     if ([other isKindOfClass:self.class]) {
         PSTCollectionViewLayoutAttributes *otherLayoutAttributes = (PSTCollectionViewLayoutAttributes *)other;
-        if ([_elementKind isEqual:otherLayoutAttributes.elementKind] && [_indexPath isEqual:otherLayoutAttributes.indexPath]) {
+        if (_elementCategory == otherLayoutAttributes.elementCategory && [_elementKind isEqual:otherLayoutAttributes.elementKind] && [_indexPath isEqual:otherLayoutAttributes.indexPath]) {
             return YES;
         }
     }
@@ -102,13 +102,7 @@
 #pragma mark - Public
 
 - (PSTCollectionViewItemType)representedElementCategory {
-    if ([self.elementKind isEqualToString:PSTCollectionElementKindCell]) {
-        return PSTCollectionViewItemTypeCell;
-    }else if ([self.elementKind isEqualToString:PSTCollectionElementKindDecorationView]) {
-        return PSTCollectionViewItemTypeDecorationView;
-    }else {
-        return PSTCollectionViewItemTypeSupplementaryView;
-    }
+    return _elementCategory;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -153,7 +147,7 @@
     PSTCollectionViewLayoutAttributes *layoutAttributes = [self.class new];
     layoutAttributes.indexPath = self.indexPath;
     layoutAttributes.elementKind = self.elementKind;
-    layoutAttributes.reuseIdentifier = self.reuseIdentifier;
+    layoutAttributes.elementCategory = self.elementCategory;
     layoutAttributes.frame = self.frame;
     layoutAttributes.center = self.center;
     layoutAttributes.size = self.size;
@@ -206,7 +200,7 @@
     NSMutableDictionary *_decorationViewClassDict;
     NSMutableDictionary *_decorationViewNibDict;
     NSMutableDictionary *_decorationViewExternalObjectsTables;
-    char filler[200]; // [HACK] Our class needs to be larged than Apple's class for the superclass change to work
+    char filler[200]; // [HACK] Our class needs to be larger than Apple's class for the superclass change to work.
 }
 @property (nonatomic, unsafe_unretained) PSTCollectionView *collectionView;
 @property (nonatomic, copy, readonly) NSDictionary *decorationViewClassDict;
@@ -303,10 +297,7 @@
         if (attr) {
             if (attr.isCell) {
                 NSInteger index = [update[@"oldModel"] globalIndexForItemAtIndexPath:[attr indexPath]];
-
                 if (index != NSNotFound) {
-                    index = [update[@"oldToNewIndexMap"][index] intValue];
-
                     [attr setIndexPath:[attr indexPath]];
                 }
             }

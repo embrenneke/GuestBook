@@ -39,7 +39,7 @@
     self.signature = nil;
 }
 
-#pragma mark - View lifecycle
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {

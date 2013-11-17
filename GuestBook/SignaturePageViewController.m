@@ -181,7 +181,7 @@
     [self.navigationController pushViewController:detailView animated:YES];
 }
 
-#pragma mark - View lifecycle
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
