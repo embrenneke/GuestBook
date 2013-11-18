@@ -34,10 +34,8 @@
     self.dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
 
-    self.navigationItem.title = @"Events";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
-
     [self.collectionView registerClass:[PSUICollectionViewCell class] forCellWithReuseIdentifier:@"AlbumCell"];
+    [self.collectionView registerClass:[PSUICollectionViewCell class] forCellWithReuseIdentifier:@"AddNewCell"];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ios-linen.jpg"]];
     self.collectionView.backgroundColor = [UIColor clearColor];
@@ -53,7 +51,7 @@
 
 #pragma mark - View Event Handlers
 
-- (void)addEvent:(id)sender
+- (IBAction)addEvent:(id)sender
 {
     AddEventViewController *viewController = [[AddEventViewController alloc] init];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -61,7 +59,7 @@
     [self presentModalViewController:viewController animated:YES];
 }
 
-- (void)handleLongPress:(UIGestureRecognizer*)gestureRecognizer
+- (IBAction)handleLongPress:(UIGestureRecognizer*)gestureRecognizer
 {
     if (self.actionSheet != nil) {
         // only handle on action at a time
@@ -146,7 +144,7 @@
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] firstObject];
-    return [sectionInfo numberOfObjects];
+    return [sectionInfo numberOfObjects] + 1;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -156,25 +154,35 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"AlbumCell" forIndexPath:indexPath];
-    Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    UICollectionViewCell *cell = nil;
+    if ([indexPath row] < [[[self.fetchedResultsController sections] firstObject] numberOfObjects]) {
+        cell = [cv dequeueReusableCellWithReuseIdentifier:@"AlbumCell" forIndexPath:indexPath];
+        Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
 
-    // hacky hack hack just for testing purposes.  Eventually need to subclass UICollectionViewCell.
-    if ([cell.contentView.subviews count] == 0) {
-        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 50)];
-        name.text = [[event name] description];
-        [cell.contentView addSubview:name];
+        // hacky hack hack just for testing purposes.  Eventually need to subclass UICollectionViewCell.
+        if ([cell.contentView.subviews count] == 0) {
+            UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 50)];
+            name.text = [[event name] description];
+            [cell.contentView addSubview:name];
 
-        UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 180, 50)];
-        date.text = [self.dateFormatter stringFromDate:[event time]];
-        [cell.contentView addSubview:date];
+            UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 180, 50)];
+            date.text = [self.dateFormatter stringFromDate:[event time]];
+            [cell.contentView addSubview:date];
 
-        UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        [cell addGestureRecognizer:gesture];
+            UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+            [cell addGestureRecognizer:gesture];
+        }
+    } else {
+        cell = [cv dequeueReusableCellWithReuseIdentifier:@"AddNewCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor lightGrayColor];
+        if ([cell.contentView.subviews count] == 0) {
+            UILabel *action = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 200, 50)];
+            action.text = @"Add New Event";
+            [cell.contentView addSubview:action];
+        }
     }
-
     return cell;
 }
 
@@ -182,11 +190,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    if ([indexPath row] < [[[self.fetchedResultsController sections] firstObject] numberOfObjects]) {
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 
-    SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:sigView animated:YES];
+        SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:sigView animated:YES];
+    } else {
+        [self addEvent:nil];
+    }
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
