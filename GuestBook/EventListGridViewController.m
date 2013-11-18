@@ -51,10 +51,14 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark - View Event Handlers
+
 - (void)addEvent:(id)sender
 {
-    AddEventViewController* addEventViewController = [[AddEventViewController alloc] init];
-    [self presentModalViewController:addEventViewController animated:YES];
+    AddEventViewController *viewController = [[AddEventViewController alloc] init];
+    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+
+    [self presentModalViewController:viewController animated:YES];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer*)gestureRecognizer
@@ -78,67 +82,6 @@
     [self.actionSheet showFromRect:origin inView:view animated:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (!_managedObjectContext)
-    {
-        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-        _managedObjectContext = appDelegate.managedObjectContext;
-    }
-    return _managedObjectContext;
-}
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (_fetchedResultsController != nil)
-    {
-        return _fetchedResultsController;
-    }
-    
-    /*
-     Set up the fetched results controller.
-     */
-    // Create the fetch request for the entity.
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
-    {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-         
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return _fetchedResultsController;
-} 
-
 #pragma mark - actionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -152,6 +95,7 @@
     self.actionSheet = nil;
 }
 
+#pragma mark - Event Actions
 
 - (void)deleteEventAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -255,6 +199,69 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(50, 20, 50, 20);
+}
+
+#pragma mark - Property Overrides
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return YES;
+}
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    if (!_managedObjectContext)
+    {
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        _managedObjectContext = appDelegate.managedObjectContext;
+    }
+    return _managedObjectContext;
+}
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil)
+    {
+        return _fetchedResultsController;
+    }
+
+    /*
+     Set up the fetched results controller.
+     */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+
+	NSError *error = nil;
+	if (![self.fetchedResultsController performFetch:&error])
+    {
+	    /*
+	     Replace this implementation with code to handle the error appropriately.
+
+	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+	     */
+	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	    abort();
+	}
+
+    return _fetchedResultsController;
 }
 
 @end

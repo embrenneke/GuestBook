@@ -27,8 +27,13 @@
     [super viewDidLoad];
 
     self.title = @"Create a New Event";
-    self.datePicker.date = [NSDate date];
     self.datePicker.datePickerMode = UIDatePickerModeDate;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.name.text = @"";
+    self.datePicker.date = [NSDate date];
 }
 
 #pragma mark - Actions
@@ -49,6 +54,11 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
 
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)cancelEvent:(id)sender
+{
     [self dismissModalViewControllerAnimated:YES];
 }
 
