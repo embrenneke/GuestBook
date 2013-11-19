@@ -11,6 +11,7 @@
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 #import "DetailViewController.h"
+#import "AddSignatureViewController.h"
 
 @interface SignaturePageViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
@@ -153,7 +154,7 @@
     }
 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    NSInteger rowsLeft = [sectionInfo numberOfObjects] - self.firstElement;
+    NSInteger rowsLeft = [sectionInfo numberOfObjects] - self.firstElement + 1;
     rowsLeft = MAX(rowsLeft, 0);
     return MIN(maxRows, rowsLeft);
 }
@@ -169,31 +170,33 @@
     }
     
     // Configure the cell....
-    [self configureCell:cell atIndexPath:[self adjustedIndexPath:indexPath]];
+    NSIndexPath *realPath = [self adjustedIndexPath:indexPath];
+    if ([realPath row] < [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
+        [self configureCell:cell atIndexPath:[self adjustedIndexPath:indexPath]];
+    } else {
+        cell.textLabel.text = @"Add New Signature";
+        cell.detailTextLabel.text = @"";
+        cell.imageView.image = nil;
+    }
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
-    [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:[self adjustedIndexPath:indexPath]]];
-    
-    [self.navigationController pushViewController:detailView animated:YES];
-}
-
-#pragma mark - View Life Cycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    NSIndexPath *realPath = [self adjustedIndexPath:indexPath];
+    if ([realPath row] < [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
+        DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
+        [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:[self adjustedIndexPath:indexPath]]];
+        
+        [self.navigationController pushViewController:detailView animated:YES];
+    } else {
+        // add signature
+        AddSignatureViewController* addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
+        addVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentModalViewController:addVC animated:YES];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
