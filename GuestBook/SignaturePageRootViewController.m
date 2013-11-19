@@ -9,7 +9,6 @@
 
 #import "SignaturePageRootViewController.h"
 #import "SignaturePageModelController.h"
-#import "AddSignatureViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
 
@@ -46,7 +45,7 @@
 
         // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
         CGRect pageViewRect = self.view.bounds;
-        pageViewRect = CGRectInset(pageViewRect, 10.0, 10.0);
+        pageViewRect = CGRectMake(pageViewRect.origin.x + 5., pageViewRect.origin.y + 30., pageViewRect.size.width - 10., pageViewRect.size.height - 35.);
         self.pageViewController.view.frame = pageViewRect;
 
         [self.pageViewController didMoveToParentViewController:self];
@@ -79,8 +78,6 @@
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     Event* event = [appDelegate currentEvent];
     self.navigationItem.title = [event name];
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSignature:)];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -99,13 +96,6 @@
         _modelController = [[SignaturePageModelController alloc] init];
     }
     return _modelController;
-}
-
--(void)addSignature:(id)sender
-{
-    AddSignatureViewController* addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
-    //[self presentModalViewController:addVC animated:YES];
-    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 -(NSUInteger)elementsPerPageForOrientation:(UIInterfaceOrientation)orientation

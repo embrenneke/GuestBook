@@ -84,8 +84,14 @@
     }
 
     // remove self from navigation stack
-    [[self navigationController] popViewControllerAnimated:YES];
-    
+    [self dismissModalViewControllerAnimated:YES];
+
+    [self clearFormState];
+}
+
+- (IBAction)cancelSignature:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
     [self clearFormState];
 }
 
@@ -213,24 +219,17 @@
 
 #pragma mark - View Life Cycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self clearFormState];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    [self clearFormState];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [self clearFormState];
     [self.name becomeFirstResponder];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self clearFormState];
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
