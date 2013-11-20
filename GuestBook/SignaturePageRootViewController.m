@@ -45,7 +45,7 @@
 
         // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
         CGRect pageViewRect = self.view.bounds;
-        pageViewRect = CGRectMake(pageViewRect.origin.x + 5., pageViewRect.origin.y + 30., pageViewRect.size.width - 10., pageViewRect.size.height - 35.);
+        pageViewRect = CGRectMake(pageViewRect.origin.x, pageViewRect.origin.y + 30., pageViewRect.size.width - 5., pageViewRect.size.height - 35.);
         self.pageViewController.view.frame = pageViewRect;
 
         [self.pageViewController didMoveToParentViewController:self];
@@ -141,7 +141,7 @@
 
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    if (UIInterfaceOrientationIsPortrait(orientation)) {
+//    if (UIInterfaceOrientationIsPortrait(orientation)) {
         // In portrait orientation: Set the spine position to "min" and the page view controller's view controllers array to contain just one view controller. Setting the spine position to 'UIPageViewControllerSpineLocationMid' in landscape orientation sets the doubleSided property to YES, so set it to NO here.
         SignaturePageViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
         SignaturePageViewController *newVC = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:nil];
@@ -151,25 +151,25 @@
         
         self.pageViewController.doubleSided = NO;
         return UIPageViewControllerSpineLocationMin;
-    }
-    
-    // In landscape orientation: Set set the spine location to "mid" and the page view controller's view controllers array to contain two view controllers. If the current page is even, set it to contain the current and next view controllers; if it is odd, set the array to contain the previous and current view controllers.
-    SignaturePageViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
-    SignaturePageViewController *firstVC = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:nil];
-    firstVC.firstElement = [self fixFirstElement:currentViewController.firstElement forOrientation:orientation];
-    NSArray *viewControllers = nil;
+//    }
 
-    NSUInteger indexOfFirstVC = [self.modelController indexOfViewController:firstVC];
-    if (indexOfFirstVC == 0 || indexOfFirstVC % 2 == 0) {
-        UIViewController *nextViewController = [self.modelController pageViewController:self.pageViewController viewControllerAfterViewController:firstVC];
-        viewControllers = [NSArray arrayWithObjects:firstVC, nextViewController, nil];
-    } else {
-        UIViewController *previousViewController = [self.modelController pageViewController:self.pageViewController viewControllerBeforeViewController:firstVC];
-        viewControllers = [NSArray arrayWithObjects:previousViewController, firstVC, nil];
-    }
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-
-    return UIPageViewControllerSpineLocationMid;
+//    // In landscape orientation: Set set the spine location to "mid" and the page view controller's view controllers array to contain two view controllers. If the current page is even, set it to contain the current and next view controllers; if it is odd, set the array to contain the previous and current view controllers.
+//    SignaturePageViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
+//    SignaturePageViewController *firstVC = [[SignaturePageViewController alloc] initWithNibName:@"SignaturePageViewController" bundle:nil];
+//    firstVC.firstElement = [self fixFirstElement:currentViewController.firstElement forOrientation:orientation];
+//    NSArray *viewControllers = nil;
+//
+//    NSUInteger indexOfFirstVC = [self.modelController indexOfViewController:firstVC];
+//    if (indexOfFirstVC == 0 || indexOfFirstVC % 2 == 0) {
+//        UIViewController *nextViewController = [self.modelController pageViewController:self.pageViewController viewControllerAfterViewController:firstVC];
+//        viewControllers = [NSArray arrayWithObjects:firstVC, nextViewController, nil];
+//    } else {
+//        UIViewController *previousViewController = [self.modelController pageViewController:self.pageViewController viewControllerBeforeViewController:firstVC];
+//        viewControllers = [NSArray arrayWithObjects:previousViewController, firstVC, nil];
+//    }
+//    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+//
+//    return UIPageViewControllerSpineLocationMid;
 }
 
 @end
