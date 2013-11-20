@@ -52,6 +52,11 @@
         // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
         self.view.gestureRecognizers = self.pageViewController.gestureRecognizers;
 
+        // add a tap gesture recognizer to show the nav bar
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+        [gesture setCancelsTouchesInView:NO];
+        [self.view addGestureRecognizer:gesture];
+
         NSArray* viewControllers = nil;
         SignaturePageViewController *startingViewController = [self.modelController viewControllerAtIndex:0];
         if(landscape)
@@ -80,10 +85,32 @@
     self.navigationItem.title = [event name];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self performSelector:@selector(hideNavBar) withObject:nil afterDelay:2.0];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (void)tapped:(UIGestureRecognizer *)gesture
+{
+    if (![self.pageViewController.view hitTest:[gesture locationInView:self.pageViewController.view] withEvent:nil]) {
+        [self.navigationController setNavigationBarHidden:![self.navigationController isNavigationBarHidden] animated:YES];
+        [self performSelector:@selector(hideNavBar) withObject:nil afterDelay:3.0];
+    }
+}
+
+- (void)hideNavBar
+{
+    if (self.view.window) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
 - (SignaturePageModelController *)modelController

@@ -32,6 +32,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+
     self.name.text = @"";
     self.datePicker.date = [NSDate date];
 }

@@ -50,19 +50,6 @@
     return self;
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
-    [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil)
