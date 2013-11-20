@@ -39,11 +39,14 @@
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ios-linen.jpg"]];
     self.collectionView.backgroundColor = [UIColor clearColor];
+    self.title = @"Events";
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+
     // re-fetch data in case event was added
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
