@@ -11,6 +11,8 @@
 		F10DBC5014CB73FB007E22DA /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4F14CB73FA007E22DA /* Signature.m */; };
 		F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1157EC214107DB90017C2CB /* MediaPlayer.framework */; };
 		F1157ECC14108F470017C2CB /* guestbook.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157ECB14108F470017C2CB /* guestbook.png */; };
+		F1406E86183C665B000A2367 /* pages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E84183C665B000A2367 /* pages@2x.png */; };
+		F1406E87183C665B000A2367 /* spine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E85183C665B000A2367 /* spine@2x.png */; };
 		F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F1528C9B141BC40D004BA1EF /* iTunesArtwork */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
@@ -92,6 +94,8 @@
 		F10DBC4F14CB73FA007E22DA /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
 		F1157EC214107DB90017C2CB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F1157ECB14108F470017C2CB /* guestbook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guestbook.png; path = ../images/guestbook.png; sourceTree = "<group>"; };
+		F1406E84183C665B000A2367 /* pages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pages@2x.png"; path = "images/pages@2x.png"; sourceTree = SOURCE_ROOT; };
+		F1406E85183C665B000A2367 /* spine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spine@2x.png"; path = "images/spine@2x.png"; sourceTree = SOURCE_ROOT; };
 		F1528C9B141BC40D004BA1EF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = images/iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		F157356114119F520034BD4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
@@ -234,8 +238,10 @@
 				F1157ECB14108F470017C2CB /* guestbook.png */,
 				F1ABACA41419AFCB00AF9BC5 /* no-media.png */,
 				F1DDDDEA1422B568001248EF /* pages.png */,
+				F1406E84183C665B000A2367 /* pages@2x.png */,
 				F19EAB0B1424199300AA9EF6 /* settings.png */,
 				F18EAF58141BBABE00FA99AB /* spine.png */,
+				F1406E85183C665B000A2367 /* spine@2x.png */,
 				F19EAB0C1424199300AA9EF6 /* spotlight.png */,
 				F1A973EF16AB8EB000165418 /* ios-linen.jpg */,
 				F15AE9ED183C4E15007F4659 /* Launch Images */,
@@ -502,10 +508,12 @@
 				F15AE9F5183C4EB2007F4659 /* Default-Landscape~ipad.png in Resources */,
 				F15AE9F6183C4EB2007F4659 /* Default-Landscape.png in Resources */,
 				F15AE9F9183C4EB2007F4659 /* Default-Portrait.png in Resources */,
+				F1406E87183C665B000A2367 /* spine@2x.png in Resources */,
 				F1157ECC14108F470017C2CB /* guestbook.png in Resources */,
 				F157356514119F520034BD4D /* DetailViewController.xib in Resources */,
 				F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */,
 				F18EAF59141BBABE00FA99AB /* spine.png in Resources */,
+				F1406E86183C665B000A2367 /* pages@2x.png in Resources */,
 				F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */,
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
 				F19EAB0D1424199400AA9EF6 /* settings.png in Resources */,

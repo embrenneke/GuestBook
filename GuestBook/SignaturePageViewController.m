@@ -15,7 +15,8 @@
 
 @interface SignaturePageViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong, readwrite) IBOutlet UITableView* tableView;
+@property (nonatomic, strong, readwrite) IBOutlet UITableView *tableView;
+@property (nonatomic, strong, readwrite) IBOutlet UIImageView *rightImageView;
 @property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, assign, readwrite) BOOL renderPrint;
 
@@ -48,6 +49,12 @@
         //self.firstElement = 0;
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+//    self.rightImageView.image = [UIImage imageNamed:@"pages"];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
