@@ -44,6 +44,8 @@
 		F1A973F016AB8EB000165418 /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F1A973EF16AB8EB000165418 /* ios-linen.jpg */; };
 		F1A973F116AB8EB000165418 /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F1A973EF16AB8EB000165418 /* ios-linen.jpg */; };
 		F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */ = {isa = PBXBuildFile; fileRef = F1ABACA41419AFCB00AF9BC5 /* no-media.png */; };
+		F1B3D94618862F3A00919558 /* UGBZipHTMLExport.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3D94518862F3A00919558 /* UGBZipHTMLExport.m */; };
+		F1B3D9481886367300919558 /* event.html in Resources */ = {isa = PBXBuildFile; fileRef = F1B3D9471886367300919558 /* event.html */; };
 		F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7B8140418F000549C03 /* UIKit.framework */; };
 		F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BA140418F000549C03 /* Foundation.framework */; };
 		F1B3F7BD140418F000549C03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3F7BC140418F000549C03 /* CoreGraphics.framework */; };
@@ -148,6 +150,9 @@
 		F1A171DB18396FED0095E0B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		F1A973EF16AB8EB000165418 /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ios-linen.jpg"; path = "../images/ios-linen.jpg"; sourceTree = "<group>"; };
 		F1ABACA41419AFCB00AF9BC5 /* no-media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "no-media.png"; path = "images/no-media.png"; sourceTree = SOURCE_ROOT; };
+		F1B3D94418862F3A00919558 /* UGBZipHTMLExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGBZipHTMLExport.h; sourceTree = "<group>"; };
+		F1B3D94518862F3A00919558 /* UGBZipHTMLExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGBZipHTMLExport.m; sourceTree = "<group>"; };
+		F1B3D9471886367300919558 /* event.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = event.html; sourceTree = "<group>"; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F1B3F7BA140418F000549C03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -390,6 +395,8 @@
 				F18295381780CD1100886DE1 /* PSTCollectionView */,
 				F15CD86414CCAA3600217B8E /* UIImageHelpers */,
 				F1B3F7C1140418F000549C03 /* Supporting Files */,
+				F1B3D94418862F3A00919558 /* UGBZipHTMLExport.h */,
+				F1B3D94518862F3A00919558 /* UGBZipHTMLExport.m */,
 			);
 			path = GuestBook;
 			sourceTree = "<group>";
@@ -404,6 +411,7 @@
 				F1B3F7C3140418F000549C03 /* InfoPlist.strings */,
 				F1A171DA18396FED0095E0B9 /* LICENSE */,
 				F1A171DB18396FED0095E0B9 /* README.md */,
+				F1B3D9471886367300919558 /* event.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -500,6 +508,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1B3D9481886367300919558 /* event.html in Resources */,
 				F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */,
 				F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */,
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
@@ -579,6 +588,7 @@
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
 				F157356414119F520034BD4D /* DetailViewController.m in Sources */,
+				F1B3D94618862F3A00919558 /* UGBZipHTMLExport.m in Sources */,
 				F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */,
 				F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */,
 				F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */,

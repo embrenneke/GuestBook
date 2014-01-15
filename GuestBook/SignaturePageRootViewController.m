@@ -11,6 +11,7 @@
 #import "SignaturePageModelController.h"
 #import "GuestBookAppDelegate.h"
 #import "Event.h"
+#import "UGBZipHTMLExport.h"
 
 @interface SignaturePageRootViewController () <UIPageViewControllerDelegate>
 
@@ -62,6 +63,8 @@
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:NULL];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,6 +132,18 @@
     
     self.pageViewController.doubleSided = NO;
     return UIPageViewControllerSpineLocationMin;
+}
+
+#pragma mark - Tab Bar Action
+
+- (IBAction)share:(id)sender
+{
+    NSLog(@"Share pressed.");
+
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Event* event = [appDelegate currentEvent];
+    /* NSData *zipData = */ [UGBZipHTMLExport zipDataForEvent:event];
+
 }
 
 @end
