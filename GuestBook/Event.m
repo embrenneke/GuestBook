@@ -10,7 +10,6 @@
 #import "Event.h"
 #import "Signature.h"
 
-
 @implementation Event
 
 @dynamic name;
@@ -35,7 +34,7 @@
         [eventDictionary setObject:self.uuid forKey:@"uuid"];
     }
     NSMutableArray *signatures = [NSMutableArray arrayWithCapacity:[self.signatures count]];
-    for(Signature *signature in self.signatures) {
+    for (Signature *signature in self.signatures) {
         NSDictionary *jsonSignature = [signature jsonObjectForSignature];
         if (jsonSignature) {
             [signatures addObject:jsonSignature];

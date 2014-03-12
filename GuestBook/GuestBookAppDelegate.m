@@ -11,8 +11,6 @@
 
 #import "EventListGridViewController.h"
 
-#import <Crashlytics/Crashlytics.h>
-
 @interface GuestBookAppDelegate ()
 
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
@@ -23,24 +21,22 @@
 
 @implementation GuestBookAppDelegate
 
-@synthesize managedObjectContext=_managedObjectContext;
-@synthesize managedObjectModel=_managedObjectModel;
-@synthesize persistentStoreCoordinator=_persistentStoreCoordinator;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (void)setCurrentEvent:(Event *)newCurrentEvent
 {
     _currentEvent = newCurrentEvent;
-    
+
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
 }
 
--(Event *)getCurrentEvent
+- (Event *)getCurrentEvent
 {
-    if(!_currentEvent)
-    {
+    if (!_currentEvent) {
         NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
-        if(openEvent)
-        {
+        if (openEvent) {
             // set current event
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
@@ -53,12 +49,10 @@
             [fetchRequest setSortDescriptors:sortDescriptors];
             NSError *err = nil;
             NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&err];
-            if((array != nil) && ([array count] > 0))
-            {
+            if ((array != nil) && ([array count] > 0)) {
                 _currentEvent = [array objectAtIndex:0];
             }
         }
-        
     }
     return _currentEvent;
 }
@@ -116,17 +110,15 @@
 
 - (void)awakeFromNib
 {
-    EventListGridViewController* elgvController = (EventListGridViewController *)[self.navigationController topViewController];
+    EventListGridViewController *elgvController = (EventListGridViewController *)[self.navigationController topViewController];
     elgvController.managedObjectContext = self.managedObjectContext;
 }
 
 - (void)saveContext
 {
     NSError *error = nil;
-    if (self.managedObjectContext)
-    {
-        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
-        {
+    if (self.managedObjectContext) {
+        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
@@ -134,7 +126,7 @@
              */
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
-        } 
+        }
     }
 }
 
@@ -146,14 +138,12 @@
  */
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (_managedObjectContext != nil)
-    {
+    if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-    
+
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil)
-    {
+    if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
@@ -166,12 +156,11 @@
  */
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil)
-    {
+    if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"GuestBook" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
 
@@ -181,17 +170,15 @@
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil)
-    {
+    if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
+
     NSURL *storeURL = [[self applicationLibraryDirectory] URLByAppendingPathComponent:@"GuestBook.sqlite"];
-    
+
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
-    {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -217,8 +204,8 @@
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }    
-    
+    }
+
     return _persistentStoreCoordinator;
 }
 
@@ -242,15 +229,15 @@
 {
     // create a new UUID which you own
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-    
+
     CFStringRef uuidCFString = CFUUIDCreateString(kCFAllocatorDefault, uuid);
     NSString *uuidString = [NSString stringWithFormat:@"%@", uuidCFString];
-    
-    
+
+
     // release the UUID
     CFRelease(uuidCFString);
     CFRelease(uuid);
-    
+
     return uuidString;
 }
 

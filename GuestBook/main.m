@@ -7,11 +7,9 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <UIKit/UIKit.h>
 #import "GuestBookAppDelegate.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([GuestBookAppDelegate class]));
     }

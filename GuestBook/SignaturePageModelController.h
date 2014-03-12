@@ -10,9 +10,10 @@
 #import <Foundation/Foundation.h>
 #import "SignaturePageViewController.h"
 
-@interface SignaturePageModelController : NSObject <UIPageViewControllerDataSource>
+@interface SignaturePageModelController : NSObject<UIPageViewControllerDataSource>
 
 - (SignaturePageViewController *)viewControllerAtIndex:(NSUInteger)index;
+
 - (NSUInteger)indexOfViewController:(SignaturePageViewController *)viewController;
 
 @end

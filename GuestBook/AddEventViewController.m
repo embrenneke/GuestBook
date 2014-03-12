@@ -9,12 +9,11 @@
 
 #import "AddEventViewController.h"
 #import "GuestBookAppDelegate.h"
-#import "Event.h"
 
 @interface AddEventViewController ()
 
-@property (nonatomic, weak, readwrite) IBOutlet UITextField* name;
-@property (nonatomic, weak, readwrite) IBOutlet UIDatePicker* datePicker;
+@property (nonatomic, weak, readwrite) IBOutlet UITextField *name;
+@property (nonatomic, weak, readwrite) IBOutlet UIDatePicker *datePicker;
 
 @end
 
@@ -40,16 +39,16 @@
 
 #pragma mark - Actions
 
-- (IBAction)createEvent:(UIButton*)sender
+- (IBAction)createEvent:(UIButton *)sender
 {
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    Event* event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
-    
+    Event *event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
+
     [event setName:[self.name text]];
     [event setTime:[self.datePicker date]];
     [event setUuid:[appDelegate generateUuidString]];
-    
+
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {
@@ -66,7 +65,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return YES;
+    return YES;
 }
 
 @end

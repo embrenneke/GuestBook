@@ -8,8 +8,6 @@
 //
 
 #import "Signature.h"
-#import "Event.h"
-
 
 @implementation Signature
 
