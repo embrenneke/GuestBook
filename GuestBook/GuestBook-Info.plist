@@ -16,6 +16,18 @@
 		<string>settings.png</string>
 		<string>spotlight.png</string>
 	</array>
+	<key>CFBundleIconFiles~ipad</key>
+	<array>
+		<string>Icon-Small</string>
+		<string>Icon-76</string>
+		<string>Icon-72</string>
+		<string>Icon-Small-50</string>
+		<string>Icon</string>
+		<string>Icon-40</string>
+		<string>guestbook.png</string>
+		<string>settings.png</string>
+		<string>spotlight.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.unspunproductions.guestbook</string>
 	<key>CFBundleInfoDictionaryVersion</key>
