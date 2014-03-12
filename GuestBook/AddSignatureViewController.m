@@ -48,16 +48,14 @@
 -(IBAction)submitSig:(UIButton*)sender
 {
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([appDelegate currentEvent])
-    {
+    if([appDelegate currentEvent]) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
         Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
 
         signature.timeStamp = [NSDate date];
         signature.name = self.name.text;
         signature.message = self.message.text;
-        if(self.mediaPath)
-        {
+        if (self.mediaPath) {
             signature.thumbnail = UIImageJPEGRepresentation(self.imageButton.imageView.image, 0.5);
         }
         signature.uuid = [appDelegate generateUuidString];
@@ -66,8 +64,7 @@
 
         // Save the context.
         NSError *error = nil;
-        if (![self.managedObjectContext save:&error])
-        {
+        if (![self.managedObjectContext save:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
 
@@ -76,9 +73,7 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-    }
-    else
-    {
+    } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Signatures cannot be added without selecting an Event.  Please select an event First." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alert show];
     }
@@ -108,8 +103,7 @@
 - (IBAction)addMultimedia:(UIButton*)sender
 {
     // bring up camera view, capture image/video, set thumbnail to button image
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.cameraUI = [[UIImagePickerController alloc] init];
         self.cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
         
@@ -127,30 +121,28 @@
         self.cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
 
         [self presentModalViewController:self.cameraUI animated:YES];
-    }
-    else
-    {
+    } else {
         UIButton *button = sender;
         [button setTitle:@"Sorry, no camera found." forState:UIControlStateNormal];
     }
 }
 
 // For responding to the user tapping Cancel.
-- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+- (void)imagePickerControllerDidCancel: (UIImagePickerController *) picker
+{
     [self.cameraUI dismissModalViewControllerAnimated:YES];
     self.cameraUI = nil;
 }
 
 // For responding to the user accepting a newly-captured picture or movie
-- (void) imagePickerController: (UIImagePickerController *) picker
- didFinishPickingMediaWithInfo: (NSDictionary *) info {
+- (void)imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info
+{
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // handle re-picking
-    if(self.mediaPath)
-    {
+    if (self.mediaPath) {
         NSError *error = nil;
         NSString *oldFilePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:self.mediaPath] path]];
         [[NSFileManager defaultManager] removeItemAtPath:oldFilePath error:&error];
@@ -158,9 +150,7 @@
     }
     
     // Handle a still image capture
-    if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeImage, 0)
-        == kCFCompareEqualTo) {
-        
+    if ([mediaType isEqualToString:(__bridge NSString *)kUTTypeImage]) {
         editedImage = (UIImage *) [info objectForKey:
                                    UIImagePickerControllerEditedImage];
         originalImage = (UIImage *) [info objectForKey:
@@ -186,19 +176,15 @@
     }
     
     // Handle a movie capture
-    if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeMovie, 0)
-        == kCFCompareEqualTo) {
-        
-        NSString *moviePath = [[info objectForKey:
-                                UIImagePickerControllerMediaURL] path];
+    if ([mediaType isEqualToString:(__bridge NSString *)kUTTypeMovie]) {
+        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
         
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
             // handle movie
             self.mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
             NSError *error = nil;
             [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:self.mediaPath error:&error];
-            if(error)
-            {
+            if(error) {
                 NSLog(@"%@", [error localizedDescription]);
             }
 
