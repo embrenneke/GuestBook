@@ -10,10 +10,9 @@
 #import "SignaturePageRootViewController.h"
 #import "SignaturePageModelController.h"
 #import "GuestBookAppDelegate.h"
-#import "Event.h"
 #import "UGBZipHTMLExport.h"
 
-@interface SignaturePageRootViewController () <UIPageViewControllerDelegate>
+@interface SignaturePageRootViewController ()<UIPageViewControllerDelegate>
 
 @property (nonatomic, strong, readwrite) UIPageViewController *pageViewController;
 @property (nonatomic, strong, readwrite) SignaturePageModelController *modelController;
@@ -29,7 +28,7 @@
     [super viewDidLoad];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Event* event = [appDelegate currentEvent];
+    Event *event = [appDelegate currentEvent];
     self.navigationItem.title = [event name];
 
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -78,7 +77,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    return YES;
 }
 
 - (void)tapped:(UIGestureRecognizer *)gesture
@@ -110,7 +109,7 @@
 
 - (NSUInteger)elementsPerPageForOrientation:(UIInterfaceOrientation)orientation
 {
-    return UIInterfaceOrientationIsPortrait(orientation)?6:4;
+    return UIInterfaceOrientationIsPortrait(orientation)? 6 : 4;
 }
 
 - (NSUInteger)findFirstElement:(NSUInteger)oldElement forOrientation:(UIInterfaceOrientation)orienation
@@ -129,7 +128,7 @@
     newVC.firstElement = [self findFirstElement:currentViewController.firstElement forOrientation:orientation];
     NSArray *viewControllers = [NSArray arrayWithObject:newVC];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-    
+
     self.pageViewController.doubleSided = NO;
     return UIPageViewControllerSpineLocationMin;
 }
@@ -141,9 +140,8 @@
     NSLog(@"Share pressed.");
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Event* event = [appDelegate currentEvent];
+    Event *event = [appDelegate currentEvent];
     /* NSData *zipData = */ [UGBZipHTMLExport zipDataForEvent:event];
-
 }
 
 @end

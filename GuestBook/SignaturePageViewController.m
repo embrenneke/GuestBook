@@ -13,7 +13,7 @@
 #import "DetailViewController.h"
 #import "AddSignatureViewController.h"
 
-@interface SignaturePageViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface SignaturePageViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong, readwrite) IBOutlet UITableView *tableView;
 @property (nonatomic, strong, readwrite) IBOutlet UIImageView *rightImageView;
@@ -26,9 +26,8 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    GuestBookAppDelegate* appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-    if ([indexPath row] < [[[appDelegate currentEvent] signatures] count])
-    {
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([indexPath row] < [[[appDelegate currentEvent] signatures] count]) {
         Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
         cell.textLabel.text = [sig.name description];
         cell.textLabel.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:25.0];
@@ -54,13 +53,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.rightImageView.image = [UIImage imageNamed:@"pages"];
+    //    self.rightImageView.image = [UIImage imageNamed:@"pages"];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (_fetchedResultsController != nil)
-    {
+    if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
 
@@ -73,46 +71,45 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:appDelegate.managedObjectContext];
     [fetchRequest setEntity:entity];
-    
+
     NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
     [fetchRequest setPredicate:aPredicate];
-    
+
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
-    
+
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
+
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
+
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     [NSFetchedResultsController deleteCacheWithName:@"SigsCache"];
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:nil cacheName:@"SigsCache"];
     aFetchedResultsController.delegate = self;
     _fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
-    {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-         
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return _fetchedResultsController;
-} 
 
-- (NSIndexPath*)adjustedIndexPath:(NSIndexPath *)indexPath
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+    return _fetchedResultsController;
+}
+
+- (NSIndexPath *)adjustedIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = indexPath.row;
     row += self.firstElement;
-    NSIndexPath* newIndexPath = [indexPath indexPathByRemovingLastIndex];
+    NSIndexPath *newIndexPath = [indexPath indexPathByRemovingLastIndex];
     newIndexPath = [newIndexPath indexPathByAddingIndex:row];
     return newIndexPath;
 }
@@ -121,15 +118,14 @@
 {
     // get current orientation
     bool isDevicePortrait = YES;
-    if(!self.renderPrint)
-    {
+    if (!self.renderPrint) {
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
         isDevicePortrait = UIInterfaceOrientationIsPortrait(orientation);
     }
     return isDevicePortrait;
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 155;
 }
@@ -142,12 +138,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSUInteger maxRows = 4;
-    if([self isPortrait])
-    {
+    if ([self isPortrait]) {
         maxRows = 6;
     }
 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     NSInteger rowsLeft = [sectionInfo numberOfObjects] - self.firstElement + 1;
     rowsLeft = MAX(rowsLeft, 0);
     return MIN(maxRows, rowsLeft);
@@ -157,12 +152,12 @@
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"SignatureTableCell";
-    
+
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
+
     // Configure the cell....
     NSIndexPath *realPath = [self adjustedIndexPath:indexPath];
     if ([realPath row] < [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
@@ -182,11 +177,11 @@
     if ([realPath row] < [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]) {
         DetailViewController *detailView = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
         [detailView setSignature:[self.fetchedResultsController objectAtIndexPath:[self adjustedIndexPath:indexPath]]];
-        
+
         [self.navigationController pushViewController:detailView animated:YES];
     } else {
         // add signature
-        AddSignatureViewController* addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
+        AddSignatureViewController *addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
         addVC.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentModalViewController:addVC animated:YES];
     }
@@ -196,7 +191,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    return YES;
 }
 
 @end

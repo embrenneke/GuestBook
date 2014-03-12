@@ -36,13 +36,13 @@
 {
     [super viewDidLoad];
 
-    if(self.signature.mediaPath) {
+    if (self.signature.mediaPath) {
         GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-        NSString* filePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:self.signature.mediaPath] path]];
-        
-        if([filePath hasSuffix:@"jpg"]) {
-           [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
-        } else if([filePath hasSuffix:@"mp4"]) {
+        NSString *filePath = [[NSString alloc] initWithFormat:@"%@", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:self.signature.mediaPath] path]];
+
+        if ([filePath hasSuffix:@"jpg"]) {
+            [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+        } else if ([filePath hasSuffix:@"mp4"]) {
             MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
             [player stop];
             self.moviePlayer = player;
@@ -53,7 +53,7 @@
     else {
         [self.imageView setImage:[UIImage imageNamed:@"no-media"]];
     }
-    
+
     self.messageView.text = self.signature.message;
     self.titleView.text = self.signature.name;
 
@@ -83,12 +83,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    return YES;
 }
 
--(void) detectOrientation
+- (void)detectOrientation
 {
-    if(self.moviePlayer) {
+    if (self.moviePlayer) {
         self.moviePlayer.view.frame = self.imageView.frame;
     }
 }

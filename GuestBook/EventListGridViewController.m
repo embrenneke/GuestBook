@@ -9,7 +9,6 @@
 
 #import "EventListGridViewController.h"
 #import "GuestBookAppDelegate.h"
-#import "Event.h"
 #import "Signature.h"
 #import "SignaturePageRootViewController.h"
 #import "AddEventViewController.h"
@@ -62,7 +61,7 @@
     [self presentModalViewController:viewController animated:YES];
 }
 
-- (IBAction)handleLongPress:(UIGestureRecognizer*)gestureRecognizer
+- (IBAction)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
     if (self.actionSheet != nil) {
         // only handle on action at a time
@@ -73,7 +72,7 @@
     CGPoint touchPoint = [gestureRecognizer locationInView:view];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:touchPoint];
     self.selectedIndexPath = indexPath;
-    Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:event.name
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
@@ -104,8 +103,7 @@
     Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NSEnumerator *e = [event.signatures objectEnumerator];
     id collectionMemberObject;
-    while ( (collectionMemberObject = [e nextObject]) )
-    {
+    while ((collectionMemberObject = [e nextObject])) {
         // delete the signature
         NSError *error = nil;
         Signature *sig = collectionMemberObject;
@@ -115,8 +113,7 @@
 
     // if deleting currentEvent, set current event to nil
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if ([appDelegate currentEvent] == event)
-    {
+    if ([appDelegate currentEvent] == event) {
         [appDelegate setCurrentEvent:nil];
     }
 
@@ -125,8 +122,7 @@
 
     // Save the context.
     NSError *error = nil;
-    if (![self.managedObjectContext save:&error])
-    {
+    if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
 
@@ -139,14 +135,13 @@
 
 - (void)shareEventAtIndexPath:(NSIndexPath *)indexPath
 {
-
 }
 
 #pragma mark - UICollectionView Data Source
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] firstObject];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] firstObject];
     return [sectionInfo numberOfObjects] + 1;
 }
 
@@ -160,7 +155,7 @@
     UICollectionViewCell *cell = nil;
     if ([indexPath row] < [[[self.fetchedResultsController sections] firstObject] numberOfObjects]) {
         cell = [cv dequeueReusableCellWithReuseIdentifier:@"AlbumCell" forIndexPath:indexPath];
-        Event* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
         cell.backgroundColor = [UIColor whiteColor];
 
@@ -197,7 +192,7 @@
         GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 
-        SignaturePageRootViewController*  sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
+        SignaturePageRootViewController *sigView = [[SignaturePageRootViewController alloc] initWithNibName:@"SignaturePageRootViewController" bundle:[NSBundle mainBundle]];
         [self.navigationController pushViewController:sigView animated:YES];
     } else {
         [self addEvent:nil];
@@ -206,12 +201,12 @@
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(224.0, 168.0);
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(50, 20, 50, 20);
 }
@@ -220,13 +215,12 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return YES;
+    return YES;
 }
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (!_managedObjectContext)
-    {
+    if (!_managedObjectContext) {
         GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
@@ -235,8 +229,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (_fetchedResultsController != nil)
-    {
+    if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
 
@@ -264,17 +257,16 @@
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
 
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
-    {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
 
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
 
     return _fetchedResultsController;
 }

@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "PSTCollectionView.h"
 
-@interface EventListGridViewController : UIViewController <NSFetchedResultsControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface EventListGridViewController : UIViewController<NSFetchedResultsControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak, readwrite) IBOutlet PSTCollectionView *collectionView;
 @property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;

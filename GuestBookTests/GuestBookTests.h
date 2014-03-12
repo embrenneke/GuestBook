@@ -8,10 +8,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-
 @interface GuestBookTests : SenTestCase {
 @private
-    
 }
 
 @end

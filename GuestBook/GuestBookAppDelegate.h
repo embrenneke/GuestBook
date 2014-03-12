@@ -11,13 +11,14 @@
 #import <CoreData/CoreData.h>
 #import "Event.h"
 
-@interface GuestBookAppDelegate : NSObject <UIApplicationDelegate>
+@interface GuestBookAppDelegate : NSObject<UIApplicationDelegate>
 
 @property (nonatomic, strong, readwrite) Event *currentEvent;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readwrite) IBOutlet UIWindow *window;
 
 - (NSURL *)applicationLibraryDirectory;
+
 - (NSString *)generateUuidString;
 
 @end

@@ -11,14 +11,12 @@
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 #import "UIImage+Resize.h"
-#import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/UTCoreTypes.h>
-#import <UIKit/UIImagePickerController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
-@interface AddSignatureViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface AddSignatureViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (nonatomic, strong, readwrite) NSString* mediaPath;
+@property (nonatomic, strong, readwrite) NSString *mediaPath;
 @property (nonatomic, strong, readwrite) UIImagePickerController *cameraUI;
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak, readwrite) IBOutlet UITextField *name;
@@ -37,7 +35,7 @@
         // Custom initialization
         self.mediaPath = nil;
         self.title = @"Add Signature";
-        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
         self.managedObjectContext = appDelegate.managedObjectContext;
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.navigationController action:@selector(popViewControllerAnimated:)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
@@ -45,10 +43,10 @@
     return self;
 }
 
--(IBAction)submitSig:(UIButton*)sender
+- (IBAction)submitSig:(UIButton *)sender
 {
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([appDelegate currentEvent]) {
+    if ([appDelegate currentEvent]) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
         Signature *signature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
 
@@ -90,33 +88,30 @@
     [self clearFormState];
 }
 
--(void)clearFormState
+- (void)clearFormState
 {
     [self.name setText:@""];
     [self.message setText:@""];
     [self.imageButton setImage:nil forState:UIControlStateNormal];
-    [self.imageButton setTitle:@"Press to add image/video"  forState:UIControlStateNormal];
+    [self.imageButton setTitle:@"Press to add image/video" forState:UIControlStateNormal];
     self.mediaPath = nil;
-    
 }
 
-- (IBAction)addMultimedia:(UIButton*)sender
+- (IBAction)addMultimedia:(UIButton *)sender
 {
     // bring up camera view, capture image/video, set thumbnail to button image
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.cameraUI = [[UIImagePickerController alloc] init];
         self.cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
+
         // Displays a control that allows the user to choose picture or
         // movie capture, if both are available:
-        self.cameraUI.mediaTypes =
-        [UIImagePickerController availableMediaTypesForSourceType:
-         UIImagePickerControllerSourceTypeCamera];
-        
+        self.cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+
         // Hides the controls for moving & scaling pictures, or for
         // trimming movies. To instead show the controls, use YES.
         self.cameraUI.allowsEditing = NO;
-        
+
         self.cameraUI.delegate = self;
         self.cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
 
@@ -128,19 +123,19 @@
 }
 
 // For responding to the user tapping Cancel.
-- (void)imagePickerControllerDidCancel: (UIImagePickerController *) picker
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self.cameraUI dismissModalViewControllerAnimated:YES];
     self.cameraUI = nil;
 }
 
 // For responding to the user accepting a newly-captured picture or movie
-- (void)imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+
     // handle re-picking
     if (self.mediaPath) {
         NSError *error = nil;
@@ -148,43 +143,41 @@
         [[NSFileManager defaultManager] removeItemAtPath:oldFilePath error:&error];
         self.mediaPath = nil;
     }
-    
+
     // Handle a still image capture
     if ([mediaType isEqualToString:(__bridge NSString *)kUTTypeImage]) {
-        editedImage = (UIImage *) [info objectForKey:
-                                   UIImagePickerControllerEditedImage];
-        originalImage = (UIImage *) [info objectForKey:
-                                     UIImagePickerControllerOriginalImage];
-        
+        editedImage = (UIImage *)[info objectForKey:UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+
         if (editedImage) {
             imageToSave = editedImage;
         } else {
             imageToSave = originalImage;
         }
-        
+
         // save image to directory, save thumbnail and path to coreData store.
         CGSize buttonSize = CGSizeMake(245, 180);
         UIImage *thumbnailImage = [imageToSave resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
-        
+
         [[self.imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
         [self.imageButton setTitle:@"" forState:UIControlStateNormal];
         [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
         self.imageButton.layer.cornerRadius = 15;
         self.imageButton.layer.masksToBounds = YES;
         self.mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
-        [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:self.mediaPath atomically:YES];        
+        [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:self.mediaPath atomically:YES];
     }
-    
+
     // Handle a movie capture
     if ([mediaType isEqualToString:(__bridge NSString *)kUTTypeMovie]) {
         NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
-        
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
             // handle movie
             self.mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
             NSError *error = nil;
             [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:self.mediaPath error:&error];
-            if(error) {
+            if (error) {
                 NSLog(@"%@", [error localizedDescription]);
             }
 
@@ -198,7 +191,7 @@
             [player stop];
         }
     }
-    
+
     [self.cameraUI dismissModalViewControllerAnimated:YES];
     self.cameraUI = nil;
 }
@@ -221,7 +214,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    return YES;
 }
 
 @end
