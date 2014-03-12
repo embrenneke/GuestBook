@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F106D96818CFED9F00129D7B /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D95818CFED9F00129D7B /* Icon-40.png */; };
+		F106D96918CFED9F00129D7B /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D95918CFED9F00129D7B /* Icon-40@2x.png */; };
+		F106D96C18CFED9F00129D7B /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D95C18CFED9F00129D7B /* Icon-72.png */; };
+		F106D96D18CFED9F00129D7B /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D95D18CFED9F00129D7B /* Icon-72@2x.png */; };
+		F106D96E18CFED9F00129D7B /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D95E18CFED9F00129D7B /* Icon-76.png */; };
+		F106D96F18CFED9F00129D7B /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D95F18CFED9F00129D7B /* Icon-76@2x.png */; };
+		F106D97018CFED9F00129D7B /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D96018CFED9F00129D7B /* Icon-Small-50.png */; };
+		F106D97118CFED9F00129D7B /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D96118CFED9F00129D7B /* Icon-Small-50@2x.png */; };
+		F106D97218CFED9F00129D7B /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D96218CFED9F00129D7B /* Icon-Small.png */; };
+		F106D97318CFED9F00129D7B /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D96318CFED9F00129D7B /* Icon-Small@2x.png */; };
 		F10DBC4D14CB73FA007E22DA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4C14CB73F9007E22DA /* Event.m */; };
 		F10DBC5014CB73FB007E22DA /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4F14CB73FA007E22DA /* Signature.m */; };
 		F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1157EC214107DB90017C2CB /* MediaPlayer.framework */; };
-		F1157ECC14108F470017C2CB /* guestbook.png in Resources */ = {isa = PBXBuildFile; fileRef = F1157ECB14108F470017C2CB /* guestbook.png */; };
 		F1406E86183C665B000A2367 /* pages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E84183C665B000A2367 /* pages@2x.png */; };
 		F1406E87183C665B000A2367 /* spine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E85183C665B000A2367 /* spine@2x.png */; };
-		F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F1528C9B141BC40D004BA1EF /* iTunesArtwork */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
 		F15AE9F5183C4EB2007F4659 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F15AE9EF183C4EB2007F4659 /* Default-Landscape~ipad.png */; };
@@ -39,8 +47,6 @@
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
 		F191B8681508D45900CBF5B5 /* EventListGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F191B8661508D45900CBF5B5 /* EventListGridViewController.m */; };
 		F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F191B8671508D45900CBF5B5 /* EventListGridViewController.xib */; };
-		F19EAB0D1424199400AA9EF6 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EAB0B1424199300AA9EF6 /* settings.png */; };
-		F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EAB0C1424199300AA9EF6 /* spotlight.png */; };
 		F1A973F016AB8EB000165418 /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F1A973EF16AB8EB000165418 /* ios-linen.jpg */; };
 		F1A973F116AB8EB000165418 /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F1A973EF16AB8EB000165418 /* ios-linen.jpg */; };
 		F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */ = {isa = PBXBuildFile; fileRef = F1ABACA41419AFCB00AF9BC5 /* no-media.png */; };
@@ -90,15 +96,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F106D95818CFED9F00129D7B /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		F106D95918CFED9F00129D7B /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		F106D95C18CFED9F00129D7B /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		F106D95D18CFED9F00129D7B /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		F106D95E18CFED9F00129D7B /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		F106D95F18CFED9F00129D7B /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		F106D96018CFED9F00129D7B /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		F106D96118CFED9F00129D7B /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		F106D96218CFED9F00129D7B /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		F106D96318CFED9F00129D7B /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		F10DBC4B14CB73F9007E22DA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		F10DBC4C14CB73F9007E22DA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		F10DBC4E14CB73FA007E22DA /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
 		F10DBC4F14CB73FA007E22DA /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
 		F1157EC214107DB90017C2CB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		F1157ECB14108F470017C2CB /* guestbook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guestbook.png; path = ../images/guestbook.png; sourceTree = "<group>"; };
 		F1406E84183C665B000A2367 /* pages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pages@2x.png"; path = "images/pages@2x.png"; sourceTree = SOURCE_ROOT; };
 		F1406E85183C665B000A2367 /* spine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spine@2x.png"; path = "images/spine@2x.png"; sourceTree = SOURCE_ROOT; };
-		F1528C9B141BC40D004BA1EF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = images/iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		F157356114119F520034BD4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F157356314119F520034BD4D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
@@ -140,12 +154,9 @@
 		F18295531780CD1100886DE1 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		F18295541780CD1100886DE1 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spine.png; path = images/spine.png; sourceTree = SOURCE_ROOT; };
-		F18EAF5B141BC02100FA99AB /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = book.png; path = images/book.png; sourceTree = SOURCE_ROOT; };
 		F191B8651508D45900CBF5B5 /* EventListGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListGridViewController.h; sourceTree = "<group>"; };
 		F191B8661508D45900CBF5B5 /* EventListGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListGridViewController.m; sourceTree = "<group>"; };
 		F191B8671508D45900CBF5B5 /* EventListGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventListGridViewController.xib; sourceTree = "<group>"; };
-		F19EAB0B1424199300AA9EF6 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = SOURCE_ROOT; };
-		F19EAB0C1424199300AA9EF6 /* spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spotlight.png; path = images/spotlight.png; sourceTree = SOURCE_ROOT; };
 		F1A171DA18396FED0095E0B9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		F1A171DB18396FED0095E0B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		F1A973EF16AB8EB000165418 /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ios-linen.jpg"; path = "../images/ios-linen.jpg"; sourceTree = "<group>"; };
@@ -227,10 +238,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F106D95718CFED9F00129D7B /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				F106D95818CFED9F00129D7B /* Icon-40.png */,
+				F106D95918CFED9F00129D7B /* Icon-40@2x.png */,
+				F106D95C18CFED9F00129D7B /* Icon-72.png */,
+				F106D95D18CFED9F00129D7B /* Icon-72@2x.png */,
+				F106D95E18CFED9F00129D7B /* Icon-76.png */,
+				F106D95F18CFED9F00129D7B /* Icon-76@2x.png */,
+				F106D96018CFED9F00129D7B /* Icon-Small-50.png */,
+				F106D96118CFED9F00129D7B /* Icon-Small-50@2x.png */,
+				F106D96218CFED9F00129D7B /* Icon-Small.png */,
+				F106D96318CFED9F00129D7B /* Icon-Small@2x.png */,
+			);
+			name = Icons;
+			path = images/Icons;
+			sourceTree = SOURCE_ROOT;
+		};
 		F1528C9A141BC3B0004BA1EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F1528C9B141BC40D004BA1EF /* iTunesArtwork */,
 			);
 			name = Resources;
 			path = GuestBook;
@@ -239,15 +267,12 @@
 		F15AE9EC183C4E0D007F4659 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				F18EAF5B141BC02100FA99AB /* book.png */,
-				F1157ECB14108F470017C2CB /* guestbook.png */,
+				F106D95718CFED9F00129D7B /* Icons */,
 				F1ABACA41419AFCB00AF9BC5 /* no-media.png */,
 				F1DDDDEA1422B568001248EF /* pages.png */,
 				F1406E84183C665B000A2367 /* pages@2x.png */,
-				F19EAB0B1424199300AA9EF6 /* settings.png */,
 				F18EAF58141BBABE00FA99AB /* spine.png */,
 				F1406E85183C665B000A2367 /* spine@2x.png */,
-				F19EAB0C1424199300AA9EF6 /* spotlight.png */,
 				F1A973EF16AB8EB000165418 /* ios-linen.jpg */,
 				F15AE9ED183C4E15007F4659 /* Launch Images */,
 			);
@@ -509,29 +534,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1B3D9481886367300919558 /* event.html in Resources */,
+				F106D96E18CFED9F00129D7B /* Icon-76.png in Resources */,
+				F106D97118CFED9F00129D7B /* Icon-Small-50@2x.png in Resources */,
 				F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */,
 				F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */,
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
+				F106D97318CFED9F00129D7B /* Icon-Small@2x.png in Resources */,
 				F15AE9FA183C4EB2007F4659 /* Default-Portrait@2x.png in Resources */,
+				F106D97218CFED9F00129D7B /* Icon-Small.png in Resources */,
 				F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */,
 				F15AE9F5183C4EB2007F4659 /* Default-Landscape~ipad.png in Resources */,
 				F15AE9F6183C4EB2007F4659 /* Default-Landscape.png in Resources */,
+				F106D96818CFED9F00129D7B /* Icon-40.png in Resources */,
+				F106D97018CFED9F00129D7B /* Icon-Small-50.png in Resources */,
 				F15AE9F9183C4EB2007F4659 /* Default-Portrait.png in Resources */,
+				F106D96C18CFED9F00129D7B /* Icon-72.png in Resources */,
 				F1406E87183C665B000A2367 /* spine@2x.png in Resources */,
-				F1157ECC14108F470017C2CB /* guestbook.png in Resources */,
 				F157356514119F520034BD4D /* DetailViewController.xib in Resources */,
+				F106D96F18CFED9F00129D7B /* Icon-76@2x.png in Resources */,
 				F1ABACA51419AFCB00AF9BC5 /* no-media.png in Resources */,
 				F18EAF59141BBABE00FA99AB /* spine.png in Resources */,
 				F1406E86183C665B000A2367 /* pages@2x.png in Resources */,
-				F1528C9C141BC40D004BA1EF /* iTunesArtwork in Resources */,
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
-				F19EAB0D1424199400AA9EF6 /* settings.png in Resources */,
-				F19EAB0E1424199400AA9EF6 /* spotlight.png in Resources */,
 				F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */,
+				F106D96918CFED9F00129D7B /* Icon-40@2x.png in Resources */,
 				F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */,
 				F15AE9F7183C4EB2007F4659 /* Default-Landscape@2x~ipad.png in Resources */,
 				F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */,
 				F15AE9F8183C4EB2007F4659 /* Default-Landscape@2x.png in Resources */,
+				F106D96D18CFED9F00129D7B /* Icon-72@2x.png in Resources */,
 				F1A973F016AB8EB000165418 /* ios-linen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
