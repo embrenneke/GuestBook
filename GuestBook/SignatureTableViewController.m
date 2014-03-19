@@ -1,9 +1,10 @@
 //
-//  RootViewController.m
+//  SignatureTableViewController.m
 //  GuestBook
 //
 //  Created by Emily Brenneke on 8/23/11.
-//  Copyright 2011 UnspunProductions. All rights reserved.
+//  Copyright 2013 Emily Brenneke. All rights reserved.
+//  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
 #import "SignatureTableViewController.h"
@@ -35,34 +36,29 @@
     self.navigationItem.title = @"No Event Selected";
 
     self.addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
-    self.addSigView.managedObjectContext = self.managedObjectContext;
-    self.addSigView.delegate = self;
     UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:self.addSigView];
     self.addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
     self.addSigView.title = @"Add Signature";
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Event* event = [appDelegate currentEvent];
+    Event *event = [appDelegate currentEvent];
     self.navigationItem.title = [event name];
     [self.tableView reloadData];
-    
+
     [self.tableView setSeparatorColor:[UIColor clearColor]];
 }
 
 - (void)insertNewSignature:(id)sender
 {
-    if([self.eventsPopup isPopoverVisible])
-    {
+    if ([self.eventsPopup isPopoverVisible]) {
         [self.eventsPopup dismissPopoverAnimated:YES];
     }
-    if(![self.addEntryPopup isPopoverVisible])
-    {
+    if (![self.addEntryPopup isPopoverVisible]) {
         [self.addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
-    else
-    {
+    else {
         [self.addEntryPopup dismissPopoverAnimated:YES];
     }
 }
@@ -74,34 +70,19 @@
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
- // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations.
-	return YES;
+    // Return YES for supported orientations.
+    return YES;
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (_fetchedResultsController != nil)
-    {
+    if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    
+
     /*
      Set up the fetched results controller.
      */
@@ -114,52 +95,50 @@
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
     [fetchRequest setPredicate:aPredicate];
-    
+
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
-    
+
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
+
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
+
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"SigsCache"];
     aFetchedResultsController.delegate = self;
     _fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
-    {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-         
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return _fetchedResultsController;
-} 
 
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+    return _fetchedResultsController;
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     // the user clicked one of the Delete/Cancel buttons
-    if (buttonIndex == 1)
-    {
+    if (buttonIndex == 1) {
         // Delete the managed object for the given index path
         NSError *error = nil;
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         Signature *sig = [self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath];
         [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
-        
+
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath]];
-        
+
         // Save the context.
-        if (![context save:&error])
-        {
+        if (![context save:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
@@ -172,7 +151,7 @@
     self.pendingDeletePath = nil;
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 150;
 }
@@ -185,7 +164,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -193,7 +172,7 @@
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"OldTableCell";
-    
+
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -209,15 +188,14 @@
     [self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    switch(type)
-    {
+    switch (type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
+
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
@@ -229,25 +207,24 @@
       newIndexPath:(NSIndexPath *)newIndexPath
 {
     UITableView *theTableView = self.tableView;
-    
-    switch(type)
-    {
-            
+
+    switch (type) {
+
         case NSFetchedResultsChangeInsert:
             [theTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
+
         case NSFetchedResultsChangeDelete:
             [theTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
+
         case NSFetchedResultsChangeUpdate:
             [self configureCell:[theTableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
-            
+
         case NSFetchedResultsChangeMove:
             [theTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [theTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            [theTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -257,18 +234,17 @@
     [self.tableView endUpdates];
 }
 
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     if (editingStyle == UITableViewCellEditingStyleDelete) {
-     
-         // confirm delete
-         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-         self.pendingDeletePath = [indexPath copy];
-         [alert show];
-     }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        // confirm delete
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        self.pendingDeletePath = [indexPath copy];
+        [alert show];
+    }
 }
- 
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -285,33 +261,27 @@
     detailView = nil;
 }
 
--(void)presentCameraViewController:(UIViewController*)viewController
+- (void)presentCameraViewController:(UIViewController *)viewController
 {
     [self.addEntryPopup dismissPopoverAnimated:YES];
     [self presentModalViewController:viewController animated:YES];
 }
 
--(void)finishedPickingImage
+- (void)finishedPickingImage
 {
     [self.addEntryPopup presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    [NSFetchedResultsController deleteCacheWithName:nil];
-}
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+    [NSFetchedResultsController deleteCacheWithName:nil];
 }
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signaturePopoverShouldDismiss" object:nil];
 }
 
 @end
