@@ -9,7 +9,7 @@
 
 #import "GuestBookAppDelegate.h"
 
-#import "EventListGridViewController.h"
+#import "SignatureTableViewController.h"
 
 @interface GuestBookAppDelegate ()
 
@@ -110,8 +110,8 @@
 
 - (void)awakeFromNib
 {
-    EventListGridViewController *elgvController = (EventListGridViewController *)[self.navigationController topViewController];
-    elgvController.managedObjectContext = self.managedObjectContext;
+    SignatureTableViewController *signatureViewController = (SignatureTableViewController *)[self.navigationController topViewController];
+    signatureViewController.managedObjectContext = self.managedObjectContext;
 }
 
 - (void)saveContext
