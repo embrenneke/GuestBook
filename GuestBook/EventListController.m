@@ -14,9 +14,8 @@
 
 @interface EventListController ()
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
 @property (nonatomic, strong) NSIndexPath *pendingDeletePath;
+
 @end
 
 @implementation EventListController

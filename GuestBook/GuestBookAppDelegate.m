@@ -30,6 +30,8 @@
     _currentEvent = newCurrentEvent;
 
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
+    SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
+    [signatureTableViewController updatePredicate];
 }
 
 - (Event *)getCurrentEvent
