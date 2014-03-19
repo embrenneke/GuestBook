@@ -8,9 +8,21 @@
 //
 
 #import "SignatureTableViewController.h"
+#import "AddSignatureViewController.h"
 #import "DetailViewController.h"
+#import "EventListController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
+
+@interface SignatureTableViewController ()
+
+@property (nonatomic, strong) UIPopoverController *eventsPopup;
+@property (nonatomic, strong) EventListController *eventsView;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSIndexPath *pendingDeletePath;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@end
 
 @implementation SignatureTableViewController
 
@@ -32,15 +44,18 @@
     // Set up the add signature buttons.
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithTitle:@"Events" style:UIBarButtonItemStylePlain target:self action:@selector(chooseEvent:)];
+    self.navigationItem.leftBarButtonItem = events;
 
     self.navigationItem.title = @"No Event Selected";
 
-    self.addSigView = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
-    UINavigationController *sigNavCon = [[UINavigationController alloc] initWithRootViewController:self.addSigView];
-    self.addEntryPopup = [[UIPopoverController alloc] initWithContentViewController:sigNavCon];
-    self.addSigView.title = @"Add Signature";
+    self.eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
+    self.eventsView.managedObjectContext = self.managedObjectContext;
+    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:self.eventsView];
+    self.eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
+    self.eventsView.title = @"Event List";
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertNewSignature:) name:@"signaturePopoverShouldDismiss" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     Event *event = [appDelegate currentEvent];
@@ -55,19 +70,26 @@
     if ([self.eventsPopup isPopoverVisible]) {
         [self.eventsPopup dismissPopoverAnimated:YES];
     }
-    if (![self.addEntryPopup isPopoverVisible]) {
-        [self.addEntryPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    else {
-        [self.addEntryPopup dismissPopoverAnimated:YES];
+
+    AddSignatureViewController *addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
+    addVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentModalViewController:addVC animated:YES];
+}
+
+- (void)chooseEvent:(id)sender
+{
+    if(![self.eventsPopup isPopoverVisible]) {
+        [self.eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [self.eventsPopup dismissPopoverAnimated:YES];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [NSFetchedResultsController deleteCacheWithName:nil];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
-    [super viewWillAppear:animated];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -123,6 +145,25 @@
     }
 
     return _fetchedResultsController;
+}
+
+- (void)updatePredicate
+{
+    [NSFetchedResultsController deleteCacheWithName:nil];
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
+    [[self.fetchedResultsController fetchRequest] setPredicate:aPredicate];
+    NSError *error = nil;
+    if(![self.fetchedResultsController performFetch:&error])
+    {
+        NSLog(@"%@, %@", error, [error userInfo]);
+        abort();
+    }
+
+    self.navigationItem.title = [[appDelegate currentEvent] name];
+    [self.navigationItem.rightBarButtonItem setEnabled:true];
+
+    [self.tableView reloadData];
 }
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -261,17 +302,6 @@
     detailView = nil;
 }
 
-- (void)presentCameraViewController:(UIViewController *)viewController
-{
-    [self.addEntryPopup dismissPopoverAnimated:YES];
-    [self presentModalViewController:viewController animated:YES];
-}
-
-- (void)finishedPickingImage
-{
-    [self.addEntryPopup presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -281,7 +311,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signaturePopoverShouldDismiss" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"eventPopoverShouldDismiss" object:nil];
 }
 
 @end

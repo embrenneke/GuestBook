@@ -9,19 +9,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "EventListController.h"
-#import "AddSignatureViewController.h"
 
-@interface SignatureTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
-}
+@interface SignatureTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong) UIPopoverController *eventsPopup;
-@property (nonatomic, strong) UIPopoverController *addEntryPopup;
-@property (nonatomic, strong) EventListController *eventsView;
-@property (nonatomic, strong) AddSignatureViewController *addSigView;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+- (void)updatePredicate;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSIndexPath *pendingDeletePath;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
