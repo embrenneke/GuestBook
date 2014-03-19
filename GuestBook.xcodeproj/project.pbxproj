@@ -24,6 +24,10 @@
 		F1406E87183C665B000A2367 /* spine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E85183C665B000A2367 /* spine@2x.png */; };
 		F157356414119F520034BD4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F157356214119F520034BD4D /* DetailViewController.m */; };
 		F157356514119F520034BD4D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F157356314119F520034BD4D /* DetailViewController.xib */; };
+		F15A674518D9357C00E867A3 /* EventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F15A674018D9357C00E867A3 /* EventListController.m */; };
+		F15A674618D9357C00E867A3 /* EventListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F15A674118D9357C00E867A3 /* EventListController.xib */; };
+		F15A674718D9357C00E867A3 /* SignatureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F15A674318D9357C00E867A3 /* SignatureTableViewController.m */; };
+		F15A674818D9357C00E867A3 /* SignatureTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F15A674418D9357C00E867A3 /* SignatureTableViewController.xib */; };
 		F15AE9F5183C4EB2007F4659 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F15AE9EF183C4EB2007F4659 /* Default-Landscape~ipad.png */; };
 		F15AE9F6183C4EB2007F4659 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = F15AE9F0183C4EB2007F4659 /* Default-Landscape.png */; };
 		F15AE9F7183C4EB2007F4659 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F15AE9F1183C4EB2007F4659 /* Default-Landscape@2x~ipad.png */; };
@@ -116,6 +120,12 @@
 		F157356114119F520034BD4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F157356214119F520034BD4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F157356314119F520034BD4D /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		F15A673F18D9357C00E867A3 /* EventListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListController.h; sourceTree = "<group>"; };
+		F15A674018D9357C00E867A3 /* EventListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListController.m; sourceTree = "<group>"; };
+		F15A674118D9357C00E867A3 /* EventListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventListController.xib; sourceTree = "<group>"; };
+		F15A674218D9357C00E867A3 /* SignatureTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureTableViewController.h; sourceTree = "<group>"; };
+		F15A674318D9357C00E867A3 /* SignatureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureTableViewController.m; sourceTree = "<group>"; };
+		F15A674418D9357C00E867A3 /* SignatureTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureTableViewController.xib; sourceTree = "<group>"; };
 		F15AE9EB183C4DF1007F4659 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "../images/Launch Images/Default.png"; sourceTree = "<group>"; };
 		F15AE9EE183C4E6B007F4659 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~ipad.png"; path = "../images/Launch Images/Default~ipad.png"; sourceTree = "<group>"; };
 		F15AE9EF183C4EB2007F4659 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "images/Launch Images/Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
@@ -393,6 +403,12 @@
 		F1B3F7C0140418F000549C03 /* GuestBook */ = {
 			isa = PBXGroup;
 			children = (
+				F15A673F18D9357C00E867A3 /* EventListController.h */,
+				F15A674018D9357C00E867A3 /* EventListController.m */,
+				F15A674118D9357C00E867A3 /* EventListController.xib */,
+				F15A674218D9357C00E867A3 /* SignatureTableViewController.h */,
+				F15A674318D9357C00E867A3 /* SignatureTableViewController.m */,
+				F15A674418D9357C00E867A3 /* SignatureTableViewController.xib */,
 				F1B3F80514043FF800549C03 /* AddEventViewController.h */,
 				F1B3F80614043FF800549C03 /* AddEventViewController.m */,
 				F1B3F80714043FF900549C03 /* AddEventViewController.xib */,
@@ -541,8 +557,10 @@
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
 				F106D97318CFED9F00129D7B /* Icon-Small@2x.png in Resources */,
 				F15AE9FA183C4EB2007F4659 /* Default-Portrait@2x.png in Resources */,
+				F15A674818D9357C00E867A3 /* SignatureTableViewController.xib in Resources */,
 				F106D97218CFED9F00129D7B /* Icon-Small.png in Resources */,
 				F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */,
+				F15A674618D9357C00E867A3 /* EventListController.xib in Resources */,
 				F15AE9F5183C4EB2007F4659 /* Default-Landscape~ipad.png in Resources */,
 				F15AE9F6183C4EB2007F4659 /* Default-Landscape.png in Resources */,
 				F106D96818CFED9F00129D7B /* Icon-40.png in Resources */,
@@ -619,6 +637,7 @@
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
 				F157356414119F520034BD4D /* DetailViewController.m in Sources */,
+				F15A674718D9357C00E867A3 /* SignatureTableViewController.m in Sources */,
 				F1B3D94618862F3A00919558 /* UGBZipHTMLExport.m in Sources */,
 				F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */,
 				F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */,
@@ -639,6 +658,7 @@
 				F182955C1780CD1100886DE1 /* PSTCollectionViewLayout.m in Sources */,
 				F182955D1780CD1100886DE1 /* PSTCollectionViewUpdateItem.m in Sources */,
 				F182955E1780CD1100886DE1 /* PSTGridLayoutInfo.m in Sources */,
+				F15A674518D9357C00E867A3 /* EventListController.m in Sources */,
 				F182955F1780CD1100886DE1 /* PSTGridLayoutItem.m in Sources */,
 				F18295601780CD1100886DE1 /* PSTGridLayoutRow.m in Sources */,
 				F18295611780CD1100886DE1 /* PSTGridLayoutSection.m in Sources */,
