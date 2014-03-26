@@ -18,3 +18,15 @@
 @dynamic signatures;
 
 @end
+
+@implementation Event (Formatter)
+
+- (NSDateFormatter *)formatDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    return formatter;
+}
+
+@end

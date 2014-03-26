@@ -23,10 +23,14 @@
     [[NSFileManager defaultManager] createDirectoryAtURL:mediaURL withIntermediateDirectories:YES attributes:nil error:NULL];
     [[NSFileManager defaultManager] createDirectoryAtURL:thumbnailURL withIntermediateDirectories:YES attributes:nil error:NULL];
 
+    NSError *error;
     NSString *rendering = [GRMustacheTemplate renderObject:event
                                               fromResource:@"eventhtml"
                                                     bundle:nil
-                                                     error:NULL];
+                                                     error:&error];
+    if (error != nil) {
+        NSLog(@"Error %@", [error localizedDescription]);
+    }
     [rendering writeToURL:indexURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 
     // TODO: copy media to media/, copy thumbnail data from coredata to thumbnails/, zip whole package, delete
