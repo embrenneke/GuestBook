@@ -17,30 +17,20 @@
     NSURL *dirURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"eventExport"]];
     NSURL *mediaURL = [dirURL URLByAppendingPathComponent:@"media" isDirectory:YES];
     NSURL *thumbnailURL = [dirURL URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
-    NSURL *eventDataURL = [dirURL URLByAppendingPathComponent:@"event.json" isDirectory:NO];
     NSURL *indexURL = [dirURL URLByAppendingPathComponent:@"event.html" isDirectory:NO];
-    NSURL *sourceIndexURL = [[NSBundle mainBundle] URLForResource:@"event" withExtension:@"html"];
 
-    [[NSFileManager defaultManager] createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
-    [[NSFileManager defaultManager] createDirectoryAtURL:mediaURL withIntermediateDirectories:YES attributes:nil error:nil];
-    [[NSFileManager defaultManager] createDirectoryAtURL:thumbnailURL withIntermediateDirectories:YES attributes:nil error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:NULL];
+    [[NSFileManager defaultManager] createDirectoryAtURL:mediaURL withIntermediateDirectories:YES attributes:nil error:NULL];
+    [[NSFileManager defaultManager] createDirectoryAtURL:thumbnailURL withIntermediateDirectories:YES attributes:nil error:NULL];
 
-    NSDictionary *eventDictionary = [event jsonObjectForEvent];
-    NSData *eventData = [NSJSONSerialization dataWithJSONObject:eventDictionary options:NSJSONWritingPrettyPrinted error:nil];
-    [eventData writeToURL:eventDataURL atomically:YES];
-
-    [[NSFileManager defaultManager] copyItemAtURL:sourceIndexURL toURL:indexURL error:nil];
+    NSString *rendering = [GRMustacheTemplate renderObject:event
+                                              fromResource:@"eventhtml"
+                                                    bundle:nil
+                                                     error:NULL];
+    [rendering writeToURL:indexURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 
     // TODO: copy media to media/, copy thumbnail data from coredata to thumbnails/, zip whole package, delete
     // export directory, return zipped data to email, drop in itunes, whatever
-
-    NSString *rendering = [GRMustacheTemplate renderObject:event
-                                              fromResource:@"event"
-                                                    bundle:nil
-                                                     error:NULL];
-
-    NSLog(@"%@", rendering);
-
     NSLog(@"%@", [dirURL absoluteString]);
 
     return nil;
