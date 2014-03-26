@@ -59,6 +59,8 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
 
+    [appDelegate setCurrentEvent:event];
+
     [self dismissModalViewControllerAnimated:YES];
 }
 
