@@ -49,4 +49,12 @@
     return signature;
 }
 
+- (NSString *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    return [dateFormatter stringFromDate:self.timeStamp];
+}
+
 @end
