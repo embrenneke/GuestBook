@@ -11,6 +11,7 @@
 #import "AddEventViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
+#import "UGBZipHTMLExport.h"
 
 @interface EventListController ()
 
@@ -272,6 +273,8 @@
     // save current selection
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+
+    [UGBZipHTMLExport zipDataForEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 @end

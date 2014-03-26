@@ -7,7 +7,7 @@
 //
 
 #import "UGBZipHTMLExport.h"
-
+#import "GRMustache.h"
 #import "Event.h"
 
 @implementation UGBZipHTMLExport
@@ -33,6 +33,13 @@
 
     // TODO: copy media to media/, copy thumbnail data from coredata to thumbnails/, zip whole package, delete
     // export directory, return zipped data to email, drop in itunes, whatever
+
+    NSString *rendering = [GRMustacheTemplate renderObject:event
+                                              fromResource:@"event"
+                                                    bundle:nil
+                                                     error:NULL];
+
+    NSLog(@"%@", rendering);
 
     NSLog(@"%@", [dirURL absoluteString]);
 
