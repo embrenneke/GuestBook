@@ -27,6 +27,10 @@
 
     self.title = @"Create a New Event";
     self.datePicker.datePickerMode = UIDatePickerModeDate;
+
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
