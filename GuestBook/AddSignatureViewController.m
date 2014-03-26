@@ -201,6 +201,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        self.imageButton.hidden = YES;
+        self.message.frame = ({
+            CGRect frame = self.message.frame;
+            frame.size.height = 276;
+            frame;
+        });
+    }
+
     [self clearFormState];
     [self.name becomeFirstResponder];
 }

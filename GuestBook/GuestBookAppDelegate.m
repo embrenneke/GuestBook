@@ -24,6 +24,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize currentEvent = _currentEvent;
 
 - (void)setCurrentEvent:(Event *)newCurrentEvent
 {
@@ -31,10 +32,11 @@
 
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
     SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [signatureTableViewController updatePredicate];
 }
 
-- (Event *)getCurrentEvent
+- (Event *)currentEvent
 {
     if (!_currentEvent) {
         NSString *openEvent = [[NSUserDefaults standardUserDefaults] stringForKey:@"OpenEvent"];
@@ -62,6 +64,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Place Crashlytics startWithAPIKey here
+
+    // Delete any leftover CoreData caches
+    [NSFetchedResultsController deleteCacheWithName:nil];
 
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
@@ -114,22 +119,6 @@
 {
     SignatureTableViewController *signatureViewController = (SignatureTableViewController *)[self.navigationController topViewController];
     signatureViewController.managedObjectContext = self.managedObjectContext;
-}
-
-- (void)saveContext
-{
-    NSError *error = nil;
-    if (self.managedObjectContext) {
-        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }
 }
 
 #pragma mark - Core Data stack
@@ -209,6 +198,22 @@
     }
 
     return _persistentStoreCoordinator;
+}
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    if (self.managedObjectContext) {
+        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error]) {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 #pragma mark - Application's Documents directory

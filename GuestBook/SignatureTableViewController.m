@@ -16,8 +16,6 @@
 
 @interface SignatureTableViewController ()
 
-@property (nonatomic, strong) UIPopoverController *eventsPopup;
-@property (nonatomic, strong) EventListController *eventsView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSIndexPath *pendingDeletePath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -41,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Set up the add signature buttons.
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewSignature:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -49,13 +48,7 @@
 
     self.navigationItem.title = @"No Event Selected";
 
-    self.eventsView = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
-    self.eventsView.managedObjectContext = self.managedObjectContext;
-    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:self.eventsView];
-    self.eventsPopup = [[UIPopoverController alloc] initWithContentViewController:navCon];
-    self.eventsView.title = @"Event List";
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseEvent:) name:@"eventPopoverShouldDismiss" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventChosen:) name:@"eventPopoverShouldDismiss" object:nil];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     Event *event = [appDelegate currentEvent];
@@ -67,10 +60,6 @@
 
 - (void)insertNewSignature:(id)sender
 {
-    if ([self.eventsPopup isPopoverVisible]) {
-        [self.eventsPopup dismissPopoverAnimated:YES];
-    }
-
     AddSignatureViewController *addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
     addVC.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:addVC animated:YES];
@@ -78,11 +67,16 @@
 
 - (void)chooseEvent:(id)sender
 {
-    if(![self.eventsPopup isPopoverVisible]) {
-        [self.eventsPopup presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else {
-        [self.eventsPopup dismissPopoverAnimated:YES];
-    }
+    EventListController *eventController = [[EventListController alloc] initWithNibName:@"EventListController" bundle:nil];
+    eventController.managedObjectContext = self.managedObjectContext;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:eventController];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentModalViewController:navController animated:YES];
+}
+
+- (void)eventChosen:(NSNotification *)notif
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
