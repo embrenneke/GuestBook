@@ -32,3 +32,9 @@
 - (void)removeSignatures:(NSSet *)values;
 
 @end
+
+@interface Event (Formatter)
+
+@property (nonatomic, readonly) NSDateFormatter *formatDate;
+
+@end
