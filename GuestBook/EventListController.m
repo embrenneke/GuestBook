@@ -57,6 +57,10 @@
     // add button for creating a new event
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewEvent)];
     self.navigationItem.rightBarButtonItem = addButton;
+
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(barTintColor)]) {
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
