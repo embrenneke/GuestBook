@@ -19,8 +19,6 @@
 @property (nonatomic, retain) NSString *uuid;
 @property (nonatomic, retain) NSSet *signatures;
 
-- (NSDictionary *)jsonObjectForEvent;
-
 @end
 
 @interface Event (CoreDataGeneratedAccessors)
