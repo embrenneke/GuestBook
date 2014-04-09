@@ -22,6 +22,10 @@
 @property (nonatomic, retain) NSData *thumbnail;
 @property (nonatomic, retain) Event *event;
 
-- (NSDictionary *)jsonObjectForSignature;
+@end
+
+@interface Signature (Formatter)
+
+@property (nonatomic, readonly) NSDateFormatter *formatSignatureDate;
 
 @end

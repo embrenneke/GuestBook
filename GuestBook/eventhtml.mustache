@@ -1,0 +1,20 @@
+<html>
+<head>
+    <!-- Add html5 markup, possibly bootstrap to make it pretty. -->
+    <title>{{name}}</title>
+</head>
+<body>
+<h1>{{name}}</h1>
+<h2>{{ formatEventDate(time) }}</h2>
+<table>
+    {{#signatures}}
+    <tr>
+        <td>{{mediaPath}}</td>
+        <td>{{name}}</td>
+        <td>{{ formatSignatureDate(timeStamp) }}</td>
+        <td>{{message}}</td>
+    </tr>
+    {{/signatures}}
+</table>
+</body>
+</html>

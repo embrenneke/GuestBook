@@ -19,8 +19,6 @@
 @property (nonatomic, retain) NSString *uuid;
 @property (nonatomic, retain) NSSet *signatures;
 
-- (NSDictionary *)jsonObjectForEvent;
-
 @end
 
 @interface Event (CoreDataGeneratedAccessors)
@@ -32,5 +30,11 @@
 - (void)addSignatures:(NSSet *)values;
 
 - (void)removeSignatures:(NSSet *)values;
+
+@end
+
+@interface Event (Formatter)
+
+@property (nonatomic, readonly) NSDateFormatter *formatEventDate;
 
 @end
