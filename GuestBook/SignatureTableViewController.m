@@ -13,6 +13,7 @@
 #import "EventListController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
+#import "UIImage+Resize.h"
 
 @interface SignatureTableViewController ()
 
@@ -33,14 +34,10 @@
     cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
     cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.detailTextLabel.numberOfLines = 3;
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[sig thumbnail]]];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.frame = ({
-        // TODO: still not quite right, would like them all either right aligned or centered vertically
-        CGRect frame = imageView.frame;
-        frame.size.height = 140;
-        frame;
-    });
+    UIImage *image = [[UIImage imageWithData:[sig thumbnail]] resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(140., 140) interpolationQuality:kCGInterpolationDefault];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.frame = CGRectMake(0., 0., 140., 140.);
     cell.accessoryView = imageView;
 }
 
