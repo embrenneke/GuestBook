@@ -33,7 +33,15 @@
     cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
     cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.detailTextLabel.numberOfLines = 3;
-    cell.imageView.image = [UIImage imageWithData:[sig thumbnail]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[sig thumbnail]]];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.frame = ({
+        // TODO: still not quite right, would like them all either right aligned or centered vertically
+        CGRect frame = imageView.frame;
+        frame.size.height = 140;
+        frame;
+    });
+    cell.accessoryView = imageView;
 }
 
 - (void)viewDidLoad
