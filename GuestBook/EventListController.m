@@ -21,16 +21,6 @@
 
 @implementation EventListController
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[event name] description];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterNoStyle];
-    cell.detailTextLabel.text = [formatter stringFromDate:[event time]];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -40,7 +30,7 @@
     [NSFetchedResultsController deleteCacheWithName:nil];
 }
 
-#pragma mark - View lifecycle
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
@@ -54,9 +44,12 @@
     // display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+    // display a Cancel button in the navigation bar for this view controller.
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissSelf:)];
+
     // add button for creating a new event
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewEvent)];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewEvent)];
+//    self.navigationItem.rightBarButtonItem = addButton;
 
     if ([self.navigationController.navigationBar respondsToSelector:@selector(barTintColor)]) {
         self.navigationController.navigationBar.tintColor = [UIColor blackColor];
@@ -68,6 +61,16 @@
     // Return YES for supported orientations
     return YES;
 }
+
+#pragma mark - Action Handlers
+
+- (IBAction)dismissSelf:(id)sender
+{
+    // dismiss popup, change to selected event
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"eventPopoverShouldDismiss" object:nil];
+}
+
+#pragma mark - UIAlertViewDelegate Protocol
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -111,7 +114,7 @@
     self.pendingDeletePath = nil;
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource Protocol
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -121,12 +124,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    return [sectionInfo numberOfObjects] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"EventListTableViewCell";
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -177,13 +180,7 @@
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
     }
 
     return _fetchedResultsController;
@@ -240,45 +237,101 @@
     [self.tableView endUpdates];
 }
 
-/*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    NSInteger numberOfObjects = [sectionInfo numberOfObjects];
+    if (indexPath.row < numberOfObjects) {
+        return YES;
+    }
+    return NO;
 }
-*/
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // confirm delete
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this event? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
         self.pendingDeletePath = [indexPath copy];
         [alert show];
     }
 }
 
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return NO;
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
 
-#pragma mark - Table view delegate
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    if (indexPath.row < [sectionInfo numberOfObjects]) {
+        Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textLabel.text = [[event name] description];
+        cell.detailTextLabel.text = [dateFormatter stringFromDate:[event time]];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryView = [self shareButtonForTag:indexPath.row];
+    } else {
+        cell.textLabel.text = @"Add a New Event...";
+        cell.detailTextLabel.text = @"";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = nil;
+
+    }
+    cell.backgroundColor = [UIColor clearColor];
+}
+
+- (UIView *)shareButtonForTag:(NSInteger)tag
+{
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 60., 30.)];
+    shareButton.backgroundColor = [UIColor colorWithRed:0. green:0.35 blue:0. alpha:1.0];
+    shareButton.layer.cornerRadius = 5.f;
+    [shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    [shareButton addTarget:self action:@selector(shareEventTagged:) forControlEvents:UIControlEventTouchUpInside];
+    shareButton.tag = tag;
+
+    return shareButton;
+}
+
+- (IBAction)shareEventTagged:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSInteger tag = button.tag;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:tag inSection:0];
+    Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    // TODO: create a share sheet of some type
+
+    [UGBZipHTMLExport zipDataForEvent:event];
+}
+
+#pragma mark - UITableViewDelegate Protocol
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // dismiss popup, change to selected event
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"eventPopoverShouldDismiss" object:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    if (indexPath.row < [sectionInfo numberOfObjects]) {
+        // dismiss popup, change to selected event
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"eventPopoverShouldDismiss" object:nil];
 
-    // save current selection
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-
-    [UGBZipHTMLExport zipDataForEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        // save current selection
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate setCurrentEvent:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    } else {
+        [self insertNewEvent];
+    }
 }
+
+
 
 @end
