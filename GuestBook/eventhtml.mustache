@@ -5,13 +5,13 @@
 </head>
 <body>
 <h1>{{name}}</h1>
-<h2>{{ formatDate(time) }}</h2>
+<h2>{{ formatEventDate(time) }}</h2>
 <table>
     {{#signatures}}
     <tr>
         <td>{{mediaPath}}</td>
         <td>{{name}}</td>
-        <td>{{date}}</td>
+        <td>{{ formatSignatureDate(timeStamp) }}</td>
         <td>{{message}}</td>
     </tr>
     {{/signatures}}

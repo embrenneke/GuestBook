@@ -22,7 +22,10 @@
 @property (nonatomic, retain) NSData *thumbnail;
 @property (nonatomic, retain) Event *event;
 
-// Property for export. TODO: replace with formatter in template
-@property (nonatomic, assign, readonly) NSString *date;
+@end
+
+@interface Signature (Formatter)
+
+@property (nonatomic, readonly) NSDateFormatter *formatSignatureDate;
 
 @end

@@ -19,12 +19,19 @@
 @dynamic thumbnail;
 @dynamic event;
 
-- (NSString *)date
+@end
+
+@implementation Signature (Formatter)
+
+- (NSDateFormatter *)formatSignatureDate
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    return [dateFormatter stringFromDate:self.timeStamp];
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+    return dateFormatter;
 }
 
 @end

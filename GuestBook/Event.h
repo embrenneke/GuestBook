@@ -35,6 +35,6 @@
 
 @interface Event (Formatter)
 
-@property (nonatomic, readonly) NSDateFormatter *formatDate;
+@property (nonatomic, readonly) NSDateFormatter *formatEventDate;
 
 @end

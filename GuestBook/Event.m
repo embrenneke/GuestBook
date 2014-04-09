@@ -21,12 +21,15 @@
 
 @implementation Event (Formatter)
 
-- (NSDateFormatter *)formatDate
+- (NSDateFormatter *)formatEventDate
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterNoStyle];
-    return formatter;
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
+    return dateFormatter;
 }
 
 @end
