@@ -1419,6 +1419,7 @@
 				F1B21B3518E260440046751F /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1B3F7AE140418EF00549C03 /* Build configuration list for PBXProject "GuestBook" */ = {
 			isa = XCConfigurationList;
