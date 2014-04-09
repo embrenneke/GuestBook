@@ -33,12 +33,17 @@
     cell.detailTextLabel.text = [sig.message description];
     cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
     cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.detailTextLabel.numberOfLines = 3;
-    UIImage *image = [[UIImage imageWithData:[sig thumbnail]] resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(140., 140) interpolationQuality:kCGInterpolationDefault];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.contentMode = UIViewContentModeCenter;
-    imageView.frame = CGRectMake(0., 0., 140., 140.);
-    cell.accessoryView = imageView;
+    cell.detailTextLabel.numberOfLines = 0;
+    CGRect accessoryFrame = CGRectMake(0., 0., 140., 140.);
+    if (sig.thumbnail) {
+        UIImage *image = [[UIImage imageWithData:[sig thumbnail]] resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:accessoryFrame.size interpolationQuality:kCGInterpolationDefault];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.contentMode = UIViewContentModeCenter;
+        imageView.frame = accessoryFrame;
+        cell.accessoryView = imageView;
+    } else {
+        cell.accessoryView = [[UIView alloc] initWithFrame:accessoryFrame];
+    }
 }
 
 - (void)viewDidLoad
