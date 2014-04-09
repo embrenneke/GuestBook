@@ -19,34 +19,19 @@
 @dynamic thumbnail;
 @dynamic event;
 
-- (NSDictionary *)jsonObjectForSignature;
+@end
+
+@implementation Signature (Formatter)
+
+- (NSDateFormatter *)formatSignatureDate
 {
-    NSMutableDictionary *signature = [NSMutableDictionary dictionary];
-    if (self.name) {
-        [signature setObject:self.name forKey:@"name"];
-    }
-    if (self.message) {
-        [signature setObject:self.name forKey:@"message"];
-    }
-    if (self.timeStamp) {
-        // TODO: cache data formatter
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        [signature setObject:[dateFormatter stringFromDate:self.timeStamp] forKey:@"creationDate"];
     }
-    if (self.uuid) {
-        [signature setObject:self.uuid forKey:@"uuid"];
-    }
-    if (self.mediaPath) {
-        // TODO: just the filename
-        [signature setObject:self.mediaPath forKey:@"mediaPath"];
-    }
-    if (self.thumbnail) {
-        // TODO: do mediaPath filename .jpg
-    }
-
-    return signature;
+    return dateFormatter;
 }
 
 @end
