@@ -307,8 +307,8 @@
 
     // TODO: create a share sheet of some type
 
-    NSData *zipData = [UGBZipHTMLExport zipDataForEvent:event];
-    if (!zipData) {
+    NSString *zipDataPath = [UGBZipHTMLExport zipDataForEvent:event];
+    if (!zipDataPath) {
         // error
     }
 }

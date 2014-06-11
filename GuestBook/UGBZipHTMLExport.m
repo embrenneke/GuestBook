@@ -11,10 +11,11 @@
 #import "Event.h"
 #import "Signature.h"
 #import "GuestBookAppDelegate.h"
+#import "SSZipArchive.h"
 
 @implementation UGBZipHTMLExport
 
-+ (NSData *)zipDataForEvent:(Event *)event
++ (NSString *)zipDataForEvent:(Event *)event
 {
     NSError *error = nil;
     NSString *uniqueString = [[NSProcessInfo processInfo] globallyUniqueString];
@@ -75,13 +76,28 @@
         }
     }
 
-//    [[NSFileManager defaultManager] removeItemAtURL:dirURL error:&error];
-//    if (error != nil) {
-//        NSLog(@"Error %@", [error localizedDescription]);
-//        return nil;
-//    }
+    NSString *zipContents = [dirURL path];
+    NSString *zippedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self zipFileNameForEvent:event]];
+    [SSZipArchive createZipFileAtPath:zippedPath withContentsOfDirectory:zipContents];
 
-    return nil;
+    [[NSFileManager defaultManager] removeItemAtURL:dirURL error:&error];
+    if (error != nil) {
+        NSLog(@"Error %@", [error localizedDescription]);
+        return nil;
+    }
+
+    return zippedPath;
+}
+
++ (NSString *)zipFileNameForEvent:(Event *)event
+{
+    NSString *name = [event name];
+    NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>:"];
+    name = [[name componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
+    if ([name length] == 0) {
+        name = [event uuid];
+    }
+    return [name stringByAppendingPathExtension:@"zip"];
 }
 
 @end
