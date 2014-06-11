@@ -124,6 +124,7 @@
 		F1CA004F1947E7B200E20F43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00471947E7B200E20F43 /* zip.c */; };
 		F1CA00501947E7B200E20F43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CA004A1947E7B200E20F43 /* SSZipArchive.m */; };
 		F1CA00521947E9DD00E20F43 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA00511947E9DD00E20F43 /* libz.dylib */; };
+		F1CA00541947F0DC00E20F43 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA00531947F0DC00E20F43 /* MessageUI.framework */; };
 		F1D3A093150ABBF800C9C7C3 /* SignaturePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */; };
 		F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */; };
 		F1DA699F150B96E000DF0175 /* SignaturePageModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA699E150B96E000DF0175 /* SignaturePageModelController.m */; };
@@ -363,6 +364,7 @@
 		F1CA00491947E7B200E20F43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		F1CA004A1947E7B200E20F43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		F1CA00511947E9DD00E20F43 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F1CA00531947F0DC00E20F43 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F1D3A090150ABBF800C9C7C3 /* SignaturePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePageViewController.h; sourceTree = "<group>"; };
 		F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageViewController.m; sourceTree = "<group>"; };
 		F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageViewController.xib; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				F1B21B3C18E2612C0046751F /* libGRMustache.a in Frameworks */,
 				F15CD88914CCABDC00217B8E /* QuartzCore.framework in Frameworks */,
 				F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */,
+				F1CA00541947F0DC00E20F43 /* MessageUI.framework in Frameworks */,
 				F1B8014A140C7924007CE067 /* MobileCoreServices.framework in Frameworks */,
 				F1B3F7B9140418F000549C03 /* UIKit.framework in Frameworks */,
 				F1B3F7BB140418F000549C03 /* Foundation.framework in Frameworks */,
@@ -650,6 +653,7 @@
 		F1B3F7B7140418F000549C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1CA00531947F0DC00E20F43 /* MessageUI.framework */,
 				F1CA00511947E9DD00E20F43 /* libz.dylib */,
 				F1FD869816DC5F96009CEA2C /* Crashlytics.framework */,
 				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
