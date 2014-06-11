@@ -12,8 +12,9 @@
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 #import "UGBZipHTMLExport.h"
+#import <MessageUI/MessageUI.h>
 
-@interface EventListController ()
+@interface EventListController ()<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) NSIndexPath *pendingDeletePath;
 
@@ -281,7 +282,6 @@
         cell.detailTextLabel.text = @"";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = nil;
-
     }
     cell.backgroundColor = [UIColor clearColor];
 }
@@ -289,28 +289,51 @@
 - (UIView *)shareButtonForTag:(NSInteger)tag
 {
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 60., 30.)];
-    shareButton.backgroundColor = [UIColor colorWithRed:0. green:0.35 blue:0. alpha:1.0];
     shareButton.layer.cornerRadius = 5.f;
     [shareButton setTitle:@"Share" forState:UIControlStateNormal];
-    [shareButton addTarget:self action:@selector(shareEventTagged:) forControlEvents:UIControlEventTouchUpInside];
     shareButton.tag = tag;
+
+    if ([MFMailComposeViewController canSendMail]) {
+        shareButton.backgroundColor = [UIColor colorWithRed:0. green:0.35 blue:0. alpha:1.0];
+        [shareButton addTarget:self action:@selector(shareEvent:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        shareButton.backgroundColor = [UIColor lightGrayColor];
+        [shareButton addTarget:self action:@selector(unableToShareEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
 
     return shareButton;
 }
 
-- (IBAction)shareEventTagged:(id)sender
+- (IBAction)shareEvent:(id)sender
 {
     UIButton *button = (UIButton *)sender;
     NSInteger tag = button.tag;
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:tag inSection:0];
     Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    // TODO: create a share sheet of some type
-
     NSString *zipDataPath = [UGBZipHTMLExport zipDataForEvent:event];
     if (!zipDataPath) {
-        // error
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Unable to export guestbook. Device full?" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+    } else {
+        NSString *fileName = [zipDataPath lastPathComponent];
+        NSData *fileData = [NSData dataWithContentsOfFile:fileName];
+        MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+        [vc setSubject:[NSString stringWithFormat:@"Guestbook for %@", [event name]]];
+        [vc setMessageBody:@"Guestbook is attached!\n\n" isHTML:NO];
+        [vc addAttachmentData:fileData mimeType:@"application/zip" fileName:fileName];
+        [vc setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [vc setMailComposeDelegate:self];
+        [self presentModalViewController:vc animated:YES];
+
+        [[NSFileManager defaultManager] removeItemAtPath:zipDataPath error:NULL];
     }
+}
+
+- (IBAction)unableToShareEvent:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to share" message:@"Please make sure this device is configured to send email." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark - UITableViewDelegate Protocol
@@ -331,6 +354,11 @@
     }
 }
 
+#pragma mark - MFMailComposeViewControllerDelegate Protocol
 
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 @end

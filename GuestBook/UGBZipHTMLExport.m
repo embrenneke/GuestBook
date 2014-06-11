@@ -92,7 +92,7 @@
 + (NSString *)zipFileNameForEvent:(Event *)event
 {
     NSString *name = [event name];
-    NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>:"];
+    NSCharacterSet *illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>:"];
     name = [[name componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
     if ([name length] == 0) {
         name = [event uuid];

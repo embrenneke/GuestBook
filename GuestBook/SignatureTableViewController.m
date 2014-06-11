@@ -162,8 +162,7 @@
     NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"event == %@", [appDelegate currentEvent]];
     [[self.fetchedResultsController fetchRequest] setPredicate:aPredicate];
     NSError *error = nil;
-    if(![self.fetchedResultsController performFetch:&error])
-    {
+    if (![self.fetchedResultsController performFetch:&error]) {
         NSLog(@"%@, %@", error, [error userInfo]);
         abort();
     }
