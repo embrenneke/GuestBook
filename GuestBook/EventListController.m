@@ -307,7 +307,10 @@
 
     // TODO: create a share sheet of some type
 
-    [UGBZipHTMLExport zipDataForEvent:event];
+    NSData *zipData = [UGBZipHTMLExport zipDataForEvent:event];
+    if (!zipData) {
+        // error
+    }
 }
 
 #pragma mark - UITableViewDelegate Protocol

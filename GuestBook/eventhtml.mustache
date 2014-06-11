@@ -9,7 +9,7 @@
 <table>
     {{#signatures}}
     <tr>
-        <td>{{mediaPath}}</td>
+        <td><a href="media/{{mediaPath}}"><img src="thumbnails/{{mediaPath}}" /></a></td>
         <td>{{name}}</td>
         <td>{{ formatSignatureDate(timeStamp) }}</td>
         <td>{{message}}</td>
