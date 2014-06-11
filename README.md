@@ -8,11 +8,11 @@ It's halfway through a re-write for version 2.0, but not feature complete or pre
 
 Original Guestbook code is under the MIT license.  Third-party code remains under it's own license.
 
-The __release_2.0__ branch contains my in-progress re-write.
+The __release-2.0__ branch contains my in-progress re-write.
 
-The poorly-named __ios6__ branch contains the current 1.3.0 release, which is tagged _1.3.0_.
+The __master__ branch contains the current 1.3.0 release, which is tagged _1.3.0_.
 
-The __master__ branch now contains an intermediate planned 1.4 release, that just contains export functionality and the new iOS 7 look.  It will be the last release to support iOS 5.
+The __develop__ branch now contains an intermediate planned 1.4 release, that just contains export functionality and the new iOS 7 look.  It will be the last release to support iOS 5.
 
 ## Things I want to accomplish before releasing a 2.0 (not in any particular order)
 
@@ -28,7 +28,6 @@ The __master__ branch now contains an intermediate planned 1.4 release, that jus
 * facebook integration?
 * sharing/export
 * remove navigation bars
-* make pretty and add retina assests
 * use MagicalRecord for CoreData interface?
 * Get everything non-delegate out of the AppDelegate and into it's own class
 * Add 3-letter prefix to all classes
