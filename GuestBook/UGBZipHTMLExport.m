@@ -49,7 +49,7 @@
         return nil;
     }
 
-    NSURL *indexURL = [dirURL URLByAppendingPathComponent:@"event.html" isDirectory:NO];
+    NSURL *indexURL = [dirURL URLByAppendingPathComponent:@"guestbook.html" isDirectory:NO];
     [rendering writeToURL:indexURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
