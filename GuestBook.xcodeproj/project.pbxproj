@@ -117,6 +117,13 @@
 		F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */; };
 		F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */; };
 		F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */; };
+		F1CA004B1947E7B200E20F43 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F1CA003E1947E7B200E20F43 /* LICENSE */; };
+		F1CA004C1947E7B200E20F43 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00411947E7B200E20F43 /* ioapi.c */; };
+		F1CA004D1947E7B200E20F43 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00431947E7B200E20F43 /* mztools.c */; };
+		F1CA004E1947E7B200E20F43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00451947E7B200E20F43 /* unzip.c */; };
+		F1CA004F1947E7B200E20F43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00471947E7B200E20F43 /* zip.c */; };
+		F1CA00501947E7B200E20F43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CA004A1947E7B200E20F43 /* SSZipArchive.m */; };
+		F1CA00521947E9DD00E20F43 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA00511947E9DD00E20F43 /* libz.dylib */; };
 		F1D3A093150ABBF800C9C7C3 /* SignaturePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */; };
 		F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */; };
 		F1DA699F150B96E000DF0175 /* SignaturePageModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA699E150B96E000DF0175 /* SignaturePageModelController.m */; };
@@ -343,6 +350,19 @@
 		F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "../Vendor/UIImageCategories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		F1C9E7C014184DC1007F0E67 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "../Vendor/UIImageCategories/UIImage+Alpha.h"; sourceTree = "<group>"; };
 		F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "../Vendor/UIImageCategories/UIImage+Alpha.m"; sourceTree = "<group>"; };
+		F1CA003E1947E7B200E20F43 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F1CA00401947E7B200E20F43 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		F1CA00411947E7B200E20F43 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		F1CA00421947E7B200E20F43 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		F1CA00431947E7B200E20F43 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		F1CA00441947E7B200E20F43 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		F1CA00451947E7B200E20F43 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		F1CA00461947E7B200E20F43 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		F1CA00471947E7B200E20F43 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		F1CA00481947E7B200E20F43 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		F1CA00491947E7B200E20F43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		F1CA004A1947E7B200E20F43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		F1CA00511947E9DD00E20F43 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F1D3A090150ABBF800C9C7C3 /* SignaturePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePageViewController.h; sourceTree = "<group>"; };
 		F1D3A091150ABBF800C9C7C3 /* SignaturePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePageViewController.m; sourceTree = "<group>"; };
 		F1D3A092150ABBF800C9C7C3 /* SignaturePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignaturePageViewController.xib; sourceTree = "<group>"; };
@@ -368,6 +388,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1CA00521947E9DD00E20F43 /* libz.dylib in Frameworks */,
 				F1B21B3C18E2612C0046751F /* libGRMustache.a in Frameworks */,
 				F15CD88914CCABDC00217B8E /* QuartzCore.framework in Frameworks */,
 				F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */,
@@ -629,6 +650,7 @@
 		F1B3F7B7140418F000549C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1CA00511947E9DD00E20F43 /* libz.dylib */,
 				F1FD869816DC5F96009CEA2C /* Crashlytics.framework */,
 				F15CD88814CCABDC00217B8E /* QuartzCore.framework */,
 				F1157EC214107DB90017C2CB /* MediaPlayer.framework */,
@@ -680,6 +702,7 @@
 				F18295381780CD1100886DE1 /* PSTCollectionView */,
 				F15CD86414CCAA3600217B8E /* UIImageHelpers */,
 				F1B21B1718E260440046751F /* GRMustache */,
+				F1CA003D1947E7B200E20F43 /* SSZipArchive */,
 				F1B3F7C1140418F000549C03 /* Supporting Files */,
 			);
 			path = GuestBook;
@@ -718,6 +741,34 @@
 				F1B3F7EA140418F000549C03 /* GuestBookTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1CA003D1947E7B200E20F43 /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				F1CA003E1947E7B200E20F43 /* LICENSE */,
+				F1CA003F1947E7B200E20F43 /* minizip */,
+				F1CA00491947E7B200E20F43 /* SSZipArchive.h */,
+				F1CA004A1947E7B200E20F43 /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
+			path = Vendor/SSZipArchive;
+			sourceTree = SOURCE_ROOT;
+		};
+		F1CA003F1947E7B200E20F43 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				F1CA00401947E7B200E20F43 /* crypt.h */,
+				F1CA00411947E7B200E20F43 /* ioapi.c */,
+				F1CA00421947E7B200E20F43 /* ioapi.h */,
+				F1CA00431947E7B200E20F43 /* mztools.c */,
+				F1CA00441947E7B200E20F43 /* mztools.h */,
+				F1CA00451947E7B200E20F43 /* unzip.c */,
+				F1CA00461947E7B200E20F43 /* unzip.h */,
+				F1CA00471947E7B200E20F43 /* zip.c */,
+				F1CA00481947E7B200E20F43 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -818,6 +869,7 @@
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
 				F106D97318CFED9F00129D7B /* Icon-Small@2x.png in Resources */,
 				F15AE9FA183C4EB2007F4659 /* Default-Portrait@2x.png in Resources */,
+				F1CA004B1947E7B200E20F43 /* LICENSE in Resources */,
 				F15A674818D9357C00E867A3 /* SignatureTableViewController.xib in Resources */,
 				F106D97218CFED9F00129D7B /* Icon-Small.png in Resources */,
 				F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */,
@@ -939,18 +991,22 @@
 				F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */,
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
+				F1CA004D1947E7B200E20F43 /* mztools.c in Sources */,
 				F157356414119F520034BD4D /* DetailViewController.m in Sources */,
 				F15A674718D9357C00E867A3 /* SignatureTableViewController.m in Sources */,
 				F1B3D94618862F3A00919558 /* UGBZipHTMLExport.m in Sources */,
 				F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */,
 				F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */,
+				F1CA004C1947E7B200E20F43 /* ioapi.c in Sources */,
 				F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */,
 				F10DBC4D14CB73FA007E22DA /* Event.m in Sources */,
 				F10DBC5014CB73FB007E22DA /* Signature.m in Sources */,
 				F191B8681508D45900CBF5B5 /* EventListGridViewController.m in Sources */,
 				F1D3A093150ABBF800C9C7C3 /* SignaturePageViewController.m in Sources */,
 				F1DA699F150B96E000DF0175 /* SignaturePageModelController.m in Sources */,
+				F1CA004F1947E7B200E20F43 /* zip.c in Sources */,
 				F1DA69A4150B98EA00DF0175 /* SignaturePageRootViewController.m in Sources */,
+				F1CA00501947E7B200E20F43 /* SSZipArchive.m in Sources */,
 				F18295551780CD1100886DE1 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				F18295561780CD1100886DE1 /* PSTCollectionView.m in Sources */,
 				F18295571780CD1100886DE1 /* PSTCollectionViewCell.m in Sources */,
@@ -960,6 +1016,7 @@
 				F182955B1780CD1100886DE1 /* PSTCollectionViewItemKey.m in Sources */,
 				F182955C1780CD1100886DE1 /* PSTCollectionViewLayout.m in Sources */,
 				F182955D1780CD1100886DE1 /* PSTCollectionViewUpdateItem.m in Sources */,
+				F1CA004E1947E7B200E20F43 /* unzip.c in Sources */,
 				F182955E1780CD1100886DE1 /* PSTGridLayoutInfo.m in Sources */,
 				F15A674518D9357C00E867A3 /* EventListController.m in Sources */,
 				F182955F1780CD1100886DE1 /* PSTGridLayoutItem.m in Sources */,

@@ -12,6 +12,6 @@
 
 @interface UGBZipHTMLExport : NSObject
 
-+ (NSData *)zipDataForEvent:(Event *)event;
++ (NSString *)zipDataForEvent:(Event *)event;
 
 @end
