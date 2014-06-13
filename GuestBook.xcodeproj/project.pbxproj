@@ -48,6 +48,7 @@
 		F182955F1780CD1100886DE1 /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18295501780CD1100886DE1 /* PSTGridLayoutItem.m */; };
 		F18295601780CD1100886DE1 /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F18295521780CD1100886DE1 /* PSTGridLayoutRow.m */; };
 		F18295611780CD1100886DE1 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F18295541780CD1100886DE1 /* PSTGridLayoutSection.m */; };
+		F184479D194A91B4001B8529 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F184479C194A91B4001B8529 /* Settings.bundle */; };
 		F18EAF59141BBABE00FA99AB /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = F18EAF58141BBABE00FA99AB /* spine.png */; };
 		F191B8681508D45900CBF5B5 /* EventListGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F191B8661508D45900CBF5B5 /* EventListGridViewController.m */; };
 		F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F191B8671508D45900CBF5B5 /* EventListGridViewController.xib */; };
@@ -220,6 +221,7 @@
 		F18295521780CD1100886DE1 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
 		F18295531780CD1100886DE1 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		F18295541780CD1100886DE1 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		F184479C194A91B4001B8529 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F18EAF58141BBABE00FA99AB /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spine.png; path = images/spine.png; sourceTree = SOURCE_ROOT; };
 		F191B8651508D45900CBF5B5 /* EventListGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListGridViewController.h; sourceTree = "<group>"; };
 		F191B8661508D45900CBF5B5 /* EventListGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListGridViewController.m; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		F1528C9A141BC3B0004BA1EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F184479C194A91B4001B8529 /* Settings.bundle */,
 			);
 			name = Resources;
 			path = GuestBook;
@@ -892,6 +895,7 @@
 				F1406E86183C665B000A2367 /* pages@2x.png in Resources */,
 				F1DDDDEB1422B568001248EF /* pages.png in Resources */,
 				F191B8691508D45900CBF5B5 /* EventListGridViewController.xib in Resources */,
+				F184479D194A91B4001B8529 /* Settings.bundle in Resources */,
 				F106D96918CFED9F00129D7B /* Icon-40@2x.png in Resources */,
 				F1D3A094150ABBF800C9C7C3 /* SignaturePageViewController.xib in Resources */,
 				F15AE9F7183C4EB2007F4659 /* Default-Landscape@2x~ipad.png in Resources */,
