@@ -17,7 +17,6 @@ The __develop__ branch now contains an intermediate planned 1.4 release, that ju
 ## Things to do before shipping 1.4
 
 * Clean up GRMustache template (omit thumbnail if missing, add css/styling).
-* Add licensing for 3rd party libraries
 
 ## Things I want to accomplish before releasing a 2.0 (not in any particular order)
 
