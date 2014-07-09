@@ -28,6 +28,8 @@
 
 @implementation AddSignatureViewController
 
+#pragma mark - Object Life Cycle
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,6 +44,33 @@
     }
     return self;
 }
+
+#pragma mark - View Life Cycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        self.imageButton.hidden = YES;
+        self.message.frame = ({
+            CGRect frame = self.message.frame;
+            frame.size.height = 276;
+            frame;
+        });
+    }
+
+    [self clearFormState];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self.name becomeFirstResponder];
+}
+
+#pragma mark - Actions
 
 - (IBAction)submitSig:(UIButton *)sender
 {
@@ -122,6 +151,8 @@
     }
 }
 
+#pragma mark - UIImagePickerControllerDelegate Protocol
+
 // For responding to the user tapping Cancel.
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -196,30 +227,7 @@
     self.cameraUI = nil;
 }
 
-#pragma mark - View Life Cycle
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        self.imageButton.hidden = YES;
-        self.message.frame = ({
-            CGRect frame = self.message.frame;
-            frame.size.height = 276;
-            frame;
-        });
-    }
-
-    [self clearFormState];
-    [self.name becomeFirstResponder];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self clearFormState];
-    [super viewDidDisappear:animated];
-}
+#pragma mark - Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
