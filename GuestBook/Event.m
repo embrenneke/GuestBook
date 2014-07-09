@@ -16,6 +16,7 @@
 @dynamic time;
 @dynamic uuid;
 @dynamic signatures;
+@synthesize sortedSignatures;
 
 @end
 
@@ -30,6 +31,11 @@
         [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
     return dateFormatter;
+}
+
+- (NSArray *)sortedSignatures
+{
+    return [[self signatures] sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES selector:@selector(compare:)] ]];
 }
 
 @end

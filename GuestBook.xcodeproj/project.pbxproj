@@ -19,6 +19,14 @@
 		F106D97318CFED9F00129D7B /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F106D96318CFED9F00129D7B /* Icon-Small@2x.png */; };
 		F10DBC4D14CB73FA007E22DA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4C14CB73F9007E22DA /* Event.m */; };
 		F10DBC5014CB73FB007E22DA /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = F10DBC4F14CB73FA007E22DA /* Signature.m */; };
+		F10F3BE6196CC6C800FF3221 /* apple-touch-icon-precomposed.png in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BDD196CC6C800FF3221 /* apple-touch-icon-precomposed.png */; };
+		F10F3BE7196CC6C800FF3221 /* main.css in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BDF196CC6C800FF3221 /* main.css */; };
+		F10F3BE8196CC6C800FF3221 /* normalize.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE0196CC6C800FF3221 /* normalize.min.css */; };
+		F10F3BE9196CC6C800FF3221 /* favicon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE1196CC6C800FF3221 /* favicon.ico */; };
+		F10F3BEA196CC6C800FF3221 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = F10F3BE3196CC6C800FF3221 /* main.js */; };
+		F10F3BEB196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js in Sources */ = {isa = PBXBuildFile; fileRef = F10F3BE5196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js */; };
+		F10F3BEC196CC75700FF3221 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE3196CC6C800FF3221 /* main.js */; };
+		F10F3BED196CC75700FF3221 /* html5-3.6-respond-1.1.0.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE5196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js */; };
 		F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1157EC214107DB90017C2CB /* MediaPlayer.framework */; };
 		F1406E86183C665B000A2367 /* pages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E84183C665B000A2367 /* pages@2x.png */; };
 		F1406E87183C665B000A2367 /* spine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1406E85183C665B000A2367 /* spine@2x.png */; };
@@ -118,7 +126,6 @@
 		F1C9E7BB14184D03007F0E67 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BA14184D03007F0E67 /* UIImage+Resize.m */; };
 		F1C9E7BF14184D82007F0E67 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7BE14184D82007F0E67 /* UIImage+RoundedCorner.m */; };
 		F1C9E7C214184DC1007F0E67 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E7C114184DC1007F0E67 /* UIImage+Alpha.m */; };
-		F1CA004B1947E7B200E20F43 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F1CA003E1947E7B200E20F43 /* LICENSE */; };
 		F1CA004C1947E7B200E20F43 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00411947E7B200E20F43 /* ioapi.c */; };
 		F1CA004D1947E7B200E20F43 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00431947E7B200E20F43 /* mztools.c */; };
 		F1CA004E1947E7B200E20F43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = F1CA00451947E7B200E20F43 /* unzip.c */; };
@@ -172,6 +179,12 @@
 		F10DBC4C14CB73F9007E22DA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		F10DBC4E14CB73FA007E22DA /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
 		F10DBC4F14CB73FA007E22DA /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
+		F10F3BDD196CC6C800FF3221 /* apple-touch-icon-precomposed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-precomposed.png"; sourceTree = "<group>"; };
+		F10F3BDF196CC6C800FF3221 /* main.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = main.css; sourceTree = "<group>"; };
+		F10F3BE0196CC6C800FF3221 /* normalize.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.min.css; sourceTree = "<group>"; };
+		F10F3BE1196CC6C800FF3221 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
+		F10F3BE3196CC6C800FF3221 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		F10F3BE5196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "html5-3.6-respond-1.1.0.min.js"; sourceTree = "<group>"; };
 		F1157EC214107DB90017C2CB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F1406E84183C665B000A2367 /* pages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pages@2x.png"; path = "images/pages@2x.png"; sourceTree = SOURCE_ROOT; };
 		F1406E85183C665B000A2367 /* spine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spine@2x.png"; path = "images/spine@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -320,7 +333,7 @@
 		F1B21B9218E261E40046751F /* NSValueTransformer+GRMustache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+GRMustache.m"; sourceTree = "<group>"; };
 		F1B3D94418862F3A00919558 /* UGBZipHTMLExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGBZipHTMLExport.h; sourceTree = "<group>"; };
 		F1B3D94518862F3A00919558 /* UGBZipHTMLExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGBZipHTMLExport.m; sourceTree = "<group>"; };
-		F1B3D9471886367300919558 /* eventhtml.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eventhtml.mustache; sourceTree = "<group>"; };
+		F1B3D9471886367300919558 /* eventhtml.mustache */ = {isa = PBXFileReference; explicitFileType = text.html.documentation; fileEncoding = 4; name = eventhtml.mustache; path = ../ExportResources/eventhtml.mustache; sourceTree = "<group>"; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F1B3F7BA140418F000549C03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -437,6 +450,44 @@
 			name = Icons;
 			path = images/Icons;
 			sourceTree = SOURCE_ROOT;
+		};
+		F10F3BDC196CC6C800FF3221 /* static */ = {
+			isa = PBXGroup;
+			children = (
+				F10F3BDD196CC6C800FF3221 /* apple-touch-icon-precomposed.png */,
+				F10F3BDE196CC6C800FF3221 /* css */,
+				F10F3BE1196CC6C800FF3221 /* favicon.ico */,
+				F10F3BE2196CC6C800FF3221 /* js */,
+			);
+			name = static;
+			path = ExportResources/static;
+			sourceTree = SOURCE_ROOT;
+		};
+		F10F3BDE196CC6C800FF3221 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				F10F3BDF196CC6C800FF3221 /* main.css */,
+				F10F3BE0196CC6C800FF3221 /* normalize.min.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		F10F3BE2196CC6C800FF3221 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				F10F3BE3196CC6C800FF3221 /* main.js */,
+				F10F3BE4196CC6C800FF3221 /* vendor */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		F10F3BE4196CC6C800FF3221 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				F10F3BE5196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
 		};
 		F1528C9A141BC3B0004BA1EF /* Resources */ = {
 			isa = PBXGroup;
@@ -726,6 +777,7 @@
 				F1A171DA18396FED0095E0B9 /* LICENSE */,
 				F1A171DB18396FED0095E0B9 /* README.md */,
 				F1B3D9471886367300919558 /* eventhtml.mustache */,
+				F10F3BDC196CC6C800FF3221 /* static */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -868,18 +920,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10F3BEC196CC75700FF3221 /* main.js in Resources */,
+				F10F3BED196CC75700FF3221 /* html5-3.6-respond-1.1.0.min.js in Resources */,
 				F1B3D9481886367300919558 /* eventhtml.mustache in Resources */,
 				F106D96E18CFED9F00129D7B /* Icon-76.png in Resources */,
 				F106D97118CFED9F00129D7B /* Icon-Small-50@2x.png in Resources */,
 				F1B3F7C5140418F000549C03 /* InfoPlist.strings in Resources */,
 				F1B3F7FA1404190B00549C03 /* MainWindow-iPad.xib in Resources */,
+				F10F3BE7196CC6C800FF3221 /* main.css in Resources */,
 				F1B3F80414043F6F00549C03 /* AddSignatureViewController.xib in Resources */,
 				F106D97318CFED9F00129D7B /* Icon-Small@2x.png in Resources */,
 				F15AE9FA183C4EB2007F4659 /* Default-Portrait@2x.png in Resources */,
-				F1CA004B1947E7B200E20F43 /* LICENSE in Resources */,
+				F10F3BE8196CC6C800FF3221 /* normalize.min.css in Resources */,
 				F15A674818D9357C00E867A3 /* SignatureTableViewController.xib in Resources */,
 				F106D97218CFED9F00129D7B /* Icon-Small.png in Resources */,
 				F1B3F80914043FF900549C03 /* AddEventViewController.xib in Resources */,
+				F10F3BE9196CC6C800FF3221 /* favicon.ico in Resources */,
 				F15A674618D9357C00E867A3 /* EventListController.xib in Resources */,
 				F15AE9F5183C4EB2007F4659 /* Default-Landscape~ipad.png in Resources */,
 				F15AE9F6183C4EB2007F4659 /* Default-Landscape.png in Resources */,
@@ -902,6 +958,7 @@
 				F1DA69A5150B98EA00DF0175 /* SignaturePageRootViewController.xib in Resources */,
 				F15AE9F8183C4EB2007F4659 /* Default-Landscape@2x.png in Resources */,
 				F106D96D18CFED9F00129D7B /* Icon-72@2x.png in Resources */,
+				F10F3BE6196CC6C800FF3221 /* apple-touch-icon-precomposed.png in Resources */,
 				F1A973F016AB8EB000165418 /* ios-linen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -994,9 +1051,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10F3BEA196CC6C800FF3221 /* main.js in Sources */,
 				F1B3F7C8140418F000549C03 /* main.m in Sources */,
 				F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */,
 				F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */,
+				F10F3BEB196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js in Sources */,
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
 				F1CA004D1947E7B200E20F43 /* mztools.c in Sources */,
