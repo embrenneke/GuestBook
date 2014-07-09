@@ -14,10 +14,6 @@ The __master__ branch contains the current 1.3.0 release, which is tagged _1.3.0
 
 The __develop__ branch now contains an intermediate planned 1.4 release, that just contains export functionality and the new iOS 7 look.  It will be the last release to support iOS 5.
 
-## Things to do before shipping 1.4
-
-* Clean up GRMustache template (omit thumbnail if missing, add css/styling).
-
 ## Things I want to accomplish before releasing a 2.0 (not in any particular order)
 
 * indicate video on thumbnails
