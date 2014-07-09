@@ -23,8 +23,6 @@
 		F10F3BE7196CC6C800FF3221 /* main.css in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BDF196CC6C800FF3221 /* main.css */; };
 		F10F3BE8196CC6C800FF3221 /* normalize.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE0196CC6C800FF3221 /* normalize.min.css */; };
 		F10F3BE9196CC6C800FF3221 /* favicon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE1196CC6C800FF3221 /* favicon.ico */; };
-		F10F3BEA196CC6C800FF3221 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = F10F3BE3196CC6C800FF3221 /* main.js */; };
-		F10F3BEB196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js in Sources */ = {isa = PBXBuildFile; fileRef = F10F3BE5196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js */; };
 		F10F3BEC196CC75700FF3221 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE3196CC6C800FF3221 /* main.js */; };
 		F10F3BED196CC75700FF3221 /* html5-3.6-respond-1.1.0.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F10F3BE5196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js */; };
 		F1157EC314107DB90017C2CB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1157EC214107DB90017C2CB /* MediaPlayer.framework */; };
@@ -885,7 +883,7 @@
 			name = GuestBookTests;
 			productName = GuestBookTests;
 			productReference = F1B3F7DD140418F000549C03 /* GuestBookTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -1051,11 +1049,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F10F3BEA196CC6C800FF3221 /* main.js in Sources */,
 				F1B3F7C8140418F000549C03 /* main.m in Sources */,
 				F1B3F7CB140418F000549C03 /* GuestBookAppDelegate.m in Sources */,
 				F1B3F7CE140418F000549C03 /* GuestBook.xcdatamodeld in Sources */,
-				F10F3BEB196CC6C800FF3221 /* html5-3.6-respond-1.1.0.min.js in Sources */,
 				F1B3F80314043F6F00549C03 /* AddSignatureViewController.m in Sources */,
 				F1B3F80814043FF900549C03 /* AddEventViewController.m in Sources */,
 				F1CA004D1947E7B200E20F43 /* mztools.c in Sources */,
