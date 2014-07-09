@@ -105,7 +105,7 @@
     NSString *zippedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self zipFileNameForEvent:event]];
     [SSZipArchive createZipFileAtPath:zippedPath withContentsOfDirectory:zipContents];
 
-//    [[NSFileManager defaultManager] removeItemAtURL:dirURL error:&error];
+    [[NSFileManager defaultManager] removeItemAtURL:dirURL error:&error];
     if (error != nil) {
         NSLog(@"Error %@", [error localizedDescription]);
         return nil;
