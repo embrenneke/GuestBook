@@ -19,6 +19,8 @@
 @property (nonatomic, retain) NSString *uuid;
 @property (nonatomic, retain) NSSet *signatures;
 
+@property (nonatomic, readonly) NSArray *sortedSignatures;
+
 @end
 
 @interface Event (CoreDataGeneratedAccessors)
