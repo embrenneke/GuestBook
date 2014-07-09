@@ -320,7 +320,7 @@
 		F1B21B9218E261E40046751F /* NSValueTransformer+GRMustache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+GRMustache.m"; sourceTree = "<group>"; };
 		F1B3D94418862F3A00919558 /* UGBZipHTMLExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGBZipHTMLExport.h; sourceTree = "<group>"; };
 		F1B3D94518862F3A00919558 /* UGBZipHTMLExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGBZipHTMLExport.m; sourceTree = "<group>"; };
-		F1B3D9471886367300919558 /* eventhtml.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eventhtml.mustache; sourceTree = "<group>"; };
+		F1B3D9471886367300919558 /* eventhtml.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eventhtml.mustache; path = ../ExportResources/eventhtml.mustache; sourceTree = "<group>"; };
 		F1B3F7B4140418F000549C03 /* GuestBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuestBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3F7B8140418F000549C03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F1B3F7BA140418F000549C03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
