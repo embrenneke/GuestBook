@@ -92,7 +92,6 @@
 
         NSData *thumbnailData = [signature thumbnail];
         if (thumbnailData && imageName) {
-            // TODO: replace .mp4 extension of video thumbnails with .jpg
             NSURL *thumbnailImageURL = [thumbnailURL URLByAppendingPathComponent:imageName isDirectory:NO];
             [thumbnailData writeToURL:thumbnailImageURL options:nil error:&error];
             if (error) {
@@ -124,13 +123,6 @@
         name = [event uuid];
     }
     return [name stringByAppendingPathExtension:@"zip"];
-}
-
-+ (NSString *)uniqueFilesystemSafeStringFromString:(NSString *)name nameCache:(NSDictionary *)nameCache UUID:(NSString *)uuid
-{
-    // TODO: generate a filesystem-safe unique name for all files in the guestbook, not just the final zip
-
-    return nil;
 }
 
 + (NSArray *)staticFiles
