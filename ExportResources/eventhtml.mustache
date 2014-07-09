@@ -31,16 +31,17 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
 
-				<table>
-					{{#signatures}}
-					<tr>
-						<td>{{#mediaPath}}<a href="media/{{mediaPath}}"><img src="thumbnails/{{mediaPath}}" /></a>{{/mediaPath}}</td>
-						<td>{{name}}</td>
-						<td>{{ formatSignatureDate(timeStamp) }}</td>
-						<td>{{message}}</td>
-					</tr>
-					{{/signatures}}
-				</table>
+				<article>
+					{{#sortedSignatures}}
+					<section class="signature">
+						<h2>{{name}}</h2>
+						{{#mediaPath}}<a href="media/{{mediaPath}}"><img src="thumbnails/{{mediaPath}}" /></a><br />{{/mediaPath}}
+						<p>	{{message}} </p>
+						<h4>{{ formatSignatureDate(timeStamp) }}</h4>
+
+					</section>
+					{{/sortedSignatures}}
+				</article>
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->

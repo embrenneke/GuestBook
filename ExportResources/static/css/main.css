@@ -56,6 +56,14 @@ textarea {
     padding: 0.2em 0;
 }
 
+/* signature section */
+
+.signature {
+	background: #F0F0F0;
+	margin: 20px;
+	padding: 10px 40px;
+	border-radius: 15px;
+}
 
 /* ===== Initializr Styles ==================================================
    Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
@@ -71,22 +79,22 @@ body {
 }
 
 /* ===================
-    ALL: Orange Theme
+    ALL: Black Theme
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 20px solid #444444;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 20px solid #444444;
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    background: black;
 }
 
 .title {
