@@ -40,6 +40,31 @@
         return nil;
     }
 
+    NSURL *cssURL = [dirURL URLByAppendingPathComponent:@"css" isDirectory:YES];
+    [[NSFileManager defaultManager] createDirectoryAtURL:cssURL withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error != nil) {
+        NSLog(@"Error %@", [error localizedDescription]);
+        return nil;
+    }
+
+    NSURL *jsURL = [dirURL URLByAppendingPathComponent:@"js/vendor" isDirectory:YES];
+    [[NSFileManager defaultManager] createDirectoryAtURL:jsURL withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error != nil) {
+        NSLog(@"Error %@", [error localizedDescription]);
+        return nil;
+    }
+
+    for (NSDictionary *file in [self staticFiles]) {
+        NSURL *sourceFileURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[file objectForKey:@"file"] ofType:nil]];
+        NSURL *destinationURL = [dirURL URLByAppendingPathComponent:[file objectForKey:@"path"] isDirectory:YES];
+        destinationURL = [destinationURL URLByAppendingPathComponent:[file objectForKey:@"file"] isDirectory:NO];
+        [[NSFileManager defaultManager] copyItemAtURL:sourceFileURL toURL:destinationURL error:&error];
+        if (error) {
+            NSLog(@"Error %@", [error localizedDescription]);
+            return nil;
+        }
+    }
+
     NSString *rendering = [GRMustacheTemplate renderObject:event
                                               fromResource:@"eventhtml"
                                                     bundle:nil
@@ -67,6 +92,7 @@
 
         NSData *thumbnailData = [signature thumbnail];
         if (thumbnailData && imageName) {
+            // TODO: replace .mp4 extension of video thumbnails with .jpg
             NSURL *thumbnailImageURL = [thumbnailURL URLByAppendingPathComponent:imageName isDirectory:NO];
             [thumbnailData writeToURL:thumbnailImageURL options:nil error:&error];
             if (error) {
@@ -80,7 +106,7 @@
     NSString *zippedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self zipFileNameForEvent:event]];
     [SSZipArchive createZipFileAtPath:zippedPath withContentsOfDirectory:zipContents];
 
-    [[NSFileManager defaultManager] removeItemAtURL:dirURL error:&error];
+//    [[NSFileManager defaultManager] removeItemAtURL:dirURL error:&error];
     if (error != nil) {
         NSLog(@"Error %@", [error localizedDescription]);
         return nil;
@@ -98,6 +124,25 @@
         name = [event uuid];
     }
     return [name stringByAppendingPathExtension:@"zip"];
+}
+
++ (NSString *)uniqueFilesystemSafeStringFromString:(NSString *)name nameCache:(NSDictionary *)nameCache UUID:(NSString *)uuid
+{
+    // TODO: generate a filesystem-safe unique name for all files in the guestbook, not just the final zip
+
+    return nil;
+}
+
++ (NSArray *)staticFiles
+{
+    return @[
+        @{ @"file" : @"apple-touch-icon-precomposed.png", @"path" : @"" },
+        @{ @"file" : @"favicon.ico", @"path" : @"" },
+        @{ @"file" : @"main.css", @"path" : @"css" },
+        @{ @"file" : @"normalize.min.css", @"path" : @"css" },
+        @{ @"file" : @"main.js", @"path" : @"js" },
+        @{ @"file" : @"html5-3.6-respond-1.1.0.min.js", @"path" : @"js/vendor" }
+    ];
 }
 
 @end
