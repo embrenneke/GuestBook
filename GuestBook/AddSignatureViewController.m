@@ -22,7 +22,6 @@
 @property (nonatomic, weak, readwrite) IBOutlet UITextField *name;
 @property (nonatomic, weak, readwrite) IBOutlet UITextView *message;
 @property (nonatomic, weak, readwrite) IBOutlet UIButton *imageButton;
-@property (nonatomic, weak, readwrite) IBOutlet UIImageView *image;
 
 @end
 
@@ -92,13 +91,7 @@
         // Save the context.
         NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Signatures cannot be added without selecting an Event.  Please select an event First." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -193,8 +186,6 @@
         [[self.imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
         [self.imageButton setTitle:@"" forState:UIControlStateNormal];
         [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
-        self.imageButton.layer.cornerRadius = 15;
-        self.imageButton.layer.masksToBounds = YES;
         self.mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
         [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:self.mediaPath atomically:YES];
     }
@@ -218,6 +209,8 @@
             UIImage *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
             CGSize buttonSize = CGSizeMake(245, 180);
             UIImage *thumbnailImage = [thumb resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
+            [[self.imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
+            [self.imageButton setTitle:@"" forState:UIControlStateNormal];
             [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
             [player stop];
         }
