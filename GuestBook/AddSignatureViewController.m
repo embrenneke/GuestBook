@@ -66,7 +66,9 @@
 {
     [super viewDidAppear:animated];
 
-    [self.name becomeFirstResponder];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.name becomeFirstResponder];
+    });
 }
 
 #pragma mark - Actions
