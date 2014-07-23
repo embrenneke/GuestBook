@@ -315,8 +315,8 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Unable to export guestbook. Device full?" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
         [alert show];
     } else {
-        NSString *fileName = [[zipDataPath lastPathComponent] stringByDeletingPathExtension];
-        NSData *fileData = [NSData dataWithContentsOfFile:fileName];
+        NSString *fileName = [zipDataPath lastPathComponent];
+        NSData *fileData = [NSData dataWithContentsOfFile:zipDataPath];
         MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
         [vc setSubject:[NSString stringWithFormat:@"Guestbook for %@", [event name]]];
         [vc setMessageBody:@"Guestbook is attached!\n\n" isHTML:NO];
