@@ -60,16 +60,31 @@
     UIBarButtonItem *events = [[UIBarButtonItem alloc] initWithTitle:@"Events" style:UIBarButtonItemStylePlain target:self action:@selector(chooseEvent:)];
     self.navigationItem.leftBarButtonItem = events;
 
-    self.navigationItem.title = @"No Event Selected";
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventChosen:) name:@"eventPopoverShouldDismiss" object:nil];
 
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     Event *event = [appDelegate currentEvent];
-    self.navigationItem.title = [event name];
+    self.navigationItem.title = event ? event.name : @"No Event Selected";
     [self.tableView reloadData];
 
     [self.tableView setSeparatorColor:[UIColor clearColor]];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [NSFetchedResultsController deleteCacheWithName:nil];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([appDelegate currentEvent] == nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self chooseEvent:nil];
+        });
+    }
 }
 
 - (void)insertNewSignature:(id)sender
@@ -91,13 +106,9 @@
 - (void)eventChosen:(NSNotification *)notif
 {
     [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [NSFetchedResultsController deleteCacheWithName:nil];
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Event *event = [appDelegate currentEvent];
+    self.navigationItem.title = event ? event.name : @"No Event Selected";
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -160,8 +171,9 @@
         NSLog(@"%@, %@", error, [error userInfo]);
     }
 
-    self.navigationItem.title = [[appDelegate currentEvent] name];
-    [self.navigationItem.rightBarButtonItem setEnabled:true];
+    Event *event = [appDelegate currentEvent];
+    self.navigationItem.title = event ? event.name : @"No Event Selected";
+    [self.navigationItem.rightBarButtonItem setEnabled:(event != nil)];
 
     [self.tableView reloadData];
 }
