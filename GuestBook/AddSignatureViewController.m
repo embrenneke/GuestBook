@@ -11,6 +11,8 @@
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 #import "UIImage+Resize.h"
+
+#import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
@@ -50,11 +52,13 @@
 {
     [super viewDidLoad];
 
+    self.preferredContentSize = CGSizeMake(515.0, 380.0);
+
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.imageButton.hidden = YES;
         self.message.frame = ({
             CGRect frame = self.message.frame;
-            frame.size.height = 276;
+            frame.size.height += self.imageButton.frame.size.height;
             frame;
         });
     }
@@ -101,14 +105,14 @@
     }
 
     // remove self from navigation stack
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 
     [self clearFormState];
 }
 
 - (IBAction)cancelSignature:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self clearFormState];
 }
 
@@ -139,7 +143,7 @@
         self.cameraUI.delegate = self;
         self.cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
 
-        [self presentModalViewController:self.cameraUI animated:YES];
+        [self presentViewController:self.cameraUI animated:YES completion:nil];
     } else {
         UIButton *button = sender;
         [button setTitle:@"Sorry, no camera found." forState:UIControlStateNormal];
@@ -151,7 +155,7 @@
 // For responding to the user tapping Cancel.
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [self.cameraUI dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     self.cameraUI = nil;
 }
 
@@ -194,7 +198,7 @@
 
     // Handle a movie capture
     if ([mediaType isEqualToString:(__bridge NSString *)kUTTypeMovie]) {
-        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+        NSString *moviePath = [(NSURL *)[info objectForKey:UIImagePickerControllerMediaURL] path];
 
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
             // handle movie
@@ -207,18 +211,22 @@
 
             // use movie player to generate a thumbnail
             NSURL *videoURL = [NSURL fileURLWithPath:self.mediaPath];
-            MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
-            UIImage *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+
+            AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+            AVAssetImageGenerator *generateImage = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+            CMTime time = CMTimeMakeWithSeconds(1.0, 60);
+            CGImageRef refImage = [generateImage copyCGImageAtTime:time actualTime:NULL error:&error];
+            UIImage *thumb = [[UIImage alloc] initWithCGImage:refImage];
+
             CGSize buttonSize = CGSizeMake(245, 180);
             UIImage *thumbnailImage = [thumb resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:buttonSize interpolationQuality:kCGInterpolationDefault];
             [[self.imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
             [self.imageButton setTitle:@"" forState:UIControlStateNormal];
             [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
-            [player stop];
         }
     }
 
-    [self.cameraUI dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     self.cameraUI = nil;
 }
 
