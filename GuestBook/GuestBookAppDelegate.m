@@ -201,21 +201,4 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-// return a new autoreleased UUID string
-- (NSString *)generateUuidString
-{
-    // create a new UUID which you own
-    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-
-    CFStringRef uuidCFString = CFUUIDCreateString(kCFAllocatorDefault, uuid);
-    NSString *uuidString = [NSString stringWithFormat:@"%@", uuidCFString];
-
-
-    // release the UUID
-    CFRelease(uuidCFString);
-    CFRelease(uuid);
-
-    return uuidString;
-}
-
 @end

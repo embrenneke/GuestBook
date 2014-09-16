@@ -90,7 +90,7 @@
         if (self.mediaPath) {
             signature.thumbnail = UIImageJPEGRepresentation(self.imageButton.imageView.image, 0.5);
         }
-        signature.uuid = [appDelegate generateUuidString];
+        signature.uuid = [[NSUUID UUID] UUIDString];
         signature.event = [appDelegate currentEvent];
         signature.mediaPath = [self.mediaPath lastPathComponent];
 
@@ -192,7 +192,7 @@
         [[self.imageButton imageView] setContentMode:UIViewContentModeScaleToFill];
         [self.imageButton setTitle:@"" forState:UIControlStateNormal];
         [self.imageButton setImage:thumbnailImage forState:UIControlStateNormal];
-        self.mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+        self.mediaPath = [[NSString alloc] initWithFormat:@"%@.jpg", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]] path]];
         [UIImageJPEGRepresentation(imageToSave, 1.0) writeToFile:self.mediaPath atomically:YES];
     }
 
@@ -202,7 +202,7 @@
 
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
             // handle movie
-            self.mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[appDelegate generateUuidString]] path]];
+            self.mediaPath = [[NSString alloc] initWithFormat:@"%@.mp4", [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]] path]];
             NSError *error = nil;
             [[NSFileManager defaultManager] copyItemAtPath:moviePath toPath:self.mediaPath error:&error];
             if (error) {

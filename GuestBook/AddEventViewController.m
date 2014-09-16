@@ -51,7 +51,7 @@
 
     [event setName:[self.name text]];
     [event setTime:[self.datePicker date]];
-    [event setUuid:[appDelegate generateUuidString]];
+    [event setUuid:[[NSUUID UUID] UUIDString]];
 
     // Save the context.
     NSError *error = nil;

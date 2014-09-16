@@ -19,6 +19,4 @@
 
 - (NSURL *)applicationLibraryDirectory;
 
-- (NSString *)generateUuidString;
-
 @end
