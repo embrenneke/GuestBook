@@ -48,12 +48,6 @@
                         <key>FooterText</key>
                         <string>./Vendor/licenses/MIT6</string>
                 </dict>
-                <dict>
-                        <key>Type</key>
-                        <string>PSGroupSpecifier</string>
-                        <key>FooterText</key>
-                        <string>./Vendor/licenses/MIT7</string>
-                </dict>
         </array>
 </dict>
 </plist>

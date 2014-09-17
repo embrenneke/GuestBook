@@ -33,8 +33,8 @@
     self.dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
 
-    [self.collectionView registerClass:[PSUICollectionViewCell class] forCellWithReuseIdentifier:@"AlbumCell"];
-    [self.collectionView registerClass:[PSUICollectionViewCell class] forCellWithReuseIdentifier:@"AddNewCell"];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"AlbumCell"];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"AddNewCell"];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ios-linen.jpg"]];
     self.collectionView.backgroundColor = [UIColor clearColor];
@@ -58,7 +58,7 @@
     AddEventViewController *viewController = [[AddEventViewController alloc] init];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
 
-    [self presentModalViewController:viewController animated:YES];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 - (IBAction)handleLongPress:(UIGestureRecognizer *)gestureRecognizer

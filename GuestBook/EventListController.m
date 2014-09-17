@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
 
-    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
+    self.preferredContentSize = CGSizeMake(548.0, 295.0);
 
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
@@ -323,7 +323,7 @@
         [vc addAttachmentData:fileData mimeType:@"application/zip" fileName:fileName];
         [vc setModalPresentationStyle:UIModalPresentationCurrentContext];
         [vc setMailComposeDelegate:self];
-        [self presentModalViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
 
         [[NSFileManager defaultManager] removeItemAtPath:zipDataPath error:NULL];
     }
@@ -357,7 +357,7 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

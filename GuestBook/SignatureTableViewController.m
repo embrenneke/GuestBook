@@ -32,7 +32,7 @@
     cell.textLabel.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:25.0];
     cell.detailTextLabel.text = [sig.message description];
     cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
-    cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
     CGRect accessoryFrame = CGRectMake(0., 0., 140., 140.);
     if (sig.thumbnail) {
@@ -91,7 +91,7 @@
 {
     AddSignatureViewController *addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
     addVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentModalViewController:addVC animated:YES];
+    [self presentViewController:addVC animated:YES completion:nil];
 }
 
 - (void)chooseEvent:(id)sender
@@ -100,12 +100,12 @@
     eventController.managedObjectContext = self.managedObjectContext;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:eventController];
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentModalViewController:navController animated:YES];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)eventChosen:(NSNotification *)notif
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     Event *event = [appDelegate currentEvent];
     self.navigationItem.title = event ? event.name : @"No Event Selected";

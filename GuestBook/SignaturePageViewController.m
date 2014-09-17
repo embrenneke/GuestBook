@@ -162,7 +162,7 @@
         // add signature
         AddSignatureViewController *addVC = [[AddSignatureViewController alloc] initWithNibName:@"AddSignatureViewController" bundle:nil];
         addVC.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentModalViewController:addVC animated:YES];
+        [self presentViewController:addVC animated:YES completion:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -176,7 +176,7 @@
         cell.textLabel.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:25.0];
         cell.detailTextLabel.text = [sig.message description];
         cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:16.0];
-        cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.detailTextLabel.numberOfLines = 3;
         cell.imageView.image = [UIImage imageWithData:[sig thumbnail]];
         cell.backgroundColor = [UIColor clearColor];
