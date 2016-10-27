@@ -117,6 +117,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     SignatureTableViewController *signatureViewController = (SignatureTableViewController *)[self.navigationController topViewController];
     signatureViewController.managedObjectContext = self.managedObjectContext;
 }

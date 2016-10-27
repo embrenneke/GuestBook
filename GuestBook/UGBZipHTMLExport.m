@@ -93,7 +93,7 @@
         NSData *thumbnailData = [signature thumbnail];
         if (thumbnailData && imageName) {
             NSURL *thumbnailImageURL = [thumbnailURL URLByAppendingPathComponent:imageName isDirectory:NO];
-            [thumbnailData writeToURL:thumbnailImageURL options:nil error:&error];
+            [thumbnailData writeToURL:thumbnailImageURL options:0 error:&error];
             if (error) {
                 NSLog(@"Error %@", [error localizedDescription]);
                 return nil;
