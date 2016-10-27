@@ -10,7 +10,7 @@
 #import "GuestBookAppDelegate.h"
 
 #import "Event.h"
-#import "SignatureTableViewController.h"
+#import "EventListGridViewController.h"
 
 @import Fabric;
 @import Crashlytics;
@@ -35,9 +35,7 @@
     _currentEvent = newCurrentEvent;
 
     [[NSUserDefaults standardUserDefaults] setValue:[self.currentEvent uuid] forKey:@"OpenEvent"];
-    SignatureTableViewController *signatureTableViewController = (SignatureTableViewController *)[self.navigationController topViewController];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [signatureTableViewController updatePredicate];
 }
 
 - (Event *)currentEvent
@@ -123,8 +121,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    SignatureTableViewController *signatureViewController = (SignatureTableViewController *)[self.navigationController topViewController];
-    signatureViewController.managedObjectContext = self.managedObjectContext;
+    EventListGridViewController *eventViewController = (EventListGridViewController *)[self.navigationController topViewController];
+    eventViewController.managedObjectContext = self.managedObjectContext;
 }
 
 #pragma mark - Core Data stack

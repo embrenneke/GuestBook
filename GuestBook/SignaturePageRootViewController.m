@@ -13,7 +13,9 @@
 #import "UGBZipHTMLExport.h"
 #import "Event.h"
 
-@interface SignaturePageRootViewController ()<UIPageViewControllerDelegate>
+#import <MessageUI/MessageUI.h>
+
+@interface SignaturePageRootViewController ()<UIPageViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong, readwrite) UIPageViewController *pageViewController;
 @property (nonatomic, strong, readwrite) SignaturePageModelController *modelController;
@@ -138,11 +140,38 @@
 
 - (IBAction)share:(id)sender
 {
-    NSLog(@"Share pressed.");
+    if ([MFMailComposeViewController canSendMail]) {
+        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+        Event *event = [appDelegate currentEvent];
+        NSString *zipDataPath = [UGBZipHTMLExport zipDataForEvent:event];
+        if (!zipDataPath) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Unable to export guestbook. Device full?" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [alert show];
+        } else {
+            NSString *fileName = [zipDataPath lastPathComponent];
+            NSData *fileData = [NSData dataWithContentsOfFile:zipDataPath];
+            MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+            [vc setSubject:[NSString stringWithFormat:@"Guestbook for %@", [event name]]];
+            [vc setMessageBody:@"Guestbook is attached!\n\n" isHTML:NO];
+            [vc addAttachmentData:fileData mimeType:@"application/zip" fileName:fileName];
+            [vc setModalPresentationStyle:UIModalPresentationCurrentContext];
+            [vc setMailComposeDelegate:self];
+            [self presentViewController:vc animated:YES completion:nil];
 
-    GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Event *event = [appDelegate currentEvent];
-    /* NSData *zipData = */ [UGBZipHTMLExport zipDataForEvent:event];
+            [[NSFileManager defaultManager] removeItemAtPath:zipDataPath error:NULL];
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to share" message:@"Please make sure this device is configured to send email." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+    }
+    NSLog(@"Share pressed.");
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate Protocol
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
