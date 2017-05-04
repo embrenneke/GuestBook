@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface EventListController : UITableViewController<NSFetchedResultsControllerDelegate, UIAlertViewDelegate> {
+@interface EventListController : UITableViewController<NSFetchedResultsControllerDelegate> {
 }
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;

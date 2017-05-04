@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventListGridViewController : UIViewController<NSFetchedResultsControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface EventListGridViewController : UIViewController<NSFetchedResultsControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak, readwrite) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;

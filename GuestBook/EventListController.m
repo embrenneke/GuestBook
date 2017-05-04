@@ -16,8 +16,6 @@
 
 @interface EventListController ()<MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, strong) NSIndexPath *pendingDeletePath;
-
 @end
 
 @implementation EventListController
@@ -65,44 +63,6 @@
 {
     // dismiss popup, change to selected event
     [[NSNotificationCenter defaultCenter] postNotificationName:@"eventPopoverShouldDismiss" object:nil];
-}
-
-#pragma mark - UIAlertViewDelegate Protocol
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    // the user clicked one of the Delete/Cancel buttons
-    if (buttonIndex == 1) {
-        // delete all associated signatures first
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        Event *event = [self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath];
-        NSEnumerator *e = [event.signatures objectEnumerator];
-        id collectionMemberObject;
-
-        while ((collectionMemberObject = [e nextObject])) {
-            // delete the signature
-            NSError *error = nil;
-            Signature *sig = collectionMemberObject;
-            [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
-            [context deleteObject:collectionMemberObject];
-        }
-
-        // if deleting currentEvent, set current event to nil
-        GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
-        if ([appDelegate currentEvent] == event) {
-            [appDelegate setCurrentEvent:nil];
-        }
-
-        // Delete the managed object for the given index path
-        [context deleteObject:event];
-
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-    }
-    self.pendingDeletePath = nil;
 }
 
 #pragma mark - UITableViewDataSource Protocol
@@ -248,16 +208,40 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // confirm delete
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this event? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-        self.pendingDeletePath = [indexPath copy];
-        [alert show];
-    }
-}
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Are you sure you want to delete this event? This action cannot be undone." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            // delete all associated signatures first
+            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+            Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            for (Signature *signature in event.signatures) {
+                if (signature.mediaPath.length > 0) {
+                    NSError *error = nil;
+                    if (![[NSFileManager defaultManager] removeItemAtPath:signature.mediaPath error:&error]) {
+                        NSLog(@"Error deleting signature media at %@\n%@", signature.mediaPath, [error localizedDescription]);
+                    }
+                }
+            }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return NO;
+            // if deleting currentEvent, set current event to nil
+            GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
+            if ([appDelegate currentEvent] == event) {
+                [appDelegate setCurrentEvent:nil];
+            }
+
+            // Delete the managed object for the given index path
+            [context deleteObject:event];
+
+            // Save the context.
+            NSError *error = nil;
+            if (![context save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            }
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:confirmAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -312,8 +296,10 @@
 
     NSString *zipDataPath = [UGBZipHTMLExport zipDataForEvent:event];
     if (!zipDataPath) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Unable to export guestbook. Device full?" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to Export" message:@"Unable to export guestbook to zip file. Is the device storage full?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:closeAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     } else {
         NSString *fileName = [zipDataPath lastPathComponent];
         NSData *fileData = [NSData dataWithContentsOfFile:zipDataPath];
@@ -331,8 +317,10 @@
 
 - (IBAction)unableToShareEvent:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to share" message:@"Please make sure this device is configured to send email." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-    [alert show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to Share" message:@"Please verify this device is configured to send email and try again." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:closeAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate Protocol

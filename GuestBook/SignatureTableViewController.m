@@ -18,7 +18,6 @@
 @interface SignatureTableViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSIndexPath *pendingDeletePath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
@@ -178,26 +177,6 @@
     [self.tableView reloadData];
 }
 
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    // the user clicked one of the Delete/Cancel buttons
-    if (buttonIndex == 1) {
-        // Delete the managed object for the given index path
-        NSError *error = nil;
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        Signature *sig = [self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath];
-        [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
-
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:self.pendingDeletePath]];
-
-        // Save the context.
-        if (![context save:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-    }
-    self.pendingDeletePath = nil;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 150;
@@ -292,9 +271,25 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 
         // confirm delete
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this signature? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-        self.pendingDeletePath = [indexPath copy];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title" message:@"Are you sure you want to delete this signature? This action cannot be undone." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            // Delete the managed object for the given index path
+            NSError *error = nil;
+            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+            Signature *sig = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
+
+            [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+
+            // Save the context.
+            if (![context save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            }
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:deleteAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 

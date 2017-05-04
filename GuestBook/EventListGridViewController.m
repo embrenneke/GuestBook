@@ -16,8 +16,6 @@
 @interface EventListGridViewController ()
 
 @property (nonatomic, strong, readonly) NSDateFormatter *dateFormatter;
-@property (nonatomic, strong, readwrite) NSIndexPath *selectedIndexPath;
-@property (nonatomic, strong, readwrite) UIActionSheet *actionSheet;
 
 @end
 
@@ -63,7 +61,7 @@
 
 - (IBAction)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
-    if (self.actionSheet != nil) {
+    if (self.presentedViewController != nil) {
         // only handle on action at a time
         return;
     }
@@ -71,28 +69,25 @@
     UIView *view = self.collectionView;
     CGPoint touchPoint = [gestureRecognizer locationInView:view];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:touchPoint];
-    self.selectedIndexPath = indexPath;
     Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:event.name
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                     destructiveButtonTitle:@"Delete"
-                                          otherButtonTitles:@"Share", nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:event.name message:@"What would you like to do?" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self shareEventAtIndexPath:indexPath];
+    }];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self deleteEventAtIndexPath:indexPath];
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:shareAction];
+    [alertController addAction:deleteAction];
+
     CGRect origin = CGRectMake(touchPoint.x, touchPoint.y, 1, 1);
-    [self.actionSheet showFromRect:origin inView:view animated:YES];
-}
-
-#pragma mark - actionSheetDelegate methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self deleteEventAtIndexPath:self.selectedIndexPath];
-    } else if (buttonIndex == 1) {
-        [self shareEventAtIndexPath:self.selectedIndexPath];
-    }
-    self.selectedIndexPath = nil;
-    self.actionSheet = nil;
+    UIPopoverPresentationController *popoverPresentationController = alertController.popoverPresentationController;
+    popoverPresentationController.sourceRect = origin;
+    popoverPresentationController.sourceView = self.view;
+    alertController.modalPresentationStyle = UIModalPresentationPopover;
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Event Actions
@@ -101,14 +96,13 @@
 {
     // delete all associated signatures
     Event *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSEnumerator *e = [event.signatures objectEnumerator];
-    id collectionMemberObject;
-    while ((collectionMemberObject = [e nextObject])) {
-        // delete the signature
-        NSError *error = nil;
-        Signature *sig = collectionMemberObject;
-        [[NSFileManager defaultManager] removeItemAtPath:sig.mediaPath error:&error];
-        [self.managedObjectContext deleteObject:collectionMemberObject];
+    for (Signature *signature in event.signatures) {
+        if (signature.mediaPath) {
+            NSError *error = nil;
+            if (![[NSFileManager defaultManager] removeItemAtPath:signature.mediaPath error:&error]) {
+                NSLog(@"Error deleting file at path %@\n%@", signature.mediaPath, [error localizedDescription]);
+            }
+        }
     }
 
     // if deleting currentEvent, set current event to nil
@@ -130,7 +124,7 @@
     [self.fetchedResultsController performFetch:nil];
 
     // remove the item from the collection view
-    [self.collectionView deleteItemsAtIndexPaths:@[ self.selectedIndexPath ]];
+    [self.collectionView deleteItemsAtIndexPaths:@[ indexPath ]];
 }
 
 - (void)shareEventAtIndexPath:(NSIndexPath *)indexPath

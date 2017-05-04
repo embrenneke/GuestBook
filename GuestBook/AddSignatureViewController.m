@@ -100,8 +100,10 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         }
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Signatures cannot be added without selecting an Event.  Please select an event First." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Active Event" message:@"Signatures cannot be added without selecting an Event. Please select an event first." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 
     // remove self from navigation stack
