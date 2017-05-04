@@ -12,6 +12,7 @@
 #import "Signature.h"
 #import "SignaturePageRootViewController.h"
 #import "AddEventViewController.h"
+#import "Event.h"
 
 @interface EventListGridViewController ()
 

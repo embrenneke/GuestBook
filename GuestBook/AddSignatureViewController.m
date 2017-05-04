@@ -12,9 +12,8 @@
 #import "Signature.h"
 #import "UIImage+Resize.h"
 
-#import <AVFoundation/AVFoundation.h>
-#import <MobileCoreServices/UTCoreTypes.h>
-#import <MediaPlayer/MPMoviePlayerController.h>
+@import AVFoundation;
+@import MobileCoreServices;
 
 @interface AddSignatureViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 

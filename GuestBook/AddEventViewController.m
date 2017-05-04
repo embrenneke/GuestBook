@@ -9,6 +9,7 @@
 
 #import "AddEventViewController.h"
 #import "GuestBookAppDelegate.h"
+#import "Event.h"
 
 @interface AddEventViewController ()
 

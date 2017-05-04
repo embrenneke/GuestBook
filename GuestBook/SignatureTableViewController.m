@@ -14,6 +14,7 @@
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 #import "UIImage+Resize.h"
+#import "Event.h"
 
 @interface SignatureTableViewController ()
 
@@ -78,6 +79,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     GuestBookAppDelegate *appDelegate = (GuestBookAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([appDelegate currentEvent] == nil) {
         dispatch_async(dispatch_get_main_queue(), ^{

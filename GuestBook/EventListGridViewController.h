@@ -7,7 +7,8 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+@import CoreData;
 
 @interface EventListGridViewController : UIViewController<NSFetchedResultsControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 

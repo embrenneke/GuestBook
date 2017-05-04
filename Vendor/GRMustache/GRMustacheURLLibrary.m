@@ -115,8 +115,8 @@
 {
     // Perform a first escaping using Apple's implementation.
     // It leaves many character unescaped. We'll have to go further.
-    
-    string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    string = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
     
     static const NSString *escapeForCharacter[] = {
         ['$'] = @"%24",

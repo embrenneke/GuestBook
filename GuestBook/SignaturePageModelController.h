@@ -7,8 +7,9 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <Foundation/Foundation.h>
 #import "SignaturePageViewController.h"
+
+@import UIKit;
 
 @interface SignaturePageModelController : NSObject<UIPageViewControllerDataSource>
 

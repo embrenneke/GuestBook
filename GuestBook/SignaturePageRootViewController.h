@@ -7,7 +7,7 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface SignaturePageRootViewController : UIViewController
 

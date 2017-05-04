@@ -7,8 +7,7 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+@import UIKit;
 
 @interface AddEventViewController : UIViewController
 

@@ -12,6 +12,7 @@
 #import "Signature.h"
 #import "DetailViewController.h"
 #import "AddSignatureViewController.h"
+#import "Event.h"
 
 @interface SignaturePageViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 

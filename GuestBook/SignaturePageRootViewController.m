@@ -11,6 +11,7 @@
 #import "SignaturePageModelController.h"
 #import "GuestBookAppDelegate.h"
 #import "UGBZipHTMLExport.h"
+#import "Event.h"
 
 @interface SignaturePageRootViewController ()<UIPageViewControllerDelegate>
 

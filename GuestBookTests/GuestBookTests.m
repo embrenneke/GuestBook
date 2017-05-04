@@ -6,7 +6,7 @@
 //  Copyright © 2016 UnspunProductions. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
 
 @interface GuestBookTests : XCTestCase
 

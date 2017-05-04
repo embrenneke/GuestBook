@@ -9,6 +9,7 @@
 
 #import "SignaturePageModelController.h"
 #import "GuestBookAppDelegate.h"
+#import "Event.h"
 
 @implementation SignaturePageModelController
 

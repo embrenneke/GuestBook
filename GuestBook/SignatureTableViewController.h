@@ -7,8 +7,8 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+@import UIKit;
+@import CoreData;
 
 @interface SignatureTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 

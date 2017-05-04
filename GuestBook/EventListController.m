@@ -12,7 +12,9 @@
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
 #import "UGBZipHTMLExport.h"
-#import <MessageUI/MessageUI.h>
+#import "Event.h"
+
+@import MessageUI;
 
 @interface EventListController ()<MFMailComposeViewControllerDelegate>
 

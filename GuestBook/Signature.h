@@ -7,8 +7,8 @@
 //  Release under the MIT license.  See the LICENSE file in top directory of this project.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+@import Foundation;
+@import CoreData;
 
 @class Event;
 

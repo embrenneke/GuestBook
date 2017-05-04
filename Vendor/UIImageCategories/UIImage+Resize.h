@@ -5,7 +5,7 @@
 
 // Extends the UIImage class to support resizing/cropping
 
-#import <UIKit/UIImage.h>
+@import UIKit;
 
 @interface UIImage (Resize)
 

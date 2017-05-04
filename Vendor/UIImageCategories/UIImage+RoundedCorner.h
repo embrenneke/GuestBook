@@ -5,7 +5,7 @@
 
 // Extends the UIImage class to support making rounded corners
 
-#import <UIKit/UIImage.h>
+@import UIKit;
 
 @interface UIImage (RoundedCorner)
 

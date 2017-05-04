@@ -9,10 +9,11 @@
 
 #import "GuestBookAppDelegate.h"
 
+#import "Event.h"
 #import "SignatureTableViewController.h"
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+@import Fabric;
+@import Crashlytics;
 
 @interface GuestBookAppDelegate ()
 

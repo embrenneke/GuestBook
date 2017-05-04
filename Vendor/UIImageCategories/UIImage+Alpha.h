@@ -5,7 +5,7 @@
 
 // Helper methods for adding an alpha layer to an image
 
-#import <UIKit/UIImage.h>
+@import UIKit;
 
 @interface UIImage (Alpha)
 

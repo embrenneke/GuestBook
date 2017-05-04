@@ -10,11 +10,14 @@
 #import "DetailViewController.h"
 #import "GuestBookAppDelegate.h"
 #import "Signature.h"
-#import <MediaPlayer/MPMoviePlayerController.h>
+
+@import AVKit;
+@import AVFoundation;
 
 @interface DetailViewController ()
 
-@property (nonatomic, strong, readwrite) MPMoviePlayerController *moviePlayer;
+@property (nonatomic, strong, readwrite) AVPlayer *moviePlayer;
+@property (nonatomic, strong, readwrite) AVPlayerLayer *playerLayer;
 @property (nonatomic, weak, readwrite) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak, readwrite) IBOutlet UITextView *messageView;
 @property (nonatomic, weak, readwrite) IBOutlet UILabel *titleView;
@@ -25,7 +28,7 @@
 
 - (void)dealloc
 {
-    [self.moviePlayer stop];
+    [self.moviePlayer pause];
     self.moviePlayer = nil;
     self.signature = nil;
 }
@@ -43,11 +46,11 @@
         if ([filePath hasSuffix:@"jpg"]) {
             [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
         } else if ([filePath hasSuffix:@"mp4"]) {
-            MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-            [player stop];
-            self.moviePlayer = player;
-            self.moviePlayer.view.frame = self.imageView.frame;
-            [self.view addSubview:self.moviePlayer.view];
+            self.moviePlayer = [AVPlayer playerWithURL:[NSURL fileURLWithPath:filePath]];
+            self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayer];
+            self.playerLayer.frame = self.imageView.frame;
+            [self.view.layer addSublayer:self.playerLayer];
+            [self.moviePlayer pause];
         }
     }
     else {
@@ -86,10 +89,16 @@
     return YES;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self detectOrientation];
+}
+
 - (void)detectOrientation
 {
     if (self.moviePlayer) {
-        self.moviePlayer.view.frame = self.imageView.frame;
+        self.playerLayer.frame = self.imageView.frame;
     }
 }
 
